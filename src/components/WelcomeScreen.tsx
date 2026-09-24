@@ -19,7 +19,7 @@ const RANDOM_NAMES = [
 export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   onContinue,
   initialName = '',
-  onlineCount = 1420,
+  onlineCount = 1,
   onNavigate
 }) => {
   const [name, setName] = useState(initialName);

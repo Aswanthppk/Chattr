@@ -6,6 +6,7 @@ import { Topic } from '../types';
 interface InterestScreenProps {
   userName?: string;
   selectedInterests: string[];
+  onlineCount?: number;
   onToggleInterest: (topic: string) => void;
   onResetInterests: () => void;
   onStartChat: () => void;
@@ -30,6 +31,7 @@ export const PRESET_TOPICS: Topic[] = [
 export const InterestScreen: React.FC<InterestScreenProps> = ({
   userName = '',
   selectedInterests,
+  onlineCount = 1,
   onToggleInterest,
   onResetInterests,
   onStartChat,
@@ -220,7 +222,7 @@ export const InterestScreen: React.FC<InterestScreenProps> = ({
               <span className="font-caption text-caption text-text-secondary line-clamp-2">
                 {count === 0
                   ? 'Connect freely without filtering, or pick topics for targeted serendipity.'
-                  : 'Over 1,420 curious minds are online sharing these intersections right now.'}
+                  : `${onlineCount.toLocaleString()} curious mind${onlineCount === 1 ? '' : 's'} online sharing these intersections right now.`}
               </span>
             </div>
           </div>

@@ -32,7 +32,7 @@ export const App: React.FC = () => {
   ]);
   const [currentMatch, setCurrentMatch] = useState<UserMatch | null>(null);
   const [blockedUsers, setBlockedUsers] = useState<string[]>([]);
-  const [onlineCount, setOnlineCount] = useState<number>(1420);
+  const [onlineCount, setOnlineCount] = useState<number>(1);
 
   // Sync with browser back/forward history navigation
   useEffect(() => {
@@ -178,6 +178,7 @@ export const App: React.FC = () => {
         <InterestScreen
           userName={userName}
           selectedInterests={selectedInterests}
+          onlineCount={onlineCount}
           onToggleInterest={handleToggleInterest}
           onResetInterests={handleResetInterests}
           onStartChat={handleStartMatching}
