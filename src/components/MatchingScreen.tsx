@@ -91,11 +91,11 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background overflow-x-hidden w-full max-w-full">
       <Header title="Finding Match" onBack={onCancel} userName={userName} />
 
-      <main className="flex-1 w-full bg-background pt-16 flex flex-col">
-        <div className="flex flex-col w-full px-margin pb-safe max-w-md mx-auto flex-1 justify-between">
+      <main className="flex-1 w-full bg-background pt-16 flex flex-col overflow-x-hidden">
+        <div className="flex flex-col w-full px-margin pb-safe max-w-md mx-auto flex-1 justify-between overflow-x-hidden">
           {/* Top Utility Bar: Cancel / Re-center */}
           <div className="flex items-center justify-between py-space-sm w-full">
             <button
@@ -124,14 +124,14 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
             </button>
           </div>
 
-          {/* Orb Stage: Ambient Radar & Dimensional Catalyst */}
-          <div className="relative flex flex-col items-center justify-center py-space-md select-none overflow-visible">
-            {/* Concentric Ambient Radar Waves */}
-            <div className="absolute w-72 h-72 rounded-full bg-secondary-fixed/40 blur-2xl pointer-events-none -z-10 animate-pulse" />
-            <div className="absolute w-64 h-64 rounded-full bg-surface-container-high/60 pointer-events-none -z-10 scale-95" />
+          {/* Orb Stage: Ambient Radar & Dimensional Catalyst with Strict Overflow Boundary */}
+          <div className="relative flex flex-col items-center justify-center py-space-md select-none overflow-hidden rounded-3xl w-full">
+            {/* Concentric Ambient Radar Waves - Bounded so they never trigger viewport zoom */}
+            <div className="absolute w-56 h-56 rounded-full bg-secondary-fixed/40 blur-2xl pointer-events-none -z-10 animate-pulse" />
+            <div className="absolute w-48 h-48 rounded-full bg-surface-container-high/60 pointer-events-none -z-10 scale-95" />
             <div
-              className="absolute w-80 h-80 rounded-full bg-secondary-fixed/20 pointer-events-none -z-10 animate-ping"
-              style={{ animationDuration: '3.5s' }}
+              className="absolute w-52 h-52 rounded-full border border-secondary/30 pointer-events-none -z-10 animate-ping opacity-40"
+              style={{ animationDuration: '3s' }}
             />
 
             {/* Center Glossy Orb */}

@@ -35,15 +35,15 @@ export const OrbVisual: React.FC<OrbVisualProps> = ({ size = 'lg', showRadar = f
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-center my-auto py-space-md select-none">
+    <div className="relative flex flex-col items-center justify-center my-auto py-space-md select-none overflow-hidden rounded-3xl w-full max-w-sm">
       {/* Radar waves if requested */}
       {showRadar && (
         <>
-          <div className="absolute w-72 h-72 rounded-full bg-secondary-fixed/40 blur-2xl pointer-events-none -z-10 animate-pulse" />
-          <div className="absolute w-64 h-64 rounded-full bg-surface-container-high/60 pointer-events-none -z-10 scale-95" />
+          <div className="absolute w-56 h-56 rounded-full bg-secondary-fixed/40 blur-2xl pointer-events-none -z-10 animate-pulse" />
+          <div className="absolute w-48 h-48 rounded-full bg-surface-container-high/60 pointer-events-none -z-10 scale-95" />
           <div
-            className="absolute w-80 h-80 rounded-full bg-secondary-fixed/20 pointer-events-none -z-10 animate-ping"
-            style={{ animationDuration: '3.5s' }}
+            className="absolute w-52 h-52 rounded-full border border-secondary/30 pointer-events-none -z-10 animate-ping opacity-40"
+            style={{ animationDuration: '3s' }}
           />
         </>
       )}
