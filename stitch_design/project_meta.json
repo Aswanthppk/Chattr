@@ -1,0 +1,287 @@
+{
+  "id": 1790265147352,
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "text": "{\"name\":\"projects/14124136552745379655\",\"title\":\"Global Random Chat App\",\"visibility\":\"PRIVATE\",\"createTime\":\"2026-09-24T15:40:15.509494Z\",\"updateTime\":\"2026-09-24T15:45:32.340773Z\",\"projectType\":\"TEXT_TO_UI_PRO\",\"thumbnailScreenshot\":{\"name\":\"projects/14124136552745379655/screens/2e611296c9f6445cb1010130d45ece72/fileEntries/screenshot\",\"downloadUrl\":\"https://lh3.googleusercontent.com/aida/AEtjO1WILITaOLQh_0QWe3msEPZ6wwQpiiakNuJNnBN5SvZA-iLvT8kUhBbwPGCLTma0jZ2yoksIE3y1ljwf8OZc65XqmxqFIe1n-XimWb7UTrFGkQPz1bxleFFSPdNTuDTgYeUtocyqbJgoFOihQ_cvOuFliYZMigDuTkhJmMmXkaueE3GSpRscPouqzy9SSJZCYqgSujqReaWKnnVeaWNxhktmW4FLj0ZHbYfbmCGXN9lgwbImqvWn8wxo9jXC\"},\"origin\":\"STITCH\",\"deviceType\":\"DESKTOP\",\"designTheme\":{\"colorMode\":\"LIGHT\",\"font\":\"GEIST\",\"roundness\":\"ROUND_FULL\",\"customColor\":\"#111111\",\"headlineFont\":\"GEIST\",\"bodyFont\":\"GEIST\",\"labelFont\":\"GEIST\",\"namedColors\":{\"inverse_on_surface\":\"#f1f1ef\",\"surface_container_high\":\"#e8e8e6\",\"tertiary_fixed_dim\":\"#c5c4dc\",\"surface_dim\":\"#dadad8\",\"secondary_fixed_dim\":\"#c4c0ff\",\"on_surface\":\"#1a1c1b\",\"surface_variant\":\"#e2e3e1\",\"tertiary_fixed\":\"#e1e0f8\",\"text-muted\":\"#9A9A9F\",\"orb-gradient-start\":\"#8D8BFF\",\"on_secondary_fixed\":\"#120068\",\"state-danger\":\"#E85D5D\",\"on_tertiary\":\"#ffffff\",\"on_background\":\"#1a1c1b\",\"on_secondary_fixed_variant\":\"#3b2bba\",\"on_error_container\":\"#93000a\",\"on_secondary_container\":\"#fffbff\",\"secondary_container\":\"#6a61eb\",\"on_primary_fixed\":\"#1c1b1b\",\"background\":\"#f9f9f7\",\"inverse_surface\":\"#2f3130\",\"surface\":\"#FFFFFF\",\"outline\":\"#747878\",\"surface_tint\":\"#5f5e5e\",\"surface_container_lowest\":\"#ffffff\",\"state-success\":\"#42C77A\",\"on_tertiary_fixed\":\"#191a2b\",\"on_tertiary_container\":\"#828297\",\"primary_container\":\"#1c1b1b\",\"on_primary_container\":\"#858383\",\"surface_container_low\":\"#f4f4f2\",\"text-secondary\":\"#6F6F73\",\"on_tertiary_fixed_variant\":\"#444558\",\"on_primary\":\"#ffffff\",\"tertiary\":\"#000000\",\"surface_container_highest\":\"#e2e3e1\",\"surface-dark\":\"#171717\",\"primary_fixed\":\"#e5e2e1\",\"on_primary_fixed_variant\":\"#474646\",\"surface_container\":\"#eeeeec\",\"inverse_primary\":\"#c8c6c5\",\"outline_variant\":\"#c4c7c7\",\"primary\":\"#000000\",\"text-primary\":\"#111111\",\"error\":\"#ba1a1a\",\"orb-gradient-end\":\"#6D72E8\",\"tertiary_container\":\"#191a2b\",\"border-subtle\":\"#E8E8E8\",\"on_secondary\":\"#ffffff\",\"on_surface_variant\":\"#444748\",\"primary_fixed_dim\":\"#c8c6c5\",\"surface_bright\":\"#f9f9f7\",\"secondary\":\"#5146d0\",\"on_error\":\"#ffffff\",\"error_container\":\"#ffdad6\",\"orb-gradient-mid\":\"#C9C8FF\",\"secondary_fixed\":\"#e3dfff\"},\"designMd\":\"---\\nname: Ambient Discovery\\ncolors:\\n  surface: '#FFFFFF'\\n  surface-dim: '#dadad8'\\n  surface-bright: '#f9f9f7'\\n  surface-container-lowest: '#ffffff'\\n  surface-container-low: '#f4f4f2'\\n  surface-container: '#eeeeec'\\n  surface-container-high: '#e8e8e6'\\n  surface-container-highest: '#e2e3e1'\\n  on-surface: '#1a1c1b'\\n  on-surface-variant: '#444748'\\n  inverse-surface: '#2f3130'\\n  inverse-on-surface: '#f1f1ef'\\n  outline: '#747878'\\n  outline-variant: '#c4c7c7'\\n  surface-tint: '#5f5e5e'\\n  primary: '#000000'\\n  on-primary: '#ffffff'\\n  primary-container: '#1c1b1b'\\n  on-primary-container: '#858383'\\n  inverse-primary: '#c8c6c5'\\n  secondary: '#5146d0'\\n  on-secondary: '#ffffff'\\n  secondary-container: '#6a61eb'\\n  on-secondary-container: '#fffbff'\\n  tertiary: '#000000'\\n  on-tertiary: '#ffffff'\\n  tertiary-container: '#191a2b'\\n  on-tertiary-container: '#828297'\\n  error: '#ba1a1a'\\n  on-error: '#ffffff'\\n  error-container: '#ffdad6'\\n  on-error-container: '#93000a'\\n  primary-fixed: '#e5e2e1'\\n  primary-fixed-dim: '#c8c6c5'\\n  on-primary-fixed: '#1c1b1b'\\n  on-primary-fixed-variant: '#474646'\\n  secondary-fixed: '#e3dfff'\\n  secondary-fixed-dim: '#c4c0ff'\\n  on-secondary-fixed: '#120068'\\n  on-secondary-fixed-variant: '#3b2bba'\\n  tertiary-fixed: '#e1e0f8'\\n  tertiary-fixed-dim: '#c5c4dc'\\n  on-tertiary-fixed: '#191a2b'\\n  on-tertiary-fixed-variant: '#444558'\\n  background: '#f9f9f7'\\n  on-background: '#1a1c1b'\\n  surface-variant: '#e2e3e1'\\n  surface-dark: '#171717'\\n  text-primary: '#111111'\\n  text-secondary: '#6F6F73'\\n  text-muted: '#9A9A9F'\\n  border-subtle: '#E8E8E8'\\n  orb-gradient-start: '#8D8BFF'\\n  orb-gradient-mid: '#C9C8FF'\\n  orb-gradient-end: '#6D72E8'\\n  state-success: '#42C77A'\\n  state-danger: '#E85D5D'\\ntypography:\\n  display-hero:\\n    fontFamily: Geist\\n    fontSize: 40px\\n    fontWeight: '600'\\n    lineHeight: 48px\\n    letterSpacing: -0.03em\\n  display-hero-mobile:\\n    fontFamily: Geist\\n    fontSize: 32px\\n    fontWeight: '600'\\n    lineHeight: 38px\\n    letterSpacing: -0.025em\\n  headline-lg:\\n    fontFamily: Geist\\n    fontSize: 28px\\n    fontWeight: '600'\\n    lineHeight: 34px\\n    letterSpacing: -0.02em\\n  headline-md:\\n    fontFamily: Geist\\n    fontSize: 22px\\n    fontWeight: '600'\\n    lineHeight: 28px\\n    letterSpacing: -0.015em\\n  headline-sm:\\n    fontFamily: Geist\\n    fontSize: 18px\\n    fontWeight: '600'\\n    lineHeight: 24px\\n    letterSpacing: -0.01em\\n  body-lg:\\n    fontFamily: Geist\\n    fontSize: 16px\\n    fontWeight: '400'\\n    lineHeight: 24px\\n    letterSpacing: -0.005em\\n  body-md:\\n    fontFamily: Geist\\n    fontSize: 15px\\n    fontWeight: '400'\\n    lineHeight: 22px\\n    letterSpacing: 0em\\n  body-sm:\\n    fontFamily: Geist\\n    fontSize: 13px\\n    fontWeight: '400'\\n    lineHeight: 18px\\n    letterSpacing: 0.005em\\n  label-md:\\n    fontFamily: Geist\\n    fontSize: 14px\\n    fontWeight: '500'\\n    lineHeight: 20px\\n    letterSpacing: -0.005em\\n  label-sm:\\n    fontFamily: Geist\\n    fontSize: 12px\\n    fontWeight: '500'\\n    lineHeight: 16px\\n    letterSpacing: 0.01em\\n  caption:\\n    fontFamily: Geist\\n    fontSize: 11px\\n    fontWeight: '400'\\n    lineHeight: 14px\\n    letterSpacing: 0.02em\\nrounded:\\n  sm: 0.5rem\\n  DEFAULT: 1rem\\n  md: 1.5rem\\n  lg: 2rem\\n  xl: 3rem\\n  full: 9999px\\nspacing:\\n  gutter: 1rem\\n  gutter-tablet: 1.5rem\\n  gutter-desktop: 2rem\\n  margin: 1.25rem\\n  margin-tablet: 2rem\\n  margin-desktop: 3rem\\n  space-xs: 0.25rem\\n  space-sm: 0.5rem\\n  space-md: 1rem\\n  space-lg: 1.5rem\\n  space-xl: 2rem\\n  space-2xl: 3rem\\n---\\n\\n## Brand & Style\\n\\nThis design system defines an ambient, high-end editorial aesthetic for non-dating social discovery and spontaneous dialogue. The product experience balances the quiet poise of a museum catalogue with the immediate, kinetic delight of modern generative AI utilities. It avoids the gamified dopamine loops, saturated neon palettes, and romantic subtext typical of legacy chat or dating software. Instead, it positions human encounter as an act of intellectual curiosity, calm serendipity, and cultural exchange.\\n\\n### Design Movement & Sensibility\\n- **Minimalist Editorial Warmth:** Grounded in a tactile off-white foundation (`#F5F5F3`), stark black typography (`#111111`), and feather-light structural containment.\\n- **Glassmorphic Orb Identity:** The solitary visual anchor is an ethereal, glowing periwinkle-to-lavender glass sphere (`#756CF6` through `#E8E7FF`). It serves as an anonymous avatar, matching catalyst, and kinetic focal point—radiating subtle diffused highlights without sharp contours.\\n- **Quiet Physicality:** Surfaces behave like matte cardstock drifting on a soft exhibition board. Deep structural borders are rejected in favor of hairline separators (`#E8E8E8`) and ultra-diffused atmospheric ambient drop shadows.\\n- **Micro-Interaction Poise:** Transitions favor soft damping, gentle spring tensions, and deliberate breathing animations over sudden cuts or celebratory gamification particles.\\n\\n## Colors\\n\\nThe palette establishes a monochromatic, paper-like architecture punctuated by a single chromatic signature: a spectral periwinkle/lavender aura.\\n\\n### Color Logic & Application\\n- **Primary (`#111111`):** The definitive anchor. Utilized for high-priority interactive CTAs, active glyphs, incoming emphasis, and primary typographic weight.\\n- **Secondary (`#756CF6`):** The interactive accent. Reserved for subtle status markers, highlighted mutual affinities, active pill indicators, and subtle illuminated focus rings.\\n- **Tertiary (`#E8E7FF`):** Tinted soft surface fill. Deployed behind active interest tags, secondary pill backgrounds, and soft halos framing identity orbs.\\n- **Neutral (`#F5F5F3`):** Canvas background. A warm, mineral-tinted off-white that prevents stark optical glare while establishing physical separation from bright white surface cards.\\n- **Surfaces (`#FFFFFF` & `#171717`):** Elevated cards, chat speech bubbles, and sheets utilize pure white. Pure dark surface `#171717` is reserved for high-contrast outgoing speech bubbles, dark-mode overlays, and hero mobile chassis framing.\\n- **System States:** Operational signals use organic, softened tones—`#42C77A` for real-time online presence and connection pings; `#E85D5D` for skip, report, and terminal actions.\\n\\n## Typography\\n\\nThe typographic system is built on **Geist**, a high-precision neutral grotesque sans-serif engineered for digital clarity. It provides clean geometry, rigorous horizontal proportions, and crisp letterforms across high-density mobile displays.\\n\\n### Hierarchy & Editorial Rules\\n- **Display & Large Headlines:** Tight negative tracking (`-0.03em` to `-0.02em`) creates a refined editorial rhythm. Headlines must always read conversationally and avoid uppercase styling.\\n- **Body Text:** Unadorned, comfortable line heights (145% to 150%) that maximize rapid reading speeds during ephemeral chat streams.\\n- **Labels & Microcopy:** Weighted at Medium (`500`) with neutral-to-positive tracking for chips, status flags, and timestamps.\\n- **Editorial Contrast:** In curated marketing and discovery showcases, solitary focal nouns may adopt an italicized serif posture (via Newsreader or Noto Serif) to reinforce tactile editorial prestige, while operational UI remains strictly sans-serif.\\n\\n## Layout & Spacing\\n\\nThe layout is optimized around single-column mobile-first screens (reference viewport: 390×844) and translates cleanly to floating device compositions on wider screens.\\n\\n### Spatial Rhythm & Grid\\n- **Base Grid:** Strict 4px/8px incremental system. Spacing tokens (`space-xs` through `space-2xl`) drive all internal container insets and component spacing.\\n- **Canvas Margins:** Mobile screens feature an outer canvas padding of `1.25rem` (20px), expanding to `2rem` on tablet viewports and `3rem` on desktop displays.\\n- **Device Framing on Desktop:** Desktop marketing compositions arrange floating, slightly offset device viewports (width: 320px–360px) in asymmetrical diagonal orientations across an expansive `#F5F5F3` canvas.\\n- **Vertical Airflow:** Screen templates allocate generous vertical space to reinforce a feeling of emotional room and calm. Content groups are separated by generous increments (`space-lg` to `space-2xl`), eliminating the dense clutter typical of messaging applications.\\n\\n## Elevation & Depth\\n\\nVisual depth is achieved through quiet tonal separation, ultra-diffused atmospheric shadows, and soft ambient light cones rather than rigid structural borders or heavy skeuomorphic bevels.\\n\\n### Depth Hierarchy\\n1. **Base Layer (Elevation 0):** The raw canvas `#F5F5F3`. Purely matte, textureless, and calm.\\n2. **Resting Cards & Bubbles (Elevation 1):** White surfaces (`#FFFFFF`) sitting upon `#F5F5F3`. These utilize a 1px continuous hairline outline in `#E8E8E8` paired with an imperceptible ambient drop shadow: `0 2px 8px rgba(17, 17, 17, 0.02)`.\\n3. **Elevated Sheets & Floats (Elevation 2):** Floating input composers, action triggers, and bottom navigation ribbons. Outlined with `#E8E8E8` and supported by: `0 12px 32px rgba(17, 17, 17, 0.05), 0 2px 6px rgba(17, 17, 17, 0.02)`.\\n4. **Device Mockup & Hero Modals (Elevation 3):** Device cards resting on desktop backdrops use deep multi-stop dissipation: `0 24px 64px -12px rgba(17, 17, 17, 0.08), 0 8px 20px -6px rgba(17, 17, 17, 0.03)`.\\n5. **The Glowing Glass Orb:** The discovery orb is a 3D glass sphere rendered via smooth CSS conic/radial gradient layering (`#8D8BFF` to `#C9C8FF` to `#6D72E8`) with an inner reflection shadow `inset 0 1px 1px rgba(255, 255, 255, 0.8)` and a diffused periwinkle back-glow: `0 16px 48px rgba(117, 108, 246, 0.28)`. It never uses hard external strokes.\\n\\n## Shapes\\n\\nThis design system embraces a high-radius, pill-dominant geometry (Level 3), lending the interface an organic, non-combative, human feel.\\n\\n### Corner Radius Mapping\\n- **Full Pills (`rounded-full` / `9999px`):** Interaction buttons, interest chips, search badges, status indicators, and the floating message composer.\\n- **Large Surfaces (`rounded-xl` / `32px`):** Top-level screen cards, modal bottom sheets, profile cards, and device presentation mockups.\\n- **Medium Elements (`rounded-lg` / `20px`):** Chat speech bubbles, user list rows, and safety cards.\\n- **Spheres (`50%`):** Glass avatars and the brand discovery orb.\\n\\n## Components\\n\\n### Buttons\\n- **Primary CTA:** Solid black `#111111` pill, high-contrast white `#FFFFFF` text, `15px` Medium font, `0 4px 14px rgba(17, 17, 17, 0.12)` subtle elevation, 52px height on mobile. Minimum 44px touch target.\\n- **Secondary CTA:** Pure white `#FFFFFF` background, 1px `#E8E8E8` border, `#111111` text, hover tone transitioning to `#F5F5F3`.\\n- **Accent Action (Skip / Next):** Pill container in `#E8E7FF` with `#756CF6` text and crisp active states for fast single-tap decisions.\\n- **Icon Action Buttons:** Symmetrical 44px circular pills with centered 20px monochrome icons.\\n\\n### Chat Bubbles\\n- **Incoming Messages:** Background `#FFFFFF`, border 1px solid `#E8E8E8`, text `#111111`, radius 20px with the lower-left corner drawn at 6px. Maximum width 78%.\\n- **Outgoing Messages:** Background `#171717`, border none, text `#FFFFFF`, radius 20px with the lower-right corner drawn at 6px. Maximum width 78%.\\n- **Spacing:** Minimum 12px vertical separation between alternate speakers, 4px between same-speaker clusters.\\n\\n### Message Composer\\n- A 56px high floating capsule positioned over a gradient mask or elevated by 16px from the bottom safe area.\\n- Pure white `#FFFFFF` shell, 1px `#E8E8E8` border, full pill geometry.\\n- Contains an inline subtle grey placeholder (`#9A9A9F`), leading attachment trigger, and a circular black send button (`#111111`) that scales up gently when text is present.\\n\\n### Interest & Topic Chips\\n- Pill silhouette (`9999px`), 32px height, 12px horizontal padding.\\n- **Default State:** Pure white `#FFFFFF` fill, 1px `#E8E8E8` border, `#6F6F73` text.\\n- **Selected / Mutual Match State:** `#E8E7FF` fill, 1px `#756CF6` border, `#756CF6` text with an optional micro-dot indicator.\\n- **Starter Icebreakers:** Displayed in a single horizontal scroll carousel directly above the composer.\\n\\n### List & Conversation Cards\\n- Borderless or 1px hairline `#E8E8E8` separators.\\n- Features a 44px spherical orb avatar, participant name in `#111111` (Semibold), snippet in `#6F6F73` (Regular), and unread indicators as a 6px solid `#756CF6` dot.\\n\\n### Safety & Control Sheets\\n- Bottom sheets with 32px top corner rounding, presenting clean monochrome cards for Report, Block, and Safety Guidelines.\\n- Danger actions are accented in `#E85D5D` with clear confirmation dialogs that avoid alarmist iconography.\\n\\n### Status Indicators\\n- 8px circular presence badge using `#42C77A` encased in a 2px `#FFFFFF` outline, signaling real-time global availability.\",\"colorVariant\":\"FIDELITY\",\"overridePrimaryColor\":\"#111111\",\"overrideSecondaryColor\":\"#756cf6\",\"overrideTertiaryColor\":\"#e8e7ff\",\"overrideNeutralColor\":\"#f5f5f3\",\"spacingScale\":2,\"typography\":{\"label-sm\":{\"fontFamily\":\"Geist\",\"fontSize\":\"12px\",\"fontWeight\":\"500\",\"lineHeight\":\"16px\",\"letterSpacing\":\"0.01em\"},\"headline-md\":{\"fontFamily\":\"Geist\",\"fontSize\":\"22px\",\"fontWeight\":\"600\",\"lineHeight\":\"28px\",\"letterSpacing\":\"-0.015em\"},\"caption\":{\"fontFamily\":\"Geist\",\"fontSize\":\"11px\",\"fontWeight\":\"400\",\"lineHeight\":\"14px\",\"letterSpacing\":\"0.02em\"},\"body-sm\":{\"fontFamily\":\"Geist\",\"fontSize\":\"13px\",\"fontWeight\":\"400\",\"lineHeight\":\"18px\",\"letterSpacing\":\"0.005em\"},\"body-md\":{\"fontFamily\":\"Geist\",\"fontSize\":\"15px\",\"fontWeight\":\"400\",\"lineHeight\":\"22px\",\"letterSpacing\":\"0em\"},\"display-hero-mobile\":{\"fontFamily\":\"Geist\",\"fontSize\":\"32px\",\"fontWeight\":\"600\",\"lineHeight\":\"38px\",\"letterSpacing\":\"-0.025em\"},\"headline-lg\":{\"fontFamily\":\"Geist\",\"fontSize\":\"28px\",\"fontWeight\":\"600\",\"lineHeight\":\"34px\",\"letterSpacing\":\"-0.02em\"},\"body-lg\":{\"fontFamily\":\"Geist\",\"fontSize\":\"16px\",\"fontWeight\":\"400\",\"lineHeight\":\"24px\",\"letterSpacing\":\"-0.005em\"},\"headline-sm\":{\"fontFamily\":\"Geist\",\"fontSize\":\"18px\",\"fontWeight\":\"600\",\"lineHeight\":\"24px\",\"letterSpacing\":\"-0.01em\"},\"display-hero\":{\"fontFamily\":\"Geist\",\"fontSize\":\"40px\",\"fontWeight\":\"600\",\"lineHeight\":\"48px\",\"letterSpacing\":\"-0.03em\"},\"label-md\":{\"fontFamily\":\"Geist\",\"fontSize\":\"14px\",\"fontWeight\":\"500\",\"lineHeight\":\"20px\",\"letterSpacing\":\"-0.005em\"}},\"spacing\":{\"gutter-desktop\":\"2rem\",\"margin-tablet\":\"2rem\",\"gutter\":\"1rem\",\"space-2xl\":\"3rem\",\"margin\":\"1.25rem\",\"space-sm\":\"0.5rem\",\"gutter-tablet\":\"1.5rem\",\"space-lg\":\"1.5rem\",\"space-xl\":\"2rem\",\"margin-desktop\":\"3rem\",\"space-md\":\"1rem\",\"space-xs\":\"0.25rem\"},\"headlineFontFamily\":\"Geist\",\"bodyFontFamily\":\"Geist\",\"labelFontFamily\":\"Geist\"},\"screenInstances\":[{\"id\":\"22c38aa642624a039fbb27dbbbab8d6b\",\"sourceScreen\":\"projects/14124136552745379655/screens/22c38aa642624a039fbb27dbbbab8d6b\",\"x\":1816,\"y\":3729,\"width\":390,\"height\":646},{\"id\":\"2e611296c9f6445cb1010130d45ece72\",\"sourceScreen\":\"projects/14124136552745379655/screens/2e611296c9f6445cb1010130d45ece72\",\"x\":576,\"y\":2024,\"width\":512,\"height\":512},{\"id\":\"34b1de99adff43ce888d6f2004938e86\",\"sourceScreen\":\"projects/14124136552745379655/screens/34b1de99adff43ce888d6f2004938e86\",\"x\":1152,\"y\":2024,\"width\":390,\"height\":1042},{\"id\":\"38f02572d6d949a59f838fed3079afef\",\"sourceScreen\":\"projects/14124136552745379655/screens/38f02572d6d949a59f838fed3079afef\",\"x\":1362,\"y\":3729,\"width\":390,\"height\":626},{\"id\":\"456f31bfc6114686a073e6a87ed38dc4\",\"sourceScreen\":\"projects/14124136552745379655/screens/456f31bfc6114686a073e6a87ed38dc4\",\"y\":3729,\"width\":390,\"height\":836},{\"id\":\"73ab4602648f473e8e6f26cab5c205f8\",\"sourceScreen\":\"projects/14124136552745379655/screens/73ab4602648f473e8e6f26cab5c205f8\",\"x\":454,\"y\":3729,\"width\":390,\"height\":808},{\"id\":\"assets_5c13a8aec6674c7c85ee64959e1ba2be\",\"x\":844,\"width\":960,\"height\":540,\"sourceAsset\":\"assets/5c13a8aec6674c7c85ee64959e1ba2be\",\"type\":\"DESIGN_SYSTEM_INSTANCE\"},{\"id\":\"c83cf19a-2c7c-4900-bb92-fe85e9a34568\",\"sourceScreen\":\"projects/14124136552745379655/screens/10912748476190421648\",\"width\":780,\"height\":1768,\"type\":\"SCREEN_INSTANCE\"},{\"id\":\"ce9010f464b0418badf612e2ea5e4388\",\"sourceScreen\":\"projects/14124136552745379655/screens/ce9010f464b0418badf612e2ea5e4388\",\"y\":2024,\"width\":512,\"height\":512},{\"id\":\"d04c9b23f67e437abc2c471f68c4244c\",\"sourceScreen\":\"projects/14124136552745379655/screens/d04c9b23f67e437abc2c471f68c4244c\",\"x\":1606,\"y\":2024,\"width\":390,\"height\":1449},{\"id\":\"ed3ed63848a14d338852ed5cb393fd81\",\"sourceScreen\":\"projects/14124136552745379655/screens/ed3ed63848a14d338852ed5cb393fd81\",\"x\":908,\"y\":3729,\"width\":390,\"height\":816}],\"metadata\":{\"userRole\":\"OWNER\"}}",
+        "type": "text"
+      }
+    ],
+    "structuredContent": {
+      "createTime": "2026-09-24T15:40:15.509494Z",
+      "designTheme": {
+        "bodyFont": "GEIST",
+        "bodyFontFamily": "Geist",
+        "colorMode": "LIGHT",
+        "colorVariant": "FIDELITY",
+        "customColor": "#111111",
+        "designMd": "---\nname: Ambient Discovery\ncolors:\n  surface: '#FFFFFF'\n  surface-dim: '#dadad8'\n  surface-bright: '#f9f9f7'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#f4f4f2'\n  surface-container: '#eeeeec'\n  surface-container-high: '#e8e8e6'\n  surface-container-highest: '#e2e3e1'\n  on-surface: '#1a1c1b'\n  on-surface-variant: '#444748'\n  inverse-surface: '#2f3130'\n  inverse-on-surface: '#f1f1ef'\n  outline: '#747878'\n  outline-variant: '#c4c7c7'\n  surface-tint: '#5f5e5e'\n  primary: '#000000'\n  on-primary: '#ffffff'\n  primary-container: '#1c1b1b'\n  on-primary-container: '#858383'\n  inverse-primary: '#c8c6c5'\n  secondary: '#5146d0'\n  on-secondary: '#ffffff'\n  secondary-container: '#6a61eb'\n  on-secondary-container: '#fffbff'\n  tertiary: '#000000'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#191a2b'\n  on-tertiary-container: '#828297'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#e5e2e1'\n  primary-fixed-dim: '#c8c6c5'\n  on-primary-fixed: '#1c1b1b'\n  on-primary-fixed-variant: '#474646'\n  secondary-fixed: '#e3dfff'\n  secondary-fixed-dim: '#c4c0ff'\n  on-secondary-fixed: '#120068'\n  on-secondary-fixed-variant: '#3b2bba'\n  tertiary-fixed: '#e1e0f8'\n  tertiary-fixed-dim: '#c5c4dc'\n  on-tertiary-fixed: '#191a2b'\n  on-tertiary-fixed-variant: '#444558'\n  background: '#f9f9f7'\n  on-background: '#1a1c1b'\n  surface-variant: '#e2e3e1'\n  surface-dark: '#171717'\n  text-primary: '#111111'\n  text-secondary: '#6F6F73'\n  text-muted: '#9A9A9F'\n  border-subtle: '#E8E8E8'\n  orb-gradient-start: '#8D8BFF'\n  orb-gradient-mid: '#C9C8FF'\n  orb-gradient-end: '#6D72E8'\n  state-success: '#42C77A'\n  state-danger: '#E85D5D'\ntypography:\n  display-hero:\n    fontFamily: Geist\n    fontSize: 40px\n    fontWeight: '600'\n    lineHeight: 48px\n    letterSpacing: -0.03em\n  display-hero-mobile:\n    fontFamily: Geist\n    fontSize: 32px\n    fontWeight: '600'\n    lineHeight: 38px\n    letterSpacing: -0.025em\n  headline-lg:\n    fontFamily: Geist\n    fontSize: 28px\n    fontWeight: '600'\n    lineHeight: 34px\n    letterSpacing: -0.02em\n  headline-md:\n    fontFamily: Geist\n    fontSize: 22px\n    fontWeight: '600'\n    lineHeight: 28px\n    letterSpacing: -0.015em\n  headline-sm:\n    fontFamily: Geist\n    fontSize: 18px\n    fontWeight: '600'\n    lineHeight: 24px\n    letterSpacing: -0.01em\n  body-lg:\n    fontFamily: Geist\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: 24px\n    letterSpacing: -0.005em\n  body-md:\n    fontFamily: Geist\n    fontSize: 15px\n    fontWeight: '400'\n    lineHeight: 22px\n    letterSpacing: 0em\n  body-sm:\n    fontFamily: Geist\n    fontSize: 13px\n    fontWeight: '400'\n    lineHeight: 18px\n    letterSpacing: 0.005em\n  label-md:\n    fontFamily: Geist\n    fontSize: 14px\n    fontWeight: '500'\n    lineHeight: 20px\n    letterSpacing: -0.005em\n  label-sm:\n    fontFamily: Geist\n    fontSize: 12px\n    fontWeight: '500'\n    lineHeight: 16px\n    letterSpacing: 0.01em\n  caption:\n    fontFamily: Geist\n    fontSize: 11px\n    fontWeight: '400'\n    lineHeight: 14px\n    letterSpacing: 0.02em\nrounded:\n  sm: 0.5rem\n  DEFAULT: 1rem\n  md: 1.5rem\n  lg: 2rem\n  xl: 3rem\n  full: 9999px\nspacing:\n  gutter: 1rem\n  gutter-tablet: 1.5rem\n  gutter-desktop: 2rem\n  margin: 1.25rem\n  margin-tablet: 2rem\n  margin-desktop: 3rem\n  space-xs: 0.25rem\n  space-sm: 0.5rem\n  space-md: 1rem\n  space-lg: 1.5rem\n  space-xl: 2rem\n  space-2xl: 3rem\n---\n\n## Brand & Style\n\nThis design system defines an ambient, high-end editorial aesthetic for non-dating social discovery and spontaneous dialogue. The product experience balances the quiet poise of a museum catalogue with the immediate, kinetic delight of modern generative AI utilities. It avoids the gamified dopamine loops, saturated neon palettes, and romantic subtext typical of legacy chat or dating software. Instead, it positions human encounter as an act of intellectual curiosity, calm serendipity, and cultural exchange.\n\n### Design Movement & Sensibility\n- **Minimalist Editorial Warmth:** Grounded in a tactile off-white foundation (`#F5F5F3`), stark black typography (`#111111`), and feather-light structural containment.\n- **Glassmorphic Orb Identity:** The solitary visual anchor is an ethereal, glowing periwinkle-to-lavender glass sphere (`#756CF6` through `#E8E7FF`). It serves as an anonymous avatar, matching catalyst, and kinetic focal point—radiating subtle diffused highlights without sharp contours.\n- **Quiet Physicality:** Surfaces behave like matte cardstock drifting on a soft exhibition board. Deep structural borders are rejected in favor of hairline separators (`#E8E8E8`) and ultra-diffused atmospheric ambient drop shadows.\n- **Micro-Interaction Poise:** Transitions favor soft damping, gentle spring tensions, and deliberate breathing animations over sudden cuts or celebratory gamification particles.\n\n## Colors\n\nThe palette establishes a monochromatic, paper-like architecture punctuated by a single chromatic signature: a spectral periwinkle/lavender aura.\n\n### Color Logic & Application\n- **Primary (`#111111`):** The definitive anchor. Utilized for high-priority interactive CTAs, active glyphs, incoming emphasis, and primary typographic weight.\n- **Secondary (`#756CF6`):** The interactive accent. Reserved for subtle status markers, highlighted mutual affinities, active pill indicators, and subtle illuminated focus rings.\n- **Tertiary (`#E8E7FF`):** Tinted soft surface fill. Deployed behind active interest tags, secondary pill backgrounds, and soft halos framing identity orbs.\n- **Neutral (`#F5F5F3`):** Canvas background. A warm, mineral-tinted off-white that prevents stark optical glare while establishing physical separation from bright white surface cards.\n- **Surfaces (`#FFFFFF` & `#171717`):** Elevated cards, chat speech bubbles, and sheets utilize pure white. Pure dark surface `#171717` is reserved for high-contrast outgoing speech bubbles, dark-mode overlays, and hero mobile chassis framing.\n- **System States:** Operational signals use organic, softened tones—`#42C77A` for real-time online presence and connection pings; `#E85D5D` for skip, report, and terminal actions.\n\n## Typography\n\nThe typographic system is built on **Geist**, a high-precision neutral grotesque sans-serif engineered for digital clarity. It provides clean geometry, rigorous horizontal proportions, and crisp letterforms across high-density mobile displays.\n\n### Hierarchy & Editorial Rules\n- **Display & Large Headlines:** Tight negative tracking (`-0.03em` to `-0.02em`) creates a refined editorial rhythm. Headlines must always read conversationally and avoid uppercase styling.\n- **Body Text:** Unadorned, comfortable line heights (145% to 150%) that maximize rapid reading speeds during ephemeral chat streams.\n- **Labels & Microcopy:** Weighted at Medium (`500`) with neutral-to-positive tracking for chips, status flags, and timestamps.\n- **Editorial Contrast:** In curated marketing and discovery showcases, solitary focal nouns may adopt an italicized serif posture (via Newsreader or Noto Serif) to reinforce tactile editorial prestige, while operational UI remains strictly sans-serif.\n\n## Layout & Spacing\n\nThe layout is optimized around single-column mobile-first screens (reference viewport: 390×844) and translates cleanly to floating device compositions on wider screens.\n\n### Spatial Rhythm & Grid\n- **Base Grid:** Strict 4px/8px incremental system. Spacing tokens (`space-xs` through `space-2xl`) drive all internal container insets and component spacing.\n- **Canvas Margins:** Mobile screens feature an outer canvas padding of `1.25rem` (20px), expanding to `2rem` on tablet viewports and `3rem` on desktop displays.\n- **Device Framing on Desktop:** Desktop marketing compositions arrange floating, slightly offset device viewports (width: 320px–360px) in asymmetrical diagonal orientations across an expansive `#F5F5F3` canvas.\n- **Vertical Airflow:** Screen templates allocate generous vertical space to reinforce a feeling of emotional room and calm. Content groups are separated by generous increments (`space-lg` to `space-2xl`), eliminating the dense clutter typical of messaging applications.\n\n## Elevation & Depth\n\nVisual depth is achieved through quiet tonal separation, ultra-diffused atmospheric shadows, and soft ambient light cones rather than rigid structural borders or heavy skeuomorphic bevels.\n\n### Depth Hierarchy\n1. **Base Layer (Elevation 0):** The raw canvas `#F5F5F3`. Purely matte, textureless, and calm.\n2. **Resting Cards & Bubbles (Elevation 1):** White surfaces (`#FFFFFF`) sitting upon `#F5F5F3`. These utilize a 1px continuous hairline outline in `#E8E8E8` paired with an imperceptible ambient drop shadow: `0 2px 8px rgba(17, 17, 17, 0.02)`.\n3. **Elevated Sheets & Floats (Elevation 2):** Floating input composers, action triggers, and bottom navigation ribbons. Outlined with `#E8E8E8` and supported by: `0 12px 32px rgba(17, 17, 17, 0.05), 0 2px 6px rgba(17, 17, 17, 0.02)`.\n4. **Device Mockup & Hero Modals (Elevation 3):** Device cards resting on desktop backdrops use deep multi-stop dissipation: `0 24px 64px -12px rgba(17, 17, 17, 0.08), 0 8px 20px -6px rgba(17, 17, 17, 0.03)`.\n5. **The Glowing Glass Orb:** The discovery orb is a 3D glass sphere rendered via smooth CSS conic/radial gradient layering (`#8D8BFF` to `#C9C8FF` to `#6D72E8`) with an inner reflection shadow `inset 0 1px 1px rgba(255, 255, 255, 0.8)` and a diffused periwinkle back-glow: `0 16px 48px rgba(117, 108, 246, 0.28)`. It never uses hard external strokes.\n\n## Shapes\n\nThis design system embraces a high-radius, pill-dominant geometry (Level 3), lending the interface an organic, non-combative, human feel.\n\n### Corner Radius Mapping\n- **Full Pills (`rounded-full` / `9999px`):** Interaction buttons, interest chips, search badges, status indicators, and the floating message composer.\n- **Large Surfaces (`rounded-xl` / `32px`):** Top-level screen cards, modal bottom sheets, profile cards, and device presentation mockups.\n- **Medium Elements (`rounded-lg` / `20px`):** Chat speech bubbles, user list rows, and safety cards.\n- **Spheres (`50%`):** Glass avatars and the brand discovery orb.\n\n## Components\n\n### Buttons\n- **Primary CTA:** Solid black `#111111` pill, high-contrast white `#FFFFFF` text, `15px` Medium font, `0 4px 14px rgba(17, 17, 17, 0.12)` subtle elevation, 52px height on mobile. Minimum 44px touch target.\n- **Secondary CTA:** Pure white `#FFFFFF` background, 1px `#E8E8E8` border, `#111111` text, hover tone transitioning to `#F5F5F3`.\n- **Accent Action (Skip / Next):** Pill container in `#E8E7FF` with `#756CF6` text and crisp active states for fast single-tap decisions.\n- **Icon Action Buttons:** Symmetrical 44px circular pills with centered 20px monochrome icons.\n\n### Chat Bubbles\n- **Incoming Messages:** Background `#FFFFFF`, border 1px solid `#E8E8E8`, text `#111111`, radius 20px with the lower-left corner drawn at 6px. Maximum width 78%.\n- **Outgoing Messages:** Background `#171717`, border none, text `#FFFFFF`, radius 20px with the lower-right corner drawn at 6px. Maximum width 78%.\n- **Spacing:** Minimum 12px vertical separation between alternate speakers, 4px between same-speaker clusters.\n\n### Message Composer\n- A 56px high floating capsule positioned over a gradient mask or elevated by 16px from the bottom safe area.\n- Pure white `#FFFFFF` shell, 1px `#E8E8E8` border, full pill geometry.\n- Contains an inline subtle grey placeholder (`#9A9A9F`), leading attachment trigger, and a circular black send button (`#111111`) that scales up gently when text is present.\n\n### Interest & Topic Chips\n- Pill silhouette (`9999px`), 32px height, 12px horizontal padding.\n- **Default State:** Pure white `#FFFFFF` fill, 1px `#E8E8E8` border, `#6F6F73` text.\n- **Selected / Mutual Match State:** `#E8E7FF` fill, 1px `#756CF6` border, `#756CF6` text with an optional micro-dot indicator.\n- **Starter Icebreakers:** Displayed in a single horizontal scroll carousel directly above the composer.\n\n### List & Conversation Cards\n- Borderless or 1px hairline `#E8E8E8` separators.\n- Features a 44px spherical orb avatar, participant name in `#111111` (Semibold), snippet in `#6F6F73` (Regular), and unread indicators as a 6px solid `#756CF6` dot.\n\n### Safety & Control Sheets\n- Bottom sheets with 32px top corner rounding, presenting clean monochrome cards for Report, Block, and Safety Guidelines.\n- Danger actions are accented in `#E85D5D` with clear confirmation dialogs that avoid alarmist iconography.\n\n### Status Indicators\n- 8px circular presence badge using `#42C77A` encased in a 2px `#FFFFFF` outline, signaling real-time global availability.",
+        "font": "GEIST",
+        "headlineFont": "GEIST",
+        "headlineFontFamily": "Geist",
+        "labelFont": "GEIST",
+        "labelFontFamily": "Geist",
+        "namedColors": {
+          "background": "#f9f9f7",
+          "border-subtle": "#E8E8E8",
+          "error": "#ba1a1a",
+          "error_container": "#ffdad6",
+          "inverse_on_surface": "#f1f1ef",
+          "inverse_primary": "#c8c6c5",
+          "inverse_surface": "#2f3130",
+          "on_background": "#1a1c1b",
+          "on_error": "#ffffff",
+          "on_error_container": "#93000a",
+          "on_primary": "#ffffff",
+          "on_primary_container": "#858383",
+          "on_primary_fixed": "#1c1b1b",
+          "on_primary_fixed_variant": "#474646",
+          "on_secondary": "#ffffff",
+          "on_secondary_container": "#fffbff",
+          "on_secondary_fixed": "#120068",
+          "on_secondary_fixed_variant": "#3b2bba",
+          "on_surface": "#1a1c1b",
+          "on_surface_variant": "#444748",
+          "on_tertiary": "#ffffff",
+          "on_tertiary_container": "#828297",
+          "on_tertiary_fixed": "#191a2b",
+          "on_tertiary_fixed_variant": "#444558",
+          "orb-gradient-end": "#6D72E8",
+          "orb-gradient-mid": "#C9C8FF",
+          "orb-gradient-start": "#8D8BFF",
+          "outline": "#747878",
+          "outline_variant": "#c4c7c7",
+          "primary": "#000000",
+          "primary_container": "#1c1b1b",
+          "primary_fixed": "#e5e2e1",
+          "primary_fixed_dim": "#c8c6c5",
+          "secondary": "#5146d0",
+          "secondary_container": "#6a61eb",
+          "secondary_fixed": "#e3dfff",
+          "secondary_fixed_dim": "#c4c0ff",
+          "state-danger": "#E85D5D",
+          "state-success": "#42C77A",
+          "surface": "#FFFFFF",
+          "surface-dark": "#171717",
+          "surface_bright": "#f9f9f7",
+          "surface_container": "#eeeeec",
+          "surface_container_high": "#e8e8e6",
+          "surface_container_highest": "#e2e3e1",
+          "surface_container_low": "#f4f4f2",
+          "surface_container_lowest": "#ffffff",
+          "surface_dim": "#dadad8",
+          "surface_tint": "#5f5e5e",
+          "surface_variant": "#e2e3e1",
+          "tertiary": "#000000",
+          "tertiary_container": "#191a2b",
+          "tertiary_fixed": "#e1e0f8",
+          "tertiary_fixed_dim": "#c5c4dc",
+          "text-muted": "#9A9A9F",
+          "text-primary": "#111111",
+          "text-secondary": "#6F6F73"
+        },
+        "overrideNeutralColor": "#f5f5f3",
+        "overridePrimaryColor": "#111111",
+        "overrideSecondaryColor": "#756cf6",
+        "overrideTertiaryColor": "#e8e7ff",
+        "roundness": "ROUND_FULL",
+        "spacing": {
+          "gutter": "1rem",
+          "gutter-desktop": "2rem",
+          "gutter-tablet": "1.5rem",
+          "margin": "1.25rem",
+          "margin-desktop": "3rem",
+          "margin-tablet": "2rem",
+          "space-2xl": "3rem",
+          "space-lg": "1.5rem",
+          "space-md": "1rem",
+          "space-sm": "0.5rem",
+          "space-xl": "2rem",
+          "space-xs": "0.25rem"
+        },
+        "spacingScale": 2,
+        "typography": {
+          "body-lg": {
+            "fontFamily": "Geist",
+            "fontSize": "16px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.005em",
+            "lineHeight": "24px"
+          },
+          "body-md": {
+            "fontFamily": "Geist",
+            "fontSize": "15px",
+            "fontWeight": "400",
+            "letterSpacing": "0em",
+            "lineHeight": "22px"
+          },
+          "body-sm": {
+            "fontFamily": "Geist",
+            "fontSize": "13px",
+            "fontWeight": "400",
+            "letterSpacing": "0.005em",
+            "lineHeight": "18px"
+          },
+          "caption": {
+            "fontFamily": "Geist",
+            "fontSize": "11px",
+            "fontWeight": "400",
+            "letterSpacing": "0.02em",
+            "lineHeight": "14px"
+          },
+          "display-hero": {
+            "fontFamily": "Geist",
+            "fontSize": "40px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.03em",
+            "lineHeight": "48px"
+          },
+          "display-hero-mobile": {
+            "fontFamily": "Geist",
+            "fontSize": "32px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.025em",
+            "lineHeight": "38px"
+          },
+          "headline-lg": {
+            "fontFamily": "Geist",
+            "fontSize": "28px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.02em",
+            "lineHeight": "34px"
+          },
+          "headline-md": {
+            "fontFamily": "Geist",
+            "fontSize": "22px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.015em",
+            "lineHeight": "28px"
+          },
+          "headline-sm": {
+            "fontFamily": "Geist",
+            "fontSize": "18px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.01em",
+            "lineHeight": "24px"
+          },
+          "label-md": {
+            "fontFamily": "Geist",
+            "fontSize": "14px",
+            "fontWeight": "500",
+            "letterSpacing": "-0.005em",
+            "lineHeight": "20px"
+          },
+          "label-sm": {
+            "fontFamily": "Geist",
+            "fontSize": "12px",
+            "fontWeight": "500",
+            "letterSpacing": "0.01em",
+            "lineHeight": "16px"
+          }
+        }
+      },
+      "deviceType": "DESKTOP",
+      "metadata": {
+        "userRole": "OWNER"
+      },
+      "name": "projects/14124136552745379655",
+      "origin": "STITCH",
+      "projectType": "TEXT_TO_UI_PRO",
+      "screenInstances": [
+        {
+          "height": 646,
+          "id": "22c38aa642624a039fbb27dbbbab8d6b",
+          "sourceScreen": "projects/14124136552745379655/screens/22c38aa642624a039fbb27dbbbab8d6b",
+          "width": 390,
+          "x": 1816,
+          "y": 3729
+        },
+        {
+          "height": 512,
+          "id": "2e611296c9f6445cb1010130d45ece72",
+          "sourceScreen": "projects/14124136552745379655/screens/2e611296c9f6445cb1010130d45ece72",
+          "width": 512,
+          "x": 576,
+          "y": 2024
+        },
+        {
+          "height": 1042,
+          "id": "34b1de99adff43ce888d6f2004938e86",
+          "sourceScreen": "projects/14124136552745379655/screens/34b1de99adff43ce888d6f2004938e86",
+          "width": 390,
+          "x": 1152,
+          "y": 2024
+        },
+        {
+          "height": 626,
+          "id": "38f02572d6d949a59f838fed3079afef",
+          "sourceScreen": "projects/14124136552745379655/screens/38f02572d6d949a59f838fed3079afef",
+          "width": 390,
+          "x": 1362,
+          "y": 3729
+        },
+        {
+          "height": 836,
+          "id": "456f31bfc6114686a073e6a87ed38dc4",
+          "sourceScreen": "projects/14124136552745379655/screens/456f31bfc6114686a073e6a87ed38dc4",
+          "width": 390,
+          "y": 3729
+        },
+        {
+          "height": 808,
+          "id": "73ab4602648f473e8e6f26cab5c205f8",
+          "sourceScreen": "projects/14124136552745379655/screens/73ab4602648f473e8e6f26cab5c205f8",
+          "width": 390,
+          "x": 454,
+          "y": 3729
+        },
+        {
+          "height": 540,
+          "id": "assets_5c13a8aec6674c7c85ee64959e1ba2be",
+          "sourceAsset": "assets/5c13a8aec6674c7c85ee64959e1ba2be",
+          "type": "DESIGN_SYSTEM_INSTANCE",
+          "width": 960,
+          "x": 844
+        },
+        {
+          "height": 1768,
+          "id": "c83cf19a-2c7c-4900-bb92-fe85e9a34568",
+          "sourceScreen": "projects/14124136552745379655/screens/10912748476190421648",
+          "type": "SCREEN_INSTANCE",
+          "width": 780
+        },
+        {
+          "height": 512,
+          "id": "ce9010f464b0418badf612e2ea5e4388",
+          "sourceScreen": "projects/14124136552745379655/screens/ce9010f464b0418badf612e2ea5e4388",
+          "width": 512,
+          "y": 2024
+        },
+        {
+          "height": 1449,
+          "id": "d04c9b23f67e437abc2c471f68c4244c",
+          "sourceScreen": "projects/14124136552745379655/screens/d04c9b23f67e437abc2c471f68c4244c",
+          "width": 390,
+          "x": 1606,
+          "y": 2024
+        },
+        {
+          "height": 816,
+          "id": "ed3ed63848a14d338852ed5cb393fd81",
+          "sourceScreen": "projects/14124136552745379655/screens/ed3ed63848a14d338852ed5cb393fd81",
+          "width": 390,
+          "x": 908,
+          "y": 3729
+        }
+      ],
+      "thumbnailScreenshot": {
+        "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1WILITaOLQh_0QWe3msEPZ6wwQpiiakNuJNnBN5SvZA-iLvT8kUhBbwPGCLTma0jZ2yoksIE3y1ljwf8OZc65XqmxqFIe1n-XimWb7UTrFGkQPz1bxleFFSPdNTuDTgYeUtocyqbJgoFOihQ_cvOuFliYZMigDuTkhJmMmXkaueE3GSpRscPouqzy9SSJZCYqgSujqReaWKnnVeaWNxhktmW4FLj0ZHbYfbmCGXN9lgwbImqvWn8wxo9jXC",
+        "name": "projects/14124136552745379655/screens/2e611296c9f6445cb1010130d45ece72/fileEntries/screenshot"
+      },
+      "title": "Global Random Chat App",
+      "updateTime": "2026-09-24T15:45:32.340773Z",
+      "visibility": "PRIVATE"
+    }
+  }
+}

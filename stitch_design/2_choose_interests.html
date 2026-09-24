@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary-fixed": "#191a2b", "primary-container": "#1c1b1b", "surface-container-highest": "#e2e3e1", "secondary": "#5146d0", "primary-fixed": "#e5e2e1", "on-error-container": "#93000a", "outline-variant": "#c4c7c7", "surface-bright": "#f9f9f7", "on-error": "#ffffff", "surface-dim": "#dadad8", "on-surface": "#1a1c1b", "inverse-surface": "#2f3130", "surface-container-high": "#e8e8e6", "on-primary-fixed": "#1c1b1b", "on-secondary": "#ffffff", "state-success": "#42C77A", "tertiary": "#000000", "text-secondary": "#6F6F73", "on-primary-fixed-variant": "#474646", "state-danger": "#E85D5D", "surface-container-lowest": "#ffffff", "background": "#f9f9f7", "error": "#ba1a1a", "orb-gradient-start": "#8D8BFF", "surface": "#FFFFFF", "text-primary": "#111111", "inverse-on-surface": "#f1f1ef", "surface-container-low": "#f4f4f2", "surface-tint": "#5f5e5e", "text-muted": "#9A9A9F", "on-surface-variant": "#444748", "on-secondary-container": "#fffbff", "on-secondary-fixed-variant": "#3b2bba", "outline": "#747878", "surface-container": "#eeeeec", "border-subtle": "#E8E8E8", "orb-gradient-end": "#6D72E8", "orb-gradient-mid": "#C9C8FF", "on-primary-container": "#858383", "surface-dark": "#171717", "secondary-fixed": "#e3dfff", "on-tertiary": "#ffffff", "primary-fixed-dim": "#c8c6c5", "tertiary-fixed-dim": "#c5c4dc", "on-tertiary-fixed-variant": "#444558", "surface-variant": "#e2e3e1", "primary": "#000000", "on-background": "#1a1c1b", "tertiary-fixed": "#e1e0f8", "on-secondary-fixed": "#120068", "on-primary": "#ffffff", "secondary-container": "#6a61eb", "tertiary-container": "#191a2b", "error-container": "#ffdad6", "secondary-fixed-dim": "#c4c0ff", "on-tertiary-container": "#828297", "inverse-primary": "#c8c6c5" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "gutter": "1rem", "space-2xl": "3rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "margin-tablet": "2rem", "margin-desktop": "3rem", "space-lg": "1.5rem", "gutter-desktop": "2rem", "space-xl": "2rem", "gutter-tablet": "1.5rem", "margin": "1.25rem", "space-md": "1rem" }, "fontFamily": { "label-md": ["Geist"], "caption": ["Geist"], "display-hero": ["Geist"], "body-md": ["Geist"], "headline-lg": ["Geist"], "body-lg": ["Geist"], "label-sm": ["Geist"], "display-hero-mobile": ["Geist"], "headline-md": ["Geist"], "body-sm": ["Geist"], "headline-sm": ["Geist"] }, "fontSize": { "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "500" }], "caption": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "400" }], "display-hero": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }], "display-hero-mobile": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.025em", "fontWeight": "600" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background font-body-md text-body-md text-text-primary min-h-screen flex flex-col antialiased"><header class="fixed top-0 w-full z-50 pt-safe bg-background/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go Back" class="w-11 h-11 flex items-center justify-center rounded-full text-text-primary hover:bg-surface-container transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[20px]">arrow_back</span></button><img alt="Glossy 3D lavender and periwinkle spherical glass orb logo, soft ethereal gradient #8D8BFF to #C9C8FF to #6D72E8, smooth diffused inner light and gloss reflection, modern minimal brand emblem, isolated on clean background. Design context: - Primary color: #111111
+- Font: geist
+- Mode: light
+- Roundness: rounded-full
+. The logo should be visually consistent with these brand tokens." class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UxFA_PjCIfqEjotDxf6ECYnZlNq0JcydxK8q_XjNQ2A9FxRt3nvZ25Rh-5JTcf9oBWWRwv5feAfY4FqrWh6lmHLfF8NET62l8UhaOV7OjG4bp94H1R2UlUN7EEg7XYBYZOZCOQykLsmB1-ldOp6R9Ari8P7-DEEUhdjC_u_kTBjZPFWZvooWaAPX5RyhC4sjB3vOlPo5IYwkAyT_zbLp2OBcbmGLpIz2xydNZKj3dQa6F2PwPQhsyY2h0C"/><span class="font-headline-sm text-headline-sm text-text-primary ml-1">Orbit</span></div><div class="flex items-center gap-space-sm"><h1 class="font-label-md text-label-md text-text-secondary hidden sm:block">Choose Interests</h1><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 w-full bg-background pt-16 flex flex-col"><div class="flex flex-col w-full px-margin pb-safe select-none">
+<!-- Interactive Ambient Header Aura -->
+<div class="relative w-full pt-space-md pb-space-lg flex flex-col items-center">
+<!-- Gentle Ambient Orb Reflection Motif (Subtle Glass Orb Reference) -->
+<div class="relative mb-space-md flex items-center justify-center">
+<div class="w-16 h-16 rounded-full bg-gradient-to-tr from-orb-gradient-end via-orb-gradient-mid to-orb-gradient-start shadow-[0_12px_32px_rgba(117,108,246,0.28)] flex items-center justify-center transition-transform duration-500 hover:scale-105 active:scale-95">
+<div class="w-14 h-14 rounded-full bg-gradient-to-b from-white/60 to-transparent backdrop-blur-[2px] flex items-center justify-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]">
+<span class="material-symbols-outlined text-surface text-[22px] drop-shadow-sm">bubble_chart</span>
+</div>
+</div>
+<!-- Subtle breathing glow halo -->
+<div class="absolute -inset-2 rounded-full bg-secondary/15 blur-xl -z-10 animate-pulse"></div>
+</div>
+<!-- Editorial Typography Block -->
+<h2 class="font-headline-lg text-headline-lg text-text-primary text-center tracking-tight">
+      What are you into?
+    </h2>
+<p class="font-body-md text-body-md text-text-secondary text-center mt-space-xs max-w-[280px]">
+      Pick a few topics to spark quiet serendipity and deeper dialogue (1–5 topics).
+    </p>
+<!-- Interactive Selected Counter Badge -->
+<div class="mt-space-md inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant shadow-sm transition-all duration-300">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
+<span class="font-label-sm text-label-sm font-medium" id="counter-text">3 of 5 selected</span>
+</div>
+</div>
+<!-- Topics & Interests Selection Grid -->
+<div class="w-full flex flex-col gap-space-sm mt-space-xs">
+<div class="flex items-center justify-between px-space-xs mb-1">
+<span class="font-caption text-caption uppercase tracking-wider text-text-muted">Curated Spheres</span>
+<button class="font-caption text-caption text-secondary hover:text-text-primary transition-colors cursor-pointer py-1" id="clear-btn" type="button">
+        Reset selection
+      </button>
+</div>
+<!-- Chips Container -->
+<div class="flex flex-wrap gap-2.5 justify-center py-1" id="chips-container">
+<!-- Item: Technology (Pre-selected) -->
+<button class="topic-chip active group h-9 px-4 rounded-full flex items-center gap-1.5 transition-all duration-200 cursor-pointer bg-secondary-fixed text-secondary shadow-[0_2px_8px_rgba(117,108,246,0.12)] scale-[1.02]" data-topic="Technology" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">memory</span>
+<span class="font-label-md text-label-md">Technology</span>
+<span class="chip-check material-symbols-outlined text-[15px] text-secondary ml-0.5">check</span>
+</button>
+<!-- Item: Movies (Pre-selected) -->
+<button class="topic-chip active group h-9 px-4 rounded-full flex items-center gap-1.5 transition-all duration-200 cursor-pointer bg-secondary-fixed text-secondary shadow-[0_2px_8px_rgba(117,108,246,0.12)] scale-[1.02]" data-topic="Movies" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">movie</span>
+<span class="font-label-md text-label-md">Movies</span>
+<span class="chip-check material-symbols-outlined text-[15px] text-secondary ml-0.5">check</span>
+</button>
+<!-- Item: Music -->
+<button class="topic-chip group h-9 px-4 rounded-full flex items-center gap-1.5 transition-all duration-200 cursor-pointer bg-surface text-text-secondary shadow-sm hover:bg-surface-container-low active:scale-95" data-topic="Music" type="button">
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-text-primary transition-colors">graphic_eq</span>
+<span class="font-label-md text-label-md">Music</span>
+<span class="chip-check hidden material-symbols-outlined text-[15px] text-secondary ml-0.5">check</span>
+</button>
+<!-- Item: Gaming (Pre-selected) -->
+<button class="topic-chip active group h-9 px-4 rounded-full flex items-center gap-1.5 transition-all duration-200 cursor-pointer bg-secondary-fixed text-secondary shadow-[0_2px_8px_rgba(117,108,246,0.12)] scale-[1.02]" data-topic="Gaming" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary">sports_esports</span>
+<span class="font-label-md text-label-md">Gaming</span>
+<span class="chip-check material-symbols-outlined text-[15px] text-secondary ml-0.5">check</span>
+</button>
+<!-- Item: Sports -->
+<button class="topic-chip group h-9 px-4 rounded-full flex items-center gap-1.5 transition-all duration-200 cursor-pointer bg-surface text-text-secondary shadow-sm hover:bg-surface-container-low active:scale-95" data-topic="Sports" type="button">
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-text-primary transition-colors">sprint</span>
+<span class="font-label-md text-label-md">Sports</span>
+<span class="chip-check hidden material-symbols-outlined text-[15px] text-secondary ml-0.5">check</span>
+</button>
+<!-- Item: Travel -->
+<button class="topic-chip group h-9 px-4 rounded-full flex items-center gap-1.5 transition-all duration-200 cursor-pointer bg-surface text-text-secondary shadow-sm hover:bg-surface-container-low active:scale-95" data-topic="Travel" type="button">
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-text-primary transition-colors">flight_takeoff</span>
+<span class="font-label-md text-label-md">Travel</span>
+<span class="chip-check hidden material-symbols-outlined text-[15px] text-secondary ml-0.5">check</span>
+</button>
+<!-- Item: Books -->
+<button class="topic-chip group h-9 px-4 rounded-full flex items-center gap-1.5 transition-all duration-200 cursor-pointer bg-surface text-text-secondary shadow-sm hover:bg-surface-container-low active:scale-95" data-topic="Books" type="button">
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-text-primary transition-colors">auto_stories</span>
+<span class="font-label-md text-label-md">Books</span>
+<span class="chip-check hidden material-symbols-outlined text-[15px] text-secondary ml-0.5">check</span>
+</button>
+<!-- Item: Fitness -->
+<button class="topic-chip group h-9 px-4 rounded-full flex items-center gap-1.5 transition-all duration-200 cursor-pointer bg-surface text-text-secondary shadow-sm hover:bg-surface-container-low active:scale-95" data-topic="Fitness" type="button">
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-text-primary transition-colors">fitness_center</span>
+<span class="font-label-md text-label-md">Fitness</span>
+<span class="chip-check hidden material-symbols-outlined text-[15px] text-secondary ml-0.5">check</span>
+</button>
+<!-- Item: Food -->
+<button class="topic-chip group h-9 px-4 rounded-full flex items-center gap-1.5 transition-all duration-200 cursor-pointer bg-surface text-text-secondary shadow-sm hover:bg-surface-container-low active:scale-95" data-topic="Food" type="button">
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-text-primary transition-colors">local_cafe</span>
+<span class="font-label-md text-label-md">Food</span>
+<span class="chip-check hidden material-symbols-outlined text-[15px] text-secondary ml-0.5">check</span>
+</button>
+<!-- Item: Photography -->
+<button class="topic-chip group h-9 px-4 rounded-full flex items-center gap-1.5 transition-all duration-200 cursor-pointer bg-surface text-text-secondary shadow-sm hover:bg-surface-container-low active:scale-95" data-topic="Photography" type="button">
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-text-primary transition-colors">photo_camera</span>
+<span class="font-label-md text-label-md">Photography</span>
+<span class="chip-check hidden material-symbols-outlined text-[15px] text-secondary ml-0.5">check</span>
+</button>
+<!-- Item: Anime -->
+<button class="topic-chip group h-9 px-4 rounded-full flex items-center gap-1.5 transition-all duration-200 cursor-pointer bg-surface text-text-secondary shadow-sm hover:bg-surface-container-low active:scale-95" data-topic="Anime" type="button">
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-text-primary transition-colors">animation</span>
+<span class="font-label-md text-label-md">Anime</span>
+<span class="chip-check hidden material-symbols-outlined text-[15px] text-secondary ml-0.5">check</span>
+</button>
+<!-- Item: Coding -->
+<button class="topic-chip group h-9 px-4 rounded-full flex items-center gap-1.5 transition-all duration-200 cursor-pointer bg-surface text-text-secondary shadow-sm hover:bg-surface-container-low active:scale-95" data-topic="Coding" type="button">
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-text-primary transition-colors">terminal</span>
+<span class="font-label-md text-label-md">Coding</span>
+<span class="chip-check hidden material-symbols-outlined text-[15px] text-secondary ml-0.5">check</span>
+</button>
+</div>
+</div>
+<!-- Ambient Micro-Card Insight -->
+<div class="mt-space-lg w-full bg-surface rounded-lg p-space-md shadow-sm flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[20px]">insights</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-text-primary truncate">Curated Resonance</span>
+<span class="font-caption text-caption text-text-secondary line-clamp-2">Over 1,420 curious minds are online sharing these intersections right now.</span>
+</div>
+</div>
+<!-- Persistent Bottom Action & Guidance Area -->
+<div class="mt-auto pt-space-xl pb-space-md flex flex-col items-center gap-space-sm">
+<!-- Primary Solid Black Pill CTA -->
+<button class="w-full h-[52px] bg-primary text-on-primary rounded-full font-label-md text-label-md font-medium shadow-[0_4px_14px_rgba(17,17,17,0.12)] flex items-center justify-center gap-2 transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer" id="start-chat-cta" type="button">
+<span>Start Chat</span>
+<span class="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
+</button>
+<!-- Warm micro-copy disclaimer -->
+<div class="flex items-center gap-1.5 text-center">
+<span class="w-2 h-2 rounded-full bg-state-success"></span>
+<p class="font-caption text-caption text-text-secondary">
+        We'll pair you immediately with an active stranger.
+      </p>
+</div>
+</div>
+</div>
+<script>
+  (function () {
+    const chips = Array.from(document.querySelectorAll('.topic-chip'));
+    const counterText = document.getElementById('counter-text');
+    const clearBtn = document.getElementById('clear-btn');
+    const startBtn = document.getElementById('start-chat-cta');
+    const MAX_TOPICS = 5;
+
+    function getSelectedCount() {
+      return document.querySelectorAll('.topic-chip.active').length;
+    }
+
+    function updateState() {
+      const count = getSelectedCount();
+      counterText.textContent = `${count} of ${MAX_TOPICS} selected`;
+      
+      if (count === 0) {
+        startBtn.classList.add('opacity-50', 'pointer-events-none');
+      } else {
+        startBtn.classList.remove('opacity-50', 'pointer-events-none');
+      }
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const isActive = chip.classList.contains('active');
+        const count = getSelectedCount();
+        const checkIcon = chip.querySelector('.chip-check');
+        const mainIcon = chip.querySelector('.material-symbols-outlined:first-child');
+
+        if (!isActive) {
+          if (count >= MAX_TOPICS) {
+            // Little bounce feedback when maxed out
+            counterText.parentElement.classList.add('scale-105');
+            setTimeout(() => counterText.parentElement.classList.remove('scale-105'), 200);
+            return;
+          }
+          // Activate
+          chip.classList.add('active', 'bg-secondary-fixed', 'text-secondary', 'shadow-[0_2px_8px_rgba(117,108,246,0.12)]', 'scale-[1.02]');
+          chip.classList.remove('bg-surface', 'text-text-secondary');
+          if (checkIcon) checkIcon.classList.remove('hidden');
+          if (mainIcon) {
+            mainIcon.classList.remove('text-text-muted');
+            mainIcon.classList.add('text-secondary');
+          }
+        } else {
+          // Deactivate
+          chip.classList.remove('active', 'bg-secondary-fixed', 'text-secondary', 'shadow-[0_2px_8px_rgba(117,108,246,0.12)]', 'scale-[1.02]');
+          chip.classList.add('bg-surface', 'text-text-secondary');
+          if (checkIcon) checkIcon.classList.add('hidden');
+          if (mainIcon) {
+            mainIcon.classList.remove('text-secondary');
+            mainIcon.classList.add('text-text-muted');
+          }
+        }
+        updateState();
+      });
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        chips.forEach(chip => {
+          chip.classList.remove('active', 'bg-secondary-fixed', 'text-secondary', 'shadow-[0_2px_8px_rgba(117,108,246,0.12)]', 'scale-[1.02]');
+          chip.classList.add('bg-surface', 'text-text-secondary');
+          const checkIcon = chip.querySelector('.chip-check');
+          const mainIcon = chip.querySelector('.material-symbols-outlined:first-child');
+          if (checkIcon) checkIcon.classList.add('hidden');
+          if (mainIcon) {
+            mainIcon.classList.remove('text-secondary');
+            mainIcon.classList.add('text-text-muted');
+          }
+        });
+        updateState();
+      });
+    }
+
+    if (startBtn) {
+      startBtn.addEventListener('click', () => {
+        const count = getSelectedCount();
+        if (count > 0) {
+          startBtn.innerHTML = `
+            <span class="inline-block w-4 h-4 border-2 border-surface border-t-transparent rounded-full animate-spin"></span>
+            <span>Connecting...</span>
+          `;
+          setTimeout(() => {
+            startBtn.innerHTML = `<span>Start Chat</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span>`;
+          }, 1500);
+        }
+      });
+    }
+
+    updateState();
+  })();
+</script></main></body></html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary-fixed": "#191a2b", "primary-container": "#1c1b1b", "surface-container-highest": "#e2e3e1", "secondary": "#5146d0", "primary-fixed": "#e5e2e1", "on-error-container": "#93000a", "outline-variant": "#c4c7c7", "surface-bright": "#f9f9f7", "on-error": "#ffffff", "surface-dim": "#dadad8", "on-surface": "#1a1c1b", "inverse-surface": "#2f3130", "surface-container-high": "#e8e8e6", "on-primary-fixed": "#1c1b1b", "on-secondary": "#ffffff", "state-success": "#42C77A", "tertiary": "#000000", "text-secondary": "#6F6F73", "on-primary-fixed-variant": "#474646", "state-danger": "#E85D5D", "surface-container-lowest": "#ffffff", "background": "#f9f9f7", "error": "#ba1a1a", "orb-gradient-start": "#8D8BFF", "surface": "#FFFFFF", "text-primary": "#111111", "inverse-on-surface": "#f1f1ef", "surface-container-low": "#f4f4f2", "surface-tint": "#5f5e5e", "text-muted": "#9A9A9F", "on-surface-variant": "#444748", "on-secondary-container": "#fffbff", "on-secondary-fixed-variant": "#3b2bba", "outline": "#747878", "surface-container": "#eeeeec", "border-subtle": "#E8E8E8", "orb-gradient-end": "#6D72E8", "orb-gradient-mid": "#C9C8FF", "on-primary-container": "#858383", "surface-dark": "#171717", "secondary-fixed": "#e3dfff", "on-tertiary": "#ffffff", "primary-fixed-dim": "#c8c6c5", "tertiary-fixed-dim": "#c5c4dc", "on-tertiary-fixed-variant": "#444558", "surface-variant": "#e2e3e1", "primary": "#000000", "on-background": "#1a1c1b", "tertiary-fixed": "#e1e0f8", "on-secondary-fixed": "#120068", "on-primary": "#ffffff", "secondary-container": "#6a61eb", "tertiary-container": "#191a2b", "error-container": "#ffdad6", "secondary-fixed-dim": "#c4c0ff", "on-tertiary-container": "#828297", "inverse-primary": "#c8c6c5" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "gutter": "1rem", "space-2xl": "3rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "margin-tablet": "2rem", "margin-desktop": "3rem", "space-lg": "1.5rem", "gutter-desktop": "2rem", "space-xl": "2rem", "gutter-tablet": "1.5rem", "margin": "1.25rem", "space-md": "1rem" }, "fontFamily": { "label-md": ["Geist"], "caption": ["Geist"], "display-hero": ["Geist"], "body-md": ["Geist"], "headline-lg": ["Geist"], "body-lg": ["Geist"], "label-sm": ["Geist"], "display-hero-mobile": ["Geist"], "headline-md": ["Geist"], "body-sm": ["Geist"], "headline-sm": ["Geist"] }, "fontSize": { "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "500" }], "caption": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "400" }], "display-hero": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }], "display-hero-mobile": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.025em", "fontWeight": "600" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } };</script></head><body class="bg-background font-body-md text-body-md text-text-primary min-h-screen flex flex-col antialiased"><header class="fixed top-0 w-full z-50 pt-safe bg-background/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Go Back" class="w-11 h-11 flex items-center justify-center rounded-full text-text-primary hover:bg-surface-container transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[20px]">arrow_back</span></button><img alt="Glossy 3D lavender and periwinkle spherical glass orb logo, soft ethereal gradient #8D8BFF to #C9C8FF to #6D72E8, smooth diffused inner light and gloss reflection, modern minimal brand emblem, isolated on clean background. Design context: - Primary color: #111111
+- Font: geist
+- Mode: light
+- Roundness: rounded-full
+. The logo should be visually consistent with these brand tokens." class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UxFA_PjCIfqEjotDxf6ECYnZlNq0JcydxK8q_XjNQ2A9FxRt3nvZ25Rh-5JTcf9oBWWRwv5feAfY4FqrWh6lmHLfF8NET62l8UhaOV7OjG4bp94H1R2UlUN7EEg7XYBYZOZCOQykLsmB1-ldOp6R9Ari8P7-DEEUhdjC_u_kTBjZPFWZvooWaAPX5RyhC4sjB3vOlPo5IYwkAyT_zbLp2OBcbmGLpIz2xydNZKj3dQa6F2PwPQhsyY2h0C"/><span class="font-headline-sm text-headline-sm text-text-primary ml-1">Orbit</span></div><div class="flex items-center gap-space-sm"><h1 class="font-label-md text-label-md text-text-secondary hidden sm:block">Active Chat Room</h1><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 w-full bg-background pt-16 flex flex-col"><div class="flex flex-col w-full relative">
+<!-- Top Presence Sub-bar / Active Partner Context -->
+<section class="sticky top-0 z-30 px-margin py-space-sm bg-background/90 backdrop-blur-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="relative shrink-0 w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center shadow-[0_4px_14px_rgba(117,108,246,0.2)] overflow-hidden">
+<img alt="Alex Avatar Orb" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UxFA_PjCIfqEjotDxf6ECYnZlNq0JcydxK8q_XjNQ2A9FxRt3nvZ25Rh-5JTcf9oBWWRwv5feAfY4FqrWh6lmHLfF8NET62l8UhaOV7OjG4bp94H1R2UlUN7EEg7XYBYZOZCOQykLsmB1-ldOp6R9Ari8P7-DEEUhdjC_u_kTBjZPFWZvooWaAPX5RyhC4sjB3vOlPo5IYwkAyT_zbLp2OBcbmGLpIz2xydNZKj3dQa6F2PwPQhsyY2h0C"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-state-success ring-2 ring-surface"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-text-primary leading-none truncate">Alex</span>
+<span class="w-1.5 h-1.5 rounded-full bg-state-success shrink-0"></span>
+</div>
+<span class="font-caption text-caption text-text-muted truncate mt-0.5">Technology · Movies</span>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Session details" class="w-10 h-10 rounded-full flex items-center justify-center text-text-secondary hover:bg-surface-container active:scale-95 transition-all" id="session-info-btn">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+<button aria-label="More options" class="w-10 h-10 rounded-full flex items-center justify-center text-text-secondary hover:bg-surface-container active:scale-95 transition-all" id="chat-options-btn">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Ephemeral Session Banner / Notice Modal Drawer (Togglable) -->
+<div class="hidden px-margin pt-space-sm pb-space-md bg-surface-container-low transition-all" id="safety-sheet">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-text-secondary">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+<span class="font-label-sm text-label-sm">Encrypted & unindexed chat session</span>
+</div>
+<button class="font-caption text-caption text-text-muted hover:text-text-primary" id="close-safety-btn">Dismiss</button>
+</div>
+</div>
+<!-- Messages Stream Area -->
+<div class="flex flex-col px-margin pt-space-md pb-44 gap-y-space-md" id="chat-stream">
+<!-- Timeline Timestamp -->
+<div class="flex flex-col items-center justify-center my-space-xs">
+<span class="font-caption text-caption text-text-muted tracking-wide uppercase px-space-sm py-1 bg-surface-container-high rounded-full">
+        Today at 9:42 AM · Ephemeral session
+      </span>
+</div>
+<!-- Serendipitous Match Pill -->
+<div class="flex justify-center">
+<div class="flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-secondary-fixed text-secondary shadow-[0_2px_8px_rgba(117,108,246,0.08)]">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-sm text-label-sm">You both matched on Technology & Movies</span>
+</div>
+</div>
+<!-- Message Bubble: Alex (Incoming 1) -->
+<div class="flex items-end gap-2 max-w-[82%]">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed shrink-0 mb-1 overflow-hidden shadow-sm">
+<img alt="Alex Orb" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UxFA_PjCIfqEjotDxf6ECYnZlNq0JcydxK8q_XjNQ2A9FxRt3nvZ25Rh-5JTcf9oBWWRwv5feAfY4FqrWh6lmHLfF8NET62l8UhaOV7OjG4bp94H1R2UlUN7EEg7XYBYZOZCOQykLsmB1-ldOp6R9Ari8P7-DEEUhdjC_u_kTBjZPFWZvooWaAPX5RyhC4sjB3vOlPo5IYwkAyT_zbLp2OBcbmGLpIz2xydNZKj3dQa6F2PwPQhsyY2h0C"/>
+</div>
+<div class="flex flex-col items-start gap-1">
+<div class="bg-surface text-text-primary px-space-md py-3 rounded-2xl rounded-bl-[6px] shadow-[0_2px_8px_rgba(17,17,17,0.03)]">
+<p class="font-body-md text-body-md">Hey! 👋</p>
+</div>
+<span class="font-caption text-caption text-text-muted ml-1">9:42 AM</span>
+</div>
+</div>
+<!-- Message Bubble: User (Outgoing 1) -->
+<div class="flex flex-col items-end self-end max-w-[82%] gap-1">
+<div class="bg-surface-dark text-on-primary px-space-md py-3 rounded-2xl rounded-br-[6px] shadow-[0_4px_14px_rgba(0,0,0,0.12)]">
+<p class="font-body-md text-body-md">Hey!</p>
+</div>
+<div class="flex items-center gap-1 mr-1 text-text-muted">
+<span class="font-caption text-caption">9:43 AM</span>
+<span class="material-symbols-outlined text-[13px] text-state-success">done_all</span>
+</div>
+</div>
+<!-- Message Bubble: Alex (Incoming 2) -->
+<div class="flex items-end gap-2 max-w-[82%]">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed shrink-0 mb-1 overflow-hidden shadow-sm">
+<img alt="Alex Orb" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UxFA_PjCIfqEjotDxf6ECYnZlNq0JcydxK8q_XjNQ2A9FxRt3nvZ25Rh-5JTcf9oBWWRwv5feAfY4FqrWh6lmHLfF8NET62l8UhaOV7OjG4bp94H1R2UlUN7EEg7XYBYZOZCOQykLsmB1-ldOp6R9Ari8P7-DEEUhdjC_u_kTBjZPFWZvooWaAPX5RyhC4sjB3vOlPo5IYwkAyT_zbLp2OBcbmGLpIz2xydNZKj3dQa6F2PwPQhsyY2h0C"/>
+</div>
+<div class="flex flex-col items-start gap-1">
+<div class="bg-surface text-text-primary px-space-md py-3 rounded-2xl rounded-bl-[6px] shadow-[0_2px_8px_rgba(17,17,17,0.03)]">
+<p class="font-body-md text-body-md">Where are you from?</p>
+</div>
+<span class="font-caption text-caption text-text-muted ml-1">9:43 AM</span>
+</div>
+</div>
+<!-- Ambient Typing Indicator Placeholder (Dynamic) -->
+<div class="hidden items-center gap-2 max-w-[82%]" id="typing-indicator">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed shrink-0 overflow-hidden shadow-sm">
+<img alt="Alex Orb" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UxFA_PjCIfqEjotDxf6ECYnZlNq0JcydxK8q_XjNQ2A9FxRt3nvZ25Rh-5JTcf9oBWWRwv5feAfY4FqrWh6lmHLfF8NET62l8UhaOV7OjG4bp94H1R2UlUN7EEg7XYBYZOZCOQykLsmB1-ldOp6R9Ari8P7-DEEUhdjC_u_kTBjZPFWZvooWaAPX5RyhC4sjB3vOlPo5IYwkAyT_zbLp2OBcbmGLpIz2xydNZKj3dQa6F2PwPQhsyY2h0C"/>
+</div>
+<div class="bg-surface px-4 py-3 rounded-2xl rounded-bl-[6px] shadow-[0_2px_8px_rgba(17,17,17,0.03)] flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-text-muted animate-pulse"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-text-muted animate-pulse [animation-delay:200ms]"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-text-muted animate-pulse [animation-delay:400ms]"></span>
+</div>
+</div>
+</div>
+<!-- Bottom Floating Deck (Starters + Pill Composer) -->
+<div class="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-t from-background via-background/95 to-transparent pt-4 pb-safe pointer-events-none">
+<div class="w-full max-w-lg mx-auto px-margin flex flex-col gap-2.5 pointer-events-auto pb-3">
+<!-- Quick Starters Horizontal Ribbon -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+<button class="starter-chip shrink-0 px-3.5 py-1.5 rounded-full bg-surface text-text-secondary font-label-sm text-label-sm hover:bg-secondary-fixed hover:text-secondary shadow-sm active:scale-95 transition-all">
+          Where are you from?
+        </button>
+<button class="starter-chip shrink-0 px-3.5 py-1.5 rounded-full bg-surface text-text-secondary font-label-sm text-label-sm hover:bg-secondary-fixed hover:text-secondary shadow-sm active:scale-95 transition-all">
+          What are you into?
+        </button>
+<button class="starter-chip shrink-0 px-3.5 py-1.5 rounded-full bg-surface text-text-secondary font-label-sm text-label-sm hover:bg-secondary-fixed hover:text-secondary shadow-sm active:scale-95 transition-all">
+          Favorite movie?
+        </button>
+<button class="starter-chip shrink-0 px-3.5 py-1.5 rounded-full bg-surface text-text-secondary font-label-sm text-label-sm hover:bg-secondary-fixed hover:text-secondary shadow-sm active:scale-95 transition-all">
+          Sci-Fi or Noir?
+        </button>
+</div>
+<!-- Modern Ambient Pill Composer -->
+<div class="relative flex items-center bg-surface rounded-full shadow-[0_12px_32px_rgba(17,17,17,0.06),0_2px_6px_rgba(17,17,17,0.02)] p-1.5">
+<!-- Media / Plus Action -->
+<button aria-label="Add attachment" class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-text-primary hover:bg-surface-container active:scale-90 transition-all shrink-0" id="attach-btn">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+<!-- Message Field -->
+<input autocomplete="off" class="flex-1 bg-transparent px-2.5 py-2 font-body-md text-body-md text-text-primary placeholder:text-text-muted focus:outline-none" id="chat-input" placeholder="Type a message..." type="text"/>
+<!-- Action / Send Button -->
+<button aria-label="Send message" class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md active:scale-95 transition-all shrink-0" id="send-button">
+<span class="material-symbols-outlined text-[20px]">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Subtle Options Sheet Backdrop (Interactive) -->
+<div class="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm hidden flex-col justify-end" id="options-modal">
+<div class="w-full max-w-lg mx-auto bg-surface rounded-t-xl p-space-lg flex flex-col gap-space-md shadow-2xl">
+<div class="w-10 h-1 bg-surface-container-highest rounded-full mx-auto mb-1"></div>
+<div class="flex items-center gap-space-sm pb-space-xs">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center overflow-hidden">
+<img alt="Alex Orb" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UxFA_PjCIfqEjotDxf6ECYnZlNq0JcydxK8q_XjNQ2A9FxRt3nvZ25Rh-5JTcf9oBWWRwv5feAfY4FqrWh6lmHLfF8NET62l8UhaOV7OjG4bp94H1R2UlUN7EEg7XYBYZOZCOQykLsmB1-ldOp6R9Ari8P7-DEEUhdjC_u_kTBjZPFWZvooWaAPX5RyhC4sjB3vOlPo5IYwkAyT_zbLp2OBcbmGLpIz2xydNZKj3dQa6F2PwPQhsyY2h0C"/>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Alex</h2>
+<p class="font-caption text-caption text-text-muted">Matched via shared interests: Technology, Movies</p>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<button class="w-full flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-text-primary">refresh</span>
+<span class="font-label-md text-label-md text-text-primary">Find next conversation</span>
+</div>
+<span class="font-caption text-caption text-text-muted">Skip partner</span>
+</button>
+<button class="w-full flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-left transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-text-primary">visibility_off</span>
+<span class="font-label-md text-label-md text-text-primary">Ephemeral settings</span>
+</div>
+<span class="font-caption text-caption text-text-muted">Auto-clears</span>
+</button>
+<button class="w-full flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low hover:bg-error-container/40 text-left transition-colors" id="report-action">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-state-danger">flag</span>
+<span class="font-label-md text-label-md text-state-danger">Report or block Alex</span>
+</div>
+</button>
+</div>
+<button class="w-full py-3.5 rounded-full bg-surface-container text-text-primary font-label-md text-label-md mt-1 active:scale-98 transition-transform" id="close-modal-btn">
+        Close
+      </button>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const input = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-button');
+    const stream = document.getElementById('chat-stream');
+    const starterChips = document.querySelectorAll('.starter-chip');
+    const optionsBtn = document.getElementById('chat-options-btn');
+    const optionsModal = document.getElementById('options-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const sessionInfoBtn = document.getElementById('session-info-btn');
+    const safetySheet = document.getElementById('safety-sheet');
+    const closeSafetyBtn = document.getElementById('close-safety-btn');
+    const typingIndicator = document.getElementById('typing-indicator');
+
+    function appendUserMessage(text) {
+      if (!text || !text.trim()) return;
+      
+      const outgoingNode = document.createElement('div');
+      outgoingNode.className = 'flex flex-col items-end self-end max-w-[82%] gap-1 transition-all duration-300 transform translate-y-2 opacity-0';
+      
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+
+      outgoingNode.innerHTML = `
+        <div class="bg-surface-dark text-on-primary px-space-md py-3 rounded-2xl rounded-br-[6px] shadow-[0_4px_14px_rgba(0,0,0,0.12)]">
+          <p class="font-body-md text-body-md">${escapeHtml(text)}</p>
+        </div>
+        <div class="flex items-center gap-1 mr-1 text-text-muted">
+          <span class="font-caption text-caption">${timeStr}</span>
+          <span class="material-symbols-outlined text-[13px] text-text-muted">done</span>
+        </div>
+      `;
+
+      stream.appendChild(outgoingNode);
+      
+      requestAnimationFrame(() => {
+        outgoingNode.classList.remove('translate-y-2', 'opacity-0');
+      });
+
+      input.value = '';
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
+      // Simulated gentle reply from Alex
+      triggerPartnerReply();
+    }
+
+    function triggerPartnerReply() {
+      setTimeout(() => {
+        typingIndicator.classList.remove('hidden');
+        typingIndicator.classList.add('flex');
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
+        setTimeout(() => {
+          typingIndicator.classList.add('hidden');
+          typingIndicator.classList.remove('flex');
+
+          const incomingNode = document.createElement('div');
+          incomingNode.className = 'flex items-end gap-2 max-w-[82%] transition-all duration-300 transform translate-y-2 opacity-0';
+          
+          const now = new Date();
+          const timeStr = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+
+          const responses = [
+            "Nice! I'm currently designing an experimental ambient music synthesizer.",
+            "I love that. Have you seen 2001: A Space Odyssey recently?",
+            "Based in Kyoto! The weather is unusually quiet today.",
+            "Totally agree. Simplicity changes the way we perceive software."
+          ];
+          const randomReply = responses[Math.floor(Math.random() * responses.length)];
+
+          incomingNode.innerHTML = `
+            <div class="w-6 h-6 rounded-full bg-secondary-fixed shrink-0 mb-1 overflow-hidden shadow-sm">
+              <img src="https://lh3.googleusercontent.com/aida/AEtjO1UxFA_PjCIfqEjotDxf6ECYnZlNq0JcydxK8q_XjNQ2A9FxRt3nvZ25Rh-5JTcf9oBWWRwv5feAfY4FqrWh6lmHLfF8NET62l8UhaOV7OjG4bp94H1R2UlUN7EEg7XYBYZOZCOQykLsmB1-ldOp6R9Ari8P7-DEEUhdjC_u_kTBjZPFWZvooWaAPX5RyhC4sjB3vOlPo5IYwkAyT_zbLp2OBcbmGLpIz2xydNZKj3dQa6F2PwPQhsyY2h0C" alt="Alex Orb" class="w-full h-full object-cover">
+            </div>
+            <div class="flex flex-col items-start gap-1">
+              <div class="bg-surface text-text-primary px-space-md py-3 rounded-2xl rounded-bl-[6px] shadow-[0_2px_8px_rgba(17,17,17,0.03)]">
+                <p class="font-body-md text-body-md">${randomReply}</p>
+              </div>
+              <span class="font-caption text-caption text-text-muted ml-1">${timeStr}</span>
+            </div>
+          `;
+
+          stream.appendChild(incomingNode);
+          requestAnimationFrame(() => {
+            incomingNode.classList.remove('translate-y-2', 'opacity-0');
+          });
+          window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }, 1300);
+      }, 700);
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&").replace(/</g, "<").replace(/>/g, ">").replace(/"/g, """).replace(/'/g, "'");
+    }
+
+    sendBtn.addEventListener('click', () => appendUserMessage(input.value));
+    
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        appendUserMessage(input.value);
+      }
+    });
+
+    starterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        appendUserMessage(chip.textContent.trim());
+      });
+    });
+
+    optionsBtn.addEventListener('click', () => {
+      optionsModal.classList.remove('hidden');
+      optionsModal.classList.add('flex');
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      optionsModal.classList.add('hidden');
+      optionsModal.classList.remove('flex');
+    });
+
+    optionsModal.addEventListener('click', (e) => {
+      if (e.target === optionsModal) {
+        optionsModal.classList.add('hidden');
+        optionsModal.classList.remove('flex');
+      }
+    });
+
+    sessionInfoBtn.addEventListener('click', () => {
+      safetySheet.classList.toggle('hidden');
+    });
+
+    if (closeSafetyBtn) {
+      closeSafetyBtn.addEventListener('click', () => {
+        safetySheet.classList.add('hidden');
+      });
+    }
+  })();
+</script></main></body></html>
