@@ -185,7 +185,7 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
                 Live matchmaking active
               </span>
               <span className="font-caption text-caption text-text-muted max-w-[280px]">
-                Tip: Open another browser tab or window at <code className="bg-surface-container px-1 py-0.5 rounded text-[11px]">localhost:3000</code> to chat in real time!
+                Connecting with the next available person in the queue...
               </span>
             </div>
           ) : currentMatch ? (
