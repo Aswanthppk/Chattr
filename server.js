@@ -59,24 +59,52 @@ io.on('connection', (socket) => {
     removeFromQueue(socket.id);
 
     const userInterestsLower = interests.map((t) => t.toLowerCase().trim());
+    const hasUserInterests = userInterestsLower.length > 0;
 
     // Look for compatible match in queue
     let matchIndex = -1;
 
-    for (let i = 0; i < waitingQueue.length; i++) {
-      const candidate = waitingQueue[i];
-      if (candidate.socketId === socket.id) continue;
-      if (blockedUsers.includes(candidate.userId)) continue;
-      if (candidate.blockedUsers && candidate.blockedUsers.includes(userId)) continue;
+    if (hasUserInterests) {
+      // 1. If user selected interests: match with the first candidate who shares AT LEAST ONE interest
+      for (let i = 0; i < waitingQueue.length; i++) {
+        const candidate = waitingQueue[i];
+        if (candidate.socketId === socket.id) continue;
+        if (blockedUsers.includes(candidate.userId)) continue;
+        if (candidate.blockedUsers && candidate.blockedUsers.includes(userId)) continue;
 
-      const candidateInterestsLower = candidate.interests.map((t) => t.toLowerCase().trim());
-      const hasOverlap = candidateInterestsLower.some((t) => userInterestsLower.includes(t));
+        const candidateInterestsLower = candidate.interests.map((t) => t.toLowerCase().trim());
+        const hasOverlap = candidateInterestsLower.some((t) => userInterestsLower.includes(t));
 
-      // Match if either user selected no topics (open to all) OR there's an overlap
-      if (interests.length === 0 || candidate.interests.length === 0 || hasOverlap) {
-        matchIndex = i;
         if (hasOverlap) {
-          break; // Best overlap match found
+          matchIndex = i;
+          break; // At least one interest matched! Pair immediately into chat
+        }
+      }
+    } else {
+      // 2. If NO interests are selected: match with random stranger (FIFO)
+      // First try to match with someone who also chose random (0 interests)
+      for (let i = 0; i < waitingQueue.length; i++) {
+        const candidate = waitingQueue[i];
+        if (candidate.socketId === socket.id) continue;
+        if (blockedUsers.includes(candidate.userId)) continue;
+        if (candidate.blockedUsers && candidate.blockedUsers.includes(userId)) continue;
+
+        if (candidate.interests.length === 0) {
+          matchIndex = i;
+          break;
+        }
+      }
+
+      // If no other 0-interest stranger is waiting, match with the first available waiting user
+      if (matchIndex === -1) {
+        for (let i = 0; i < waitingQueue.length; i++) {
+          const candidate = waitingQueue[i];
+          if (candidate.socketId === socket.id) continue;
+          if (blockedUsers.includes(candidate.userId)) continue;
+          if (candidate.blockedUsers && candidate.blockedUsers.includes(userId)) continue;
+
+          matchIndex = i;
+          break;
         }
       }
     }
