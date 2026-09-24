@@ -1,0 +1,21 @@
+# robots.txt for Chattr.
+# https://chattr.app
+
+User-agent: *
+Allow: /
+Allow: /random-chat
+Allow: /random-chat-with-strangers
+Allow: /chat-with-strangers
+Allow: /meet-new-people
+Allow: /how-random-chat-works
+Allow: /safety
+Allow: /privacy
+Allow: /terms
+Allow: /community-guidelines
+Allow: /contact
+
+# Disallow internal API and realtime socket routes
+Disallow: /api/
+Disallow: /socket.io/
+
+Sitemap: https://chattr.app/sitemap.xml

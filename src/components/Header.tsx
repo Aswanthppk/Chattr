@@ -28,12 +28,12 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           )}
 
-          {/* Mini Orb Emblem Logo */}
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-orb-gradient-end via-orb-gradient-mid to-orb-gradient-start p-0.5 shadow-sm flex items-center justify-center shrink-0">
-            <div className="w-full h-full rounded-full bg-white/30 backdrop-blur-xs flex items-center justify-center shadow-[inset_0_1px_2px_rgba(255,255,255,0.8)]">
-              <div className="w-2 h-2 rounded-full bg-white/90" />
-            </div>
-          </div>
+          {/* Chattr App Icon */}
+          <img
+            src="/icons/chattr-icon-96x96.png"
+            alt="Chattr. Logo"
+            className="w-8 h-8 rounded-full shadow-sm object-cover shrink-0"
+          />
 
           <span className="font-headline-sm text-headline-sm text-text-primary ml-1 font-bold tracking-tight">
             Chattr<span className="text-secondary">.</span>

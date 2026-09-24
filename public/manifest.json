@@ -1,0 +1,29 @@
+{
+  "name": "Chattr. — Random Chat",
+  "short_name": "Chattr.",
+  "description": "Meet new people through random chat. Choose your interests, get matched with someone online, and start a conversation in seconds.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9f9f7",
+  "theme_color": "#5146d0",
+  "icons": [
+    {
+      "src": "/icons/chattr-icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/chattr-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/chattr-icon-1024x1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
