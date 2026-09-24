@@ -164,14 +164,16 @@ io.on('connection', (socket) => {
   });
 
   // User sends message in chat
-  socket.on('sendMessage', ({ roomId, text, senderName }) => {
+  socket.on('sendMessage', ({ roomId, text, senderName, createdAt }) => {
     if (!roomId || !text) return;
+    const timeMs = (typeof createdAt === 'number' && createdAt > 0) ? createdAt : Date.now();
     const msg = {
-      id: `msg_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+      id: `msg_${timeMs}_${Math.random().toString(36).substring(2, 6)}`,
       senderSocketId: socket.id,
       senderName,
       text,
-      timestamp: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+      createdAt: timeMs,
+      timestamp: new Date(timeMs).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
     };
 
     socket.to(roomId).emit('messageReceived', msg);

@@ -104,12 +104,20 @@ class SocketService {
     const s = this.connect();
     this.currentRoomId = roomId;
 
-    const handleMessage = (data: { id: string; senderName: string; text: string; timestamp: string }) => {
+    const formatLocalTime = (createdAt?: number) => {
+      const date = (typeof createdAt === 'number' && createdAt > 0) ? new Date(createdAt) : new Date();
+      return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    };
+
+    const handleMessage = (data: { id: string; senderName: string; text: string; timestamp?: string; createdAt?: number }) => {
+      // Format incoming message timestamp in the receiver client's local timezone
+      const localTime = formatLocalTime(data.createdAt);
+
       onMessage({
         id: data.id,
         sender: 'partner',
         text: data.text,
-        timestamp: data.timestamp
+        timestamp: localTime
       });
     };
 
@@ -134,18 +142,20 @@ class SocketService {
 
   public sendMessage(text: string, senderName: string): ChatMessage {
     const s = this.connect();
-    const timestamp = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    const now = Date.now();
+    const timestamp = new Date(now).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
 
     if (this.currentRoomId) {
       s.emit('sendMessage', {
         roomId: this.currentRoomId,
         text,
-        senderName
+        senderName,
+        createdAt: now
       });
     }
 
     return {
-      id: `msg_user_${Date.now()}`,
+      id: `msg_user_${now}`,
       sender: 'user',
       text,
       timestamp,
