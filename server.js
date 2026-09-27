@@ -9,6 +9,22 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Auto-load .env environment file if present
+const envPath = path.join(__dirname, '.env');
+if (fs.existsSync(envPath)) {
+  const envContent = fs.readFileSync(envPath, 'utf8');
+  envContent.split('\n').forEach((line) => {
+    const trimmed = line.trim();
+    if (trimmed && !trimmed.startsWith('#')) {
+      const [key, ...valParts] = trimmed.split('=');
+      const val = valParts.join('=').trim().replace(/^["']|["']$/g, '');
+      if (key && val && !process.env[key.trim()]) {
+        process.env[key.trim()] = val;
+      }
+    }
+  });
+}
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -249,6 +265,52 @@ function removeFromQueue(socketId) {
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', onlineUsers, waiting: waitingQueue.length });
+});
+
+// Resend Email Contact Endpoint
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { email, subject, message } = req.body || {};
+    if (!message || !message.trim()) {
+      return res.status(400).json({ error: 'Message content is required.' });
+    }
+
+    const apiKey = process.env.RESEND_API_KEY || process.env.VITE_RESEND_API_KEY;
+    if (!apiKey) {
+      console.log('[Contact API] Note: RESEND_API_KEY not found in env. Simulating success.');
+      return res.json({ success: true, simulated: true });
+    }
+
+    const { Resend } = await import('resend');
+    const resend = new Resend(apiKey);
+
+    const { data, error } = await resend.emails.send({
+      from: 'Chattr Support <onboarding@resend.dev>',
+      to: ['support@chattr.world'],
+      subject: `[Chattr Contact - ${subject || 'General'}] ${email || 'Anonymous User'}`,
+      replyTo: email || undefined,
+      html: `
+        <div style="font-family: sans-serif; padding: 20px; color: #333;">
+          <h2>New Inquiry from Chattr. Contact Form</h2>
+          <p><strong>Category:</strong> ${subject || 'General'}</p>
+          <p><strong>Sender Email:</strong> ${email || 'Not provided (Anonymous)'}</p>
+          <hr style="border: 0; border-top: 1px solid #ccc; margin: 20px 0;" />
+          <p><strong>Message:</strong></p>
+          <p style="white-space: pre-wrap; background: #f9f9f9; padding: 15px; rounded: 8px;">${message}</p>
+        </div>
+      `
+    });
+
+    if (error) {
+      console.error('[Resend Error]', error);
+      return res.status(500).json({ error: error.message || 'Failed to send email via Resend' });
+    }
+
+    return res.json({ success: true, data });
+  } catch (err) {
+    console.error('[Contact Endpoint Error]', err);
+    return res.status(500).json({ error: err.message || 'Internal server error sending message' });
+  }
 });
 
 // Serve frontend in production if dist directory exists

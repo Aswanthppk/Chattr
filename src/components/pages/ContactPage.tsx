@@ -8,14 +8,41 @@ interface PageProps {
 
 export const ContactPage: React.FC<PageProps> = ({ onNavigate, onStartChat }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('general');
   const [message, setMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!message.trim()) return;
-    setSubmitted(true);
+    if (!message.trim() || isSubmitting) return;
+
+    setIsSubmitting(true);
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, subject, message })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || data.error) {
+        throw new Error(data.error || 'Failed to send message.');
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      console.error('[Contact API Error]', err);
+      setErrorMessage(err.message || 'An error occurred while sending your message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -53,6 +80,12 @@ export const ContactPage: React.FC<PageProps> = ({ onNavigate, onStartChat }) =>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
+            {errorMessage && (
+              <div className="p-3.5 rounded-lg bg-red-500/10 border border-red-500/30 text-red-600 dark:text-red-400 text-body-sm">
+                {errorMessage}
+              </div>
+            )}
+
             <div className="space-y-1.5">
               <label htmlFor="contactEmail" className="font-label-sm text-label-sm font-semibold text-text-primary">
                 Your Email (optional)
@@ -101,9 +134,17 @@ export const ContactPage: React.FC<PageProps> = ({ onNavigate, onStartChat }) =>
 
             <button
               type="submit"
-              className="h-11 px-6 rounded-full bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:opacity-95 active:scale-95 transition-all cursor-pointer"
+              disabled={isSubmitting}
+              className="h-11 px-6 rounded-full bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:opacity-95 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer flex items-center justify-center gap-2"
             >
-              Send Message
+              {isSubmitting ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                  <span>Sending...</span>
+                </>
+              ) : (
+                <span>Send Message</span>
+              )}
             </button>
           </form>
         )}
@@ -112,7 +153,7 @@ export const ContactPage: React.FC<PageProps> = ({ onNavigate, onStartChat }) =>
       <section className="space-y-2 pt-4">
         <h3 className="font-body-md text-body-md font-semibold text-text-primary">Direct Contact</h3>
         <p className="font-body-sm text-body-sm text-text-secondary">
-          You can also reach our administrative desk directly via email at <code className="bg-surface-container px-1.5 py-0.5 rounded text-xs text-text-primary">support@chattr.app</code>.
+          You can also reach our administrative desk directly via email at <code className="bg-surface-container px-1.5 py-0.5 rounded text-xs text-text-primary">support@chattr.world</code>.
         </p>
       </section>
     </PageLayout>
