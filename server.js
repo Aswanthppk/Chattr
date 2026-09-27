@@ -286,7 +286,7 @@ app.post('/api/contact', async (req, res) => {
 
     const { data, error } = await resend.emails.send({
       from: 'support@chattr.world',
-      to: ['support@chattr.world'],
+      to: ['chatter@eidrenienu.resend.app'],
       subject: `[Chattr Contact - ${subject || 'General'}] ${email || 'Anonymous User'}`,
       replyTo: email || undefined,
       html: `
