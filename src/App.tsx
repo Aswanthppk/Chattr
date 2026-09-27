@@ -20,6 +20,10 @@ import { CommunityGuidelinesPage } from './components/pages/CommunityGuidelinesP
 import { ContactPage } from './components/pages/ContactPage';
 import { NotFoundPage } from './components/pages/NotFoundPage';
 
+// Admin Components
+import { AdminLogin } from './components/admin/AdminLogin';
+import { AdminDashboard } from './components/admin/AdminDashboard';
+
 export const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState<string>(
     typeof window !== 'undefined' ? window.location.pathname : '/'
@@ -34,6 +38,29 @@ export const App: React.FC = () => {
   const [currentMatch, setCurrentMatch] = useState<UserMatch | null>(null);
   const [blockedUsers, setBlockedUsers] = useState<string[]>([]);
   const [onlineCount, setOnlineCount] = useState<number>(1);
+
+  // Admin authentication state
+  const [adminToken, setAdminToken] = useState<string | null>(() => {
+    return typeof window !== 'undefined' ? sessionStorage.getItem('chattr_admin_token') : null;
+  });
+  const [adminEmail, setAdminEmail] = useState<string>(() => {
+    return typeof window !== 'undefined'
+      ? sessionStorage.getItem('chattr_admin_email') || 'admin@chattr.world'
+      : 'admin@chattr.world';
+  });
+
+  const handleAdminLoginSuccess = (token: string, email: string) => {
+    sessionStorage.setItem('chattr_admin_token', token);
+    sessionStorage.setItem('chattr_admin_email', email);
+    setAdminToken(token);
+    setAdminEmail(email);
+  };
+
+  const handleAdminLogout = () => {
+    sessionStorage.removeItem('chattr_admin_token');
+    sessionStorage.removeItem('chattr_admin_email');
+    setAdminToken(null);
+  };
 
   // Sync with browser back/forward history navigation
   useEffect(() => {
@@ -161,6 +188,20 @@ export const App: React.FC = () => {
   }
   if (cleanPath === '/contact') {
     return <ContactPage onNavigate={handleNavigate} onStartChat={handleStartChatFromPage} />;
+  }
+
+  // Protected Admin Dashboard Route
+  if (cleanPath.startsWith('/admin')) {
+    if (!adminToken) {
+      return <AdminLogin onLoginSuccess={handleAdminLoginSuccess} />;
+    }
+    return (
+      <AdminDashboard
+        token={adminToken}
+        adminEmail={adminEmail}
+        onLogout={handleAdminLogout}
+      />
+    );
   }
 
   // If path is not root ('/'), URL does not exist -> Render 404 Page

@@ -10,6 +10,7 @@ export interface UserMatch {
   interests: string[];
   icebreaker: string;
   roomId?: string;
+  isAi?: boolean;
 }
 
 export interface ChatMessage {

@@ -128,6 +128,11 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
                     <span className="font-headline-sm text-headline-sm text-text-primary leading-none truncate font-semibold">
                       {match.name}
                     </span>
+                    {(match.isAi || match.name.includes('AI')) && (
+                      <span className="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-[11px] font-semibold border border-secondary/20 shrink-0">
+                        AI companion
+                      </span>
+                    )}
                     <span
                       className={`w-1.5 h-1.5 rounded-full shrink-0 ${
                         partnerLeft ? 'bg-text-muted' : 'bg-state-success'
