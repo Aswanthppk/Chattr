@@ -190,8 +190,10 @@ export const App: React.FC = () => {
     return <ContactPage onNavigate={handleNavigate} onStartChat={handleStartChatFromPage} />;
   }
 
-  // Protected Admin Dashboard Route
-  if (cleanPath.startsWith('/admin')) {
+  // Protected Secret Admin Dashboard Route
+  const ADMIN_ROUTE_PATH = (import.meta as any).env?.VITE_ADMIN_ROUTE_PATH || '/chattr-ops-8f3x9';
+
+  if (cleanPath.startsWith(ADMIN_ROUTE_PATH)) {
     if (!adminToken) {
       return <AdminLogin onLoginSuccess={handleAdminLoginSuccess} />;
     }

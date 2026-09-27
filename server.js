@@ -40,10 +40,11 @@ const io = new Server(server, {
 
 const PORT = process.env.PORT || 3001;
 
-// Admin Authentication Config
+// Admin Authentication Config & Obscure Path
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const ADMIN_SECRET_KEY = process.env.ADMIN_SECRET_KEY;
+const ADMIN_ROUTE_PATH = process.env.ADMIN_ROUTE_PATH;
 
 // Active Session Tokens Store (Token -> { email, createdAt })
 const validAdminTokens = new Map();
@@ -712,9 +713,9 @@ const VALID_ROUTES = new Set([
   '/terms',
   '/community-guidelines',
   '/contact',
-  '/admin',
-  '/admin/login',
-  '/admin/dashboard'
+  ADMIN_ROUTE_PATH,
+  `${ADMIN_ROUTE_PATH}/login`,
+  `${ADMIN_ROUTE_PATH}/dashboard`
 ]);
 
 if (fs.existsSync(distPath)) {
@@ -725,7 +726,7 @@ if (fs.existsSync(distPath)) {
     }
 
     const normalizedPath = req.path.replace(/\/+$/, '') || '/';
-    if (!VALID_ROUTES.has(normalizedPath) && !normalizedPath.startsWith('/admin')) {
+    if (!VALID_ROUTES.has(normalizedPath) && !normalizedPath.startsWith(ADMIN_ROUTE_PATH)) {
       const fallback404 = path.join(distPath, '404.html');
       if (fs.existsSync(fallback404)) {
         return res.status(404).sendFile(fallback404);
