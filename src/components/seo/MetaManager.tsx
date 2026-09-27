@@ -9,7 +9,7 @@ export interface MetaManagerProps {
   noIndex?: boolean;
 }
 
-const DOMAIN = 'https://chattr.app';
+const DOMAIN = 'https://chattr.world';
 
 export const MetaManager: React.FC<MetaManagerProps> = ({
   title,
@@ -41,7 +41,7 @@ export const MetaManager: React.FC<MetaManagerProps> = ({
     // 3. Canonical Link
     const cleanPath = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;
     const canonicalUrl = `${DOMAIN}${cleanPath === '/' ? '/' : cleanPath}`;
-    
+
     let canonicalTag = document.querySelector('link[rel="canonical"]');
     if (!canonicalTag) {
       canonicalTag = document.createElement('link');
@@ -67,7 +67,7 @@ export const MetaManager: React.FC<MetaManagerProps> = ({
     // 6. Structured Data (JSON-LD)
     const scriptId = 'json-ld-seo-schema';
     let scriptElement = document.getElementById(scriptId) as HTMLScriptElement | null;
-    
+
     if (jsonLd) {
       if (!scriptElement) {
         scriptElement = document.createElement('script');
