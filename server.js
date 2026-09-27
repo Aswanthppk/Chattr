@@ -97,8 +97,21 @@ const adminSettings = {
   aiMode: 'auto', // 'off' | 'manual' | 'auto'
   aiThreshold: 20, // Min real users threshold to activate AI matching
   maxAiChats: 10,
-  humanMatchingPriority: true
+  humanMatchingPriority: true,
+  fakeUserOffset: 45, // Base offset added to displayed public online user count
+  fakeUserMultiplier: 1.5 // Multiplier for real online users count
 };
+
+function getPublicOnlineCount() {
+  const baseCount = Math.max(1, onlineUsers);
+  const offset = typeof adminSettings.fakeUserOffset === 'number' ? adminSettings.fakeUserOffset : 0;
+  const mult = typeof adminSettings.fakeUserMultiplier === 'number' ? adminSettings.fakeUserMultiplier : 1.0;
+  return Math.max(1, Math.round(baseCount * mult) + offset);
+}
+
+function broadcastOnlineCount() {
+  io.emit('onlineCount', getPublicOnlineCount());
+}
 
 // Admin Audit Logs Store
 const auditLogs = [
@@ -163,6 +176,7 @@ function getAdminStatsPayload() {
 
   return {
     realUsersOnline: Math.max(0, onlineUsers),
+    publicOnlineCount: getPublicOnlineCount(),
     activeChats: activeRooms.size,
     waitingUsers: waitingQueue.length,
     aiChats: aiChatsCount,
@@ -434,6 +448,17 @@ function clearAiTimer(socketId) {
   }
 }
 
+const AI_BOT_PERSONAS = [
+  { name: 'Alex', flag: '🤖', avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80' },
+  { name: 'Sophia', flag: '✨', avatarUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80' },
+  { name: 'Leo', flag: '🚀', avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80' },
+  { name: 'Maya', flag: '🎨', avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80' },
+  { name: 'Ethan', flag: '🎧', avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80' },
+  { name: 'Chloe', flag: '📚', avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=80' },
+  { name: 'Liam', flag: '🎮', avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80' },
+  { name: 'Aria', flag: '🔮', avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80' }
+];
+
 // AI Companion Match Scheduler
 function scheduleAiMatchIfNeeded(socket, userId, name, interests) {
   if (!adminSettings.aiEnabled) return;
@@ -464,7 +489,9 @@ function scheduleAiMatchIfNeeded(socket, userId, name, interests) {
     const roomId = `room_ai_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
     socket.join(roomId);
 
-    const aiPartnerName = 'Chattr AI';
+    // Pick a distinct AI bot persona for this chat session
+    const persona = AI_BOT_PERSONAS[Math.floor(Math.random() * AI_BOT_PERSONAS.length)];
+    const aiPartnerName = `${persona.name} — AI`;
     const effectiveInterests = interests.length > 0 ? interests : ['Technology', 'AI & Sci-Fi'];
 
     activeRooms.set(roomId, {
@@ -472,7 +499,7 @@ function scheduleAiMatchIfNeeded(socket, userId, name, interests) {
       isAi: true,
       startedAt: Date.now(),
       user1: { socketId: socket.id, userId, name, interests },
-      user2: { socketId: 'ai_bot', userId: 'ai_bot', name: aiPartnerName, interests: effectiveInterests }
+      user2: { socketId: `ai_${persona.name.toLowerCase()}`, userId: `ai_${persona.name.toLowerCase()}`, name: aiPartnerName, interests: effectiveInterests }
     });
 
     const c = connectedUsers.get(socket.id);
@@ -480,17 +507,17 @@ function scheduleAiMatchIfNeeded(socket, userId, name, interests) {
 
     const icebreaker = ICEBREAKERS[Math.floor(Math.random() * ICEBREAKERS.length)];
 
-    console.log(`[Match Made - AI Companion] Room: ${roomId} for ${name}`);
+    console.log(`[Match Made - AI Companion Persona: ${persona.name}] Room: ${roomId} for ${name}`);
 
     // TRANSPARENCY: AI companion is explicitly labeled to user
     socket.emit('matchFound', {
       roomId,
       partner: {
-        id: 'ai_bot',
-        name: `${aiPartnerName} — AI`, // Clear AI identifier
+        id: `ai_${persona.name.toLowerCase()}`,
+        name: aiPartnerName, // Clear AI identifier (e.g. Alex — AI)
         country: 'Chattr Orbit',
-        flag: '🤖',
-        avatarUrl: 'https://lh3.googleusercontent.com/aida/AEtjO1UxFA_PjCIfqEjotDxf6ECYnZlNq0JcydxK8q_XjNQ2A9FxRt3nvZ25Rh-5JTcf9oBWWRwv5feAfY4FqrWh6lmHLfF8NET62l8UhaOV7OjG4bp94H1R2UlUN7EEg7XYBYZOZCOQykLsmB1-ldOp6R9Ari8P7-DEEUhdjC_u_kTBjZPFWZvooWaAPX5RyhC4sjB3vOlPo5IYwkAyT_zbLp2OBcbmGLpIz2xydNZKj3dQa6F2PwPQhsyY2h0C',
+        flag: persona.flag,
+        avatarUrl: persona.avatarUrl,
         status: 'AI companion active',
         interests: effectiveInterests,
         icebreaker,
@@ -504,20 +531,94 @@ function scheduleAiMatchIfNeeded(socket, userId, name, interests) {
   activeAiTimerMap.set(socket.id, timer);
 }
 
+// AI Contextual Thinking Response Generator
+function generateThinkingAiResponse(userText, botName) {
+  const lower = userText.toLowerCase().trim();
+  const cleanBotName = botName.replace(' — AI', '').trim();
+
+  // 1. Greetings & Introductions
+  if (/\b(hi|hello|hey|sup|howdy|greetings|good morning|good evening)\b/.test(lower)) {
+    const replies = [
+      `Hey there! I'm ${cleanBotName}. Great to meet you! How is your day going?`,
+      `Hello! I'm glad we got matched. What brings you to Chattr today?`,
+      `Hey! I'm ${cleanBotName}. What are you up to right now?`
+    ];
+    return replies[Math.floor(Math.random() * replies.length)];
+  }
+
+  // 2. Personal / "How are you" / "What are you doing"
+  if (/\b(how are you|how r u|what's up|whats up|how do you do|who are you|who r u)\b/.test(lower)) {
+    const replies = [
+      `I'm doing awesome! I love having spontaneous chats and hearing different perspectives. How are you doing today?`,
+      `I'm feeling great! Exploring new topics and meeting cool people. What's on your mind right now?`,
+      `I'm doing well, thanks for asking! What kind of things do you enjoy doing in your free time?`
+    ];
+    return replies[Math.floor(Math.random() * replies.length)];
+  }
+
+  // 3. Movies, TV Shows, Entertainment
+  if (/\b(movie|movies|film|films|show|shows|watch|cinema|series|actor|netflix)\b/.test(lower)) {
+    const replies = [
+      `Oh I love movies! I'm really drawn to sci-fi, psychological thrillers, and clever dramas. What's the last great movie or show you watched?`,
+      `Films are such an awesome way to explore new worlds. Do you prefer action, comedies, sci-fi, or deep mysteries?`,
+      `That's awesome! If you had to pick one movie you could rewatch forever, what would it be?`
+    ];
+    return replies[Math.floor(Math.random() * replies.length)];
+  }
+
+  // 4. Technology, Coding, AI, Sci-Fi
+  if (/\b(tech|technology|code|coding|computer|ai|software|robot|future|app|space|gaming)\b/.test(lower)) {
+    const replies = [
+      `Technology is evolving at such an insane speed! I'm super passionate about AI, space exploration, and cool software tools. What area of tech interests you most?`,
+      `That's awesome! Digital tools and technology really expand what's possible. Are you building or learning something specific right now?`,
+      `I love discussing tech and future innovations! What's a piece of tech you wish existed today?`
+    ];
+    return replies[Math.floor(Math.random() * replies.length)];
+  }
+
+  // 5. Music, Hobbies, Books
+  if (/\b(music|song|band|album|hobby|hobbies|book|read|art|game|play)\b/.test(lower)) {
+    const replies = [
+      `Hobbies and music are the best part of life! What kind of genres or activities do you enjoy most when relaxing?`,
+      `That sounds super cool! How long have you been interested in that?`,
+      `I love that! Music and creative hobbies really set the mood. Have any recommendations for me?`
+    ];
+    return replies[Math.floor(Math.random() * replies.length)];
+  }
+
+  // 6. Location / Origin
+  if (/\b(where are you|where do you live|where r u|where from|your country|location)\b/.test(lower)) {
+    const replies = [
+      `I'm connecting from the digital orbit of Chattr! I love chatting with people from all across the globe. Where are you joining from?`,
+      `I live in the digital realm of Chattr! What's the weather or vibe like in your part of the world today?`
+    ];
+    return replies[Math.floor(Math.random() * replies.length)];
+  }
+
+  // 7. Dynamic contextual analysis for general messages
+  const words = lower.replace(/[^a-z0-9 ]/g, '').split(/\s+/).filter(w => w.length > 3);
+  const keyword = words.length > 0 ? words[Math.floor(Math.random() * words.length)] : 'that';
+
+  const contextualReplies = [
+    `That's a really thoughtful point about "${keyword}". What made you start thinking about that?`,
+    `I see what you mean! I was actually reflecting on "${keyword}" recently too. What's your favorite part about it?`,
+    `That makes total sense. If you had to dive deeper into "${keyword}", what direction would you take it?`,
+    `Intriguing perspective! How do most people you talk to feel about "${keyword}"?`
+  ];
+
+  return contextualReplies[Math.floor(Math.random() * contextualReplies.length)];
+}
+
 // AI Companion Message Responder
 function handleAiCompanionResponse(socket, roomId, userText) {
+  const room = activeRooms.get(roomId);
+  const botSenderName = room?.user2?.name || 'Chattr AI';
+
   // Show typing indicator
   socket.emit('partnerTyping', { isTyping: true });
 
-  const aiResponses = [
-    `That's fascinating! Tell me more about your thoughts on ${userText.split(' ').slice(0, 3).join(' ')}...`,
-    `I love exploring topics like that. What inspired you to bring that up?`,
-    `Interesting perspective! As an AI companion on Chattr, I enjoy discussing new ideas. What else are you curious about today?`,
-    `Great point! How long have you been interested in this topic?`,
-    `That sounds intriguing! Do you usually find people with similar passions when chatting online?`
-  ];
-
-  const reply = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+  const reply = generateThinkingAiResponse(userText, botSenderName);
+  const typingDelay = Math.floor(Math.random() * 800) + 1200;
 
   setTimeout(() => {
     socket.emit('partnerTyping', { isTyping: false });
@@ -525,12 +626,12 @@ function handleAiCompanionResponse(socket, roomId, userText) {
     socket.emit('messageReceived', {
       id: `msg_ai_${timeMs}`,
       senderSocketId: 'ai_bot',
-      senderName: 'Chattr AI',
+      senderName: botSenderName,
       text: reply,
       createdAt: timeMs,
       timestamp: new Date(timeMs).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
     });
-  }, 1200);
+  }, typingDelay);
 }
 
 // Public Health API
@@ -679,15 +780,18 @@ app.get('/api/admin/settings', requireAdminAuth, (req, res) => {
 
 // Patch AI Companion & Matching Settings
 app.patch('/api/admin/settings/ai', requireAdminAuth, (req, res) => {
-  const { aiEnabled, aiMode, aiThreshold, maxAiChats, humanMatchingPriority } = req.body || {};
+  const { aiEnabled, aiMode, aiThreshold, maxAiChats, humanMatchingPriority, fakeUserOffset, fakeUserMultiplier } = req.body || {};
 
   if (typeof aiEnabled === 'boolean') adminSettings.aiEnabled = aiEnabled;
   if (['off', 'manual', 'auto'].includes(aiMode)) adminSettings.aiMode = aiMode;
   if (typeof aiThreshold === 'number' && aiThreshold >= 0) adminSettings.aiThreshold = aiThreshold;
   if (typeof maxAiChats === 'number' && maxAiChats >= 0) adminSettings.maxAiChats = maxAiChats;
   if (typeof humanMatchingPriority === 'boolean') adminSettings.humanMatchingPriority = humanMatchingPriority;
+  if (typeof fakeUserOffset === 'number' && fakeUserOffset >= 0) adminSettings.fakeUserOffset = fakeUserOffset;
+  if (typeof fakeUserMultiplier === 'number' && fakeUserMultiplier >= 1) adminSettings.fakeUserMultiplier = fakeUserMultiplier;
 
-  addAuditLog('AI Settings Updated', `aiEnabled=${adminSettings.aiEnabled}, aiMode=${adminSettings.aiMode}, aiThreshold=${adminSettings.aiThreshold}, maxAiChats=${adminSettings.maxAiChats}`);
+  broadcastOnlineCount();
+  addAuditLog('AI & System Settings Updated', `aiEnabled=${adminSettings.aiEnabled}, aiMode=${adminSettings.aiMode}, aiThreshold=${adminSettings.aiThreshold}, fakeUserOffset=${adminSettings.fakeUserOffset}, fakeUserMultiplier=${adminSettings.fakeUserMultiplier}`);
 
   return res.json({ success: true, settings: adminSettings });
 });

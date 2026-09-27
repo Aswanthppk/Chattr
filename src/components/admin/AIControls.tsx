@@ -6,6 +6,8 @@ interface SettingsState {
   aiThreshold: number;
   maxAiChats: number;
   humanMatchingPriority: boolean;
+  fakeUserOffset: number;
+  fakeUserMultiplier: number;
 }
 
 interface AIControlsProps {
@@ -19,7 +21,9 @@ export const AIControls: React.FC<AIControlsProps> = ({ token, onSettingsUpdated
     aiMode: 'auto',
     aiThreshold: 20,
     maxAiChats: 10,
-    humanMatchingPriority: true
+    humanMatchingPriority: true,
+    fakeUserOffset: 45,
+    fakeUserMultiplier: 1.5
   });
 
   const [saving, setSaving] = useState(false);
@@ -33,7 +37,7 @@ export const AIControls: React.FC<AIControlsProps> = ({ token, onSettingsUpdated
       });
       const data = await res.json();
       if (res.ok && data.settings) {
-        setSettings(data.settings);
+        setSettings((prev) => ({ ...prev, ...data.settings }));
       }
     } catch (err) {
       console.error('[Settings Fetch Error]', err);
@@ -64,15 +68,15 @@ export const AIControls: React.FC<AIControlsProps> = ({ token, onSettingsUpdated
       const data = await res.json();
 
       if (!res.ok || data.error) {
-        throw new Error(data.error || 'Failed to update AI settings.');
+        throw new Error(data.error || 'Failed to update settings.');
       }
 
-      setSuccessMsg('AI Companion settings updated successfully.');
+      setSuccessMsg('Settings updated successfully.');
       if (onSettingsUpdated) onSettingsUpdated();
 
       setTimeout(() => setSuccessMsg(''), 4000);
     } catch (err: any) {
-      console.error('[AI Settings Patch Error]', err);
+      console.error('[Settings Patch Error]', err);
       setErrorMsg(err.message || 'Failed to save changes.');
     } finally {
       setSaving(false);
@@ -83,10 +87,10 @@ export const AIControls: React.FC<AIControlsProps> = ({ token, onSettingsUpdated
     <div className="space-y-6">
       <div>
         <h2 className="font-headline-sm text-headline-sm font-bold text-text-primary">
-          AI Companion Configuration
+          AI Companion & Online Count Controls
         </h2>
         <p className="font-body-sm text-body-sm text-text-secondary">
-          Configure when AI companions participate in matching. AI companions are always clearly identified to users.
+          Configure AI companion participation rules and customize public online user count display parameters.
         </p>
       </div>
 
@@ -227,7 +231,53 @@ export const AIControls: React.FC<AIControlsProps> = ({ token, onSettingsUpdated
             </p>
           </div>
         </div>
+
+        {/* Online Count Display Booster / Offset Settings */}
+        <div className="pt-6 border-t border-border-subtle/80 space-y-4">
+          <h3 className="font-label-sm text-label-sm font-semibold uppercase tracking-wider text-text-primary">
+            PUBLIC ONLINE USERS DISPLAY BOOSTER
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label htmlFor="fakeOffsetInput" className="font-label-sm text-label-sm font-semibold text-text-primary block">
+                Base Fake User Offset (+ N Users)
+              </label>
+              <input
+                id="fakeOffsetInput"
+                type="number"
+                min="0"
+                value={settings.fakeUserOffset}
+                onChange={(e) => updateSettings({ fakeUserOffset: Math.max(0, parseInt(e.target.value) || 0) })}
+                className="w-full h-11 px-3.5 rounded-lg bg-surface-container-low border border-border-subtle text-text-primary font-body-sm focus:outline-none focus:ring-2 focus:ring-secondary/40"
+              />
+              <p className="font-caption text-caption text-text-muted">
+                Adds a fixed baseline offset to the public online user count shown on the website.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="fakeMultiplierInput" className="font-label-sm text-label-sm font-semibold text-text-primary block">
+                Online Users Multiplier (1.0x - 5.0x)
+              </label>
+              <input
+                id="fakeMultiplierInput"
+                type="number"
+                step="0.1"
+                min="1.0"
+                max="10.0"
+                value={settings.fakeUserMultiplier}
+                onChange={(e) => updateSettings({ fakeUserMultiplier: Math.max(1.0, parseFloat(e.target.value) || 1.0) })}
+                className="w-full h-11 px-3.5 rounded-lg bg-surface-container-low border border-border-subtle text-text-primary font-body-sm focus:outline-none focus:ring-2 focus:ring-secondary/40"
+              />
+              <p className="font-caption text-caption text-text-muted">
+                Multiplies real online sockets by this factor when emitting `onlineCount` to visitors.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
+
