@@ -253,12 +253,37 @@ app.get('/api/health', (req, res) => {
 
 // Serve frontend in production if dist directory exists
 const distPath = path.join(__dirname, 'dist');
+const VALID_ROUTES = new Set([
+  '/',
+  '/random-chat',
+  '/random-chat-with-strangers',
+  '/chat-with-strangers',
+  '/meet-new-people',
+  '/how-random-chat-works',
+  '/safety',
+  '/privacy',
+  '/terms',
+  '/community-guidelines',
+  '/contact'
+]);
+
 if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
   app.use((req, res, next) => {
     if (req.method !== 'GET' || req.path.startsWith('/api') || req.path.startsWith('/socket.io')) {
       return next();
     }
+
+    const normalizedPath = req.path.replace(/\/+$/, '') || '/';
+    if (!VALID_ROUTES.has(normalizedPath)) {
+      // Non-existing route: return 404 status code with 404.html or index.html
+      const fallback404 = path.join(distPath, '404.html');
+      if (fs.existsSync(fallback404)) {
+        return res.status(404).sendFile(fallback404);
+      }
+      return res.status(404).sendFile(path.join(distPath, 'index.html'));
+    }
+
     res.sendFile(path.join(distPath, 'index.html'));
   });
 }

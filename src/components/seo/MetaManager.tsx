@@ -6,6 +6,7 @@ export interface MetaManagerProps {
   canonicalPath: string;
   ogType?: 'website' | 'article';
   jsonLd?: object | object[];
+  noIndex?: boolean;
 }
 
 const DOMAIN = 'https://chattr.app';
@@ -15,7 +16,8 @@ export const MetaManager: React.FC<MetaManagerProps> = ({
   description,
   canonicalPath,
   ogType = 'website',
-  jsonLd
+  jsonLd,
+  noIndex = false
 }) => {
   useEffect(() => {
     // 1. Update Document Title
@@ -34,7 +36,7 @@ export const MetaManager: React.FC<MetaManagerProps> = ({
 
     // 2. Standard Meta Tags
     setMetaTag('name', 'description', description);
-    setMetaTag('name', 'robots', 'index, follow, max-image-preview:large');
+    setMetaTag('name', 'robots', noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large');
 
     // 3. Canonical Link
     const cleanPath = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;

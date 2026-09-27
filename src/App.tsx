@@ -18,6 +18,7 @@ import { PrivacyPage } from './components/pages/PrivacyPage';
 import { TermsPage } from './components/pages/TermsPage';
 import { CommunityGuidelinesPage } from './components/pages/CommunityGuidelinesPage';
 import { ContactPage } from './components/pages/ContactPage';
+import { NotFoundPage } from './components/pages/NotFoundPage';
 
 export const App: React.FC = () => {
   const [currentPath, setCurrentPath] = useState<string>(
@@ -160,6 +161,17 @@ export const App: React.FC = () => {
   }
   if (cleanPath === '/contact') {
     return <ContactPage onNavigate={handleNavigate} onStartChat={handleStartChatFromPage} />;
+  }
+
+  // If path is not root ('/'), URL does not exist -> Render 404 Page
+  if (cleanPath !== '/') {
+    return (
+      <NotFoundPage
+        onNavigate={handleNavigate}
+        onStartChat={handleStartChatFromPage}
+        currentPath={cleanPath}
+      />
+    );
   }
 
   // Root path / default app experience

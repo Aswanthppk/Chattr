@@ -142,7 +142,21 @@ function prerender() {
     console.log(`[SEO Prerender] Generated: dist/${page.path}/index.html`);
   }
 
-  console.log('[SEO Prerender] Successfully generated 10 static SEO route targets!');
+  // Generate 404.html for static host fallbacks
+  let notFoundHtml = baseHtml;
+  notFoundHtml = notFoundHtml.replace(/<title>.*?<\/title>/, '<title>404 – Page Not Found | Chattr.</title>');
+  notFoundHtml = notFoundHtml.replace(
+    /<meta name="description" content=".*?" \/>/,
+    '<meta name="description" content="The page you are looking for does not exist on Chattr. Start a random chat with strangers or return to the homepage." />'
+  );
+  notFoundHtml = notFoundHtml.replace(
+    /<meta name="robots" content=".*?" \/>/,
+    '<meta name="robots" content="noindex, nofollow" />'
+  );
+  fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml, 'utf8');
+  console.log('[SEO Prerender] Generated: dist/404.html (with noindex, nofollow)');
+
+  console.log('[SEO Prerender] Successfully generated static SEO route targets and 404 fallback!');
 }
 
 prerender();
