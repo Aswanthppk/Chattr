@@ -93,8 +93,8 @@ const activeAiTimerMap = new Map(); // socketId -> setTimeout handle
 
 // Admin Controlled Settings (Source of Truth)
 const adminSettings = {
-  aiEnabled: true,
-  aiMode: 'auto', // 'off' | 'manual' | 'auto'
+  aiEnabled: false, // Default is OFF
+  aiMode: 'off',    // Default is OFF
   aiThreshold: 20, // Min real users threshold to activate AI matching
   maxAiChats: 10,
   humanMatchingPriority: true,
@@ -448,6 +448,14 @@ function clearAiTimer(socketId) {
   }
 }
 
+function clearAllPendingAiTimers() {
+  for (const [socketId, timer] of activeAiTimerMap.entries()) {
+    clearTimeout(timer);
+  }
+  activeAiTimerMap.clear();
+  console.log('[AI Companion] Cleared all pending AI matching timers because AI was disabled by Admin.');
+}
+
 const AI_BOT_PERSONAS = [
   { name: 'Alex', flag: '🤖', avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80' },
   { name: 'Sophia', flag: '✨', avatarUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80' },
@@ -461,8 +469,7 @@ const AI_BOT_PERSONAS = [
 
 // AI Companion Match Scheduler
 function scheduleAiMatchIfNeeded(socket, userId, name, interests) {
-  if (!adminSettings.aiEnabled) return;
-  if (adminSettings.aiMode === 'off') return;
+  if (!adminSettings.aiEnabled || adminSettings.aiMode === 'off') return;
 
   // Check max AI chats limit
   let currentAiChats = 0;
@@ -476,9 +483,15 @@ function scheduleAiMatchIfNeeded(socket, userId, name, interests) {
     return; // Sufficient real users available, keep user waiting for human
   }
 
-  // Schedule AI companion match after 2 seconds
+  // Schedule AI companion match after 2.5 seconds
   const timer = setTimeout(() => {
     activeAiTimerMap.delete(socket.id);
+
+    // STRICT RE-VERIFICATION: If admin turned AI off while timer was pending, abort match immediately!
+    if (!adminSettings.aiEnabled || adminSettings.aiMode === 'off') {
+      console.log(`[AI Companion] Aborted AI match for ${name} because AI is currently disabled by Admin.`);
+      return;
+    }
 
     // Verify user is still in waiting queue
     const idx = waitingQueue.findIndex((u) => u.socketId === socket.id);
@@ -656,8 +669,8 @@ app.post('/api/contact', async (req, res) => {
     const { Resend } = await import('resend');
     const resend = new Resend(apiKey);
 
-    const fromAddress = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
-    const toAddress = process.env.RESEND_TO_EMAIL || 'aswanth.a.m.athira@gmail.com';
+    const fromAddress = process.env.RESEND_FROM_EMAIL || 'support@chatter.world';
+    const toAddress = process.env.RESEND_TO_EMAIL || 'chatter.world@eidrenienu.resend.app';
 
     const { data, error } = await resend.emails.send({
       from: fromAddress,
@@ -782,8 +795,22 @@ app.get('/api/admin/settings', requireAdminAuth, (req, res) => {
 app.patch('/api/admin/settings/ai', requireAdminAuth, (req, res) => {
   const { aiEnabled, aiMode, aiThreshold, maxAiChats, humanMatchingPriority, fakeUserOffset, fakeUserMultiplier } = req.body || {};
 
-  if (typeof aiEnabled === 'boolean') adminSettings.aiEnabled = aiEnabled;
-  if (['off', 'manual', 'auto'].includes(aiMode)) adminSettings.aiMode = aiMode;
+  if (typeof aiEnabled === 'boolean') {
+    adminSettings.aiEnabled = aiEnabled;
+    if (!aiEnabled) {
+      adminSettings.aiMode = 'off';
+      clearAllPendingAiTimers();
+    }
+  }
+
+  if (['off', 'manual', 'auto'].includes(aiMode)) {
+    adminSettings.aiMode = aiMode;
+    if (aiMode === 'off') {
+      adminSettings.aiEnabled = false;
+      clearAllPendingAiTimers();
+    }
+  }
+
   if (typeof aiThreshold === 'number' && aiThreshold >= 0) adminSettings.aiThreshold = aiThreshold;
   if (typeof maxAiChats === 'number' && maxAiChats >= 0) adminSettings.maxAiChats = maxAiChats;
   if (typeof humanMatchingPriority === 'boolean') adminSettings.humanMatchingPriority = humanMatchingPriority;

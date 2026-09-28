@@ -17,8 +17,8 @@ interface AIControlsProps {
 
 export const AIControls: React.FC<AIControlsProps> = ({ token, onSettingsUpdated }) => {
   const [settings, setSettings] = useState<SettingsState>({
-    aiEnabled: true,
-    aiMode: 'auto',
+    aiEnabled: false,
+    aiMode: 'off',
     aiThreshold: 20,
     maxAiChats: 10,
     humanMatchingPriority: true,
