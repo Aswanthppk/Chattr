@@ -26,10 +26,10 @@ export const RandomChatPage: React.FC<PageProps> = ({ onNavigate, onStartChat })
           What is Random Chat on Chattr.?
         </h2>
         <p>
-          Random chat is a streamlined real-time medium designed for spontaneous, one-on-one text conversations between two people online. While modern social networks emphasize permanent public personas, status updates, and curated follower graphs, Chattr. strips away the artificial noise to restore the joy of spontaneous dialogue.
+          Random chat on Chattr. is a streamlined real-time medium designed for spontaneous, one-on-one text and video conversations between two people online. While modern social networks emphasize permanent public personas, status updates, and curated follower graphs, Chattr. strips away the artificial noise to restore the joy of spontaneous dialogue.
         </p>
         <p>
-          Whether you are looking to exchange thoughts on modern cinema, debate technological breakthroughs, practice a second language, or simply share a friendly greeting across timezones, random chat provides a direct bridge to a real person anywhere in the world.
+          Whether you are looking to exchange thoughts on modern cinema, debate technological breakthroughs, practice a second language, or jump on a face-to-face video call across timezones, random chat provides a direct bridge to a real person anywhere in the world.
         </p>
       </section>
 
@@ -45,10 +45,10 @@ export const RandomChatPage: React.FC<PageProps> = ({ onNavigate, onStartChat })
             <strong>Interest Resonance:</strong> If you select specific topics (e.g. <em>Gaming</em>, <em>Philosophy</em>, or custom tags like <em>Photography</em>), the system prioritizes individuals seeking the same subject.
           </li>
           <li>
-            <strong>Open Exploration:</strong> If you choose zero topics or select open matchmaking, you are instantly eligible to pair with any active person online.
+            <strong>Chat Mode Choice:</strong> Choose between lightweight text chat or live WebRTC video call. Video users strictly match with other video callers, and text users match with text chatters.
           </li>
           <li>
-            <strong>Ephemeral Rooms:</strong> The moment two people match, a temporary cryptographic room identifier is created. Messages stream directly between both participants through WebSocket connections.
+            <strong>Ephemeral Rooms & Streams:</strong> The moment two people match, a temporary cryptographic session is created. Text messages stream via secure WebSockets, while video calls stream peer-to-peer with zero recordings or stored transcripts.
           </li>
         </ul>
       </section>

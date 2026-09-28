@@ -11,70 +11,70 @@ const PAGES = [
     path: 'random-chat',
     title: 'Random Chat – Meet Someone New Online | Chattr.',
     description: 'Connect instantly with real people worldwide through random chat. Choose your interests, join the queue, and start a spontaneous conversation in seconds.',
-    canonical: 'https://chattr.app/random-chat',
+    canonical: 'https://chattr.world/random-chat',
     h1: 'Random Chat'
   },
   {
     path: 'random-chat-with-strangers',
     title: 'Random Chat With Strangers Online | Chattr.',
     description: 'Talk to strangers online responsibly through ephemeral random chat. Experience spontaneous encounters, interest-based pairing, and complete user privacy.',
-    canonical: 'https://chattr.app/random-chat-with-strangers',
+    canonical: 'https://chattr.world/random-chat-with-strangers',
     h1: 'Random Chat With Strangers'
   },
   {
     path: 'chat-with-strangers',
     title: 'Chat With Strangers Online | Chattr.',
     description: 'Chat with new people online without creating a complicated social profile. Enjoy instant, low-friction, and privacy-preserving text conversations.',
-    canonical: 'https://chattr.app/chat-with-strangers',
+    canonical: 'https://chattr.world/chat-with-strangers',
     h1: 'Chat With New People Online'
   },
   {
     path: 'meet-new-people',
     title: 'Meet New People Online | Chattr.',
     description: 'Meet new people online through interest-based random chat. Discover diverse perspectives, share hobbies, and connect without dating pressure.',
-    canonical: 'https://chattr.app/meet-new-people',
+    canonical: 'https://chattr.world/meet-new-people',
     h1: 'Meet New People Through Random Chat'
   },
   {
     path: 'how-random-chat-works',
     title: 'How Random Chat Works – Step-by-Step Guide | Chattr.',
     description: 'Understand how Chattr matches you with active people online in real time. Learn about our radar matchmaking, custom hobby filters, and ephemeral rooms.',
-    canonical: 'https://chattr.app/how-random-chat-works',
+    canonical: 'https://chattr.world/how-random-chat-works',
     h1: 'How Random Chat Works'
   },
   {
     path: 'safety',
     title: 'Safety Guidelines – Chat Safely With Strangers | Chattr.',
     description: 'Learn essential safety practices for random chat. Understand our anti-abuse features, blocking tools, ephemeral data policies, and personal boundary recommendations.',
-    canonical: 'https://chattr.app/safety',
+    canonical: 'https://chattr.world/safety',
     h1: 'Chat Safely With New People'
   },
   {
     path: 'privacy',
     title: 'Privacy Policy | Chattr.',
     description: 'Read the Chattr. Privacy Policy. Understand our zero-retention architecture, ephemeral messaging protocols, and data protection practices.',
-    canonical: 'https://chattr.app/privacy',
+    canonical: 'https://chattr.world/privacy',
     h1: 'Privacy Policy'
   },
   {
     path: 'terms',
     title: 'Terms of Service | Chattr.',
     description: 'Read the Terms of Service for using Chattr. Learn about acceptable use, user obligations, intellectual property, and service limitations.',
-    canonical: 'https://chattr.app/terms',
+    canonical: 'https://chattr.world/terms',
     h1: 'Terms of Service'
   },
   {
     path: 'community-guidelines',
     title: 'Community Guidelines | Chattr.',
     description: 'Explore the Chattr. Community Guidelines. Learn our rules on respect, non-harassment, anti-spam, and responsible communication.',
-    canonical: 'https://chattr.app/community-guidelines',
+    canonical: 'https://chattr.world/community-guidelines',
     h1: 'Community Guidelines'
   },
   {
     path: 'contact',
     title: 'Contact Us | Chattr.',
     description: 'Get in touch with the Chattr. team. Send feedback, report safety concerns, or submit technical inquiries.',
-    canonical: 'https://chattr.app/contact',
+    canonical: 'https://chattr.world/contact',
     h1: 'Contact Chattr.'
   }
 ];

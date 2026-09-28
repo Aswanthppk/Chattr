@@ -54,15 +54,15 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       'name': 'Chattr.',
-      'url': 'https://chattr.app',
-      'description': 'A simple random chat application for meeting new people online.'
+      'url': 'https://chattr.world',
+      'description': 'A random chat and video calling application for meeting new people online.'
     },
     {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       'name': 'Chattr.',
-      'url': 'https://chattr.app',
-      'logo': 'https://chattr.app/og-image.svg'
+      'url': 'https://chattr.world',
+      'logo': 'https://chattr.world/og-image.svg'
     },
     {
       '@context': 'https://schema.org',
@@ -70,7 +70,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
       'name': 'Chattr.',
       'applicationCategory': 'SocialNetworkingApplication',
       'operatingSystem': 'Web',
-      'description': 'A simple random chat application for meeting new people online.'
+      'description': 'A random chat and live video calling application for meeting new people online.'
     },
     {
       '@context': 'https://schema.org',
@@ -89,8 +89,8 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   return (
     <div className="w-full flex flex-col min-h-screen">
       <MetaManager
-        title="Random Chat – Talk to New People Online | Chattr."
-        description="Meet new people through random chat. Choose your interests, get matched with someone online, and start a conversation in seconds."
+        title="Random Chat & Video Calls – Talk to New People Online | Chattr."
+        description="Meet new people through spontaneous text and video chat. Choose your interests, select text or video mode, get matched online, and start a conversation in seconds."
         canonicalPath="/"
         jsonLd={homeJsonLd}
       />

@@ -6,12 +6,12 @@ This document outlines the step-by-step procedure for deploying **Chattr.** to p
 
 ## 1. Production Configuration Summary
 
-- **Production Domain**: `https://chattr.app` (or your registered custom domain)
-- **Canonical Format**: `https://chattr.app/` (HTTPS, non-www, strictly enforced)
-- **Sitemap Location**: `https://chattr.app/sitemap.xml`
-- **Robots.txt Location**: `https://chattr.app/robots.txt`
+- **Production Domain**: `https://chattr.world` (or your registered custom domain)
+- **Canonical Format**: `https://chattr.world/` (HTTPS, non-www, strictly enforced)
+- **Sitemap Location**: `https://chattr.world/sitemap.xml`
+- **Robots.txt Location**: `https://chattr.world/robots.txt`
 - **RSS/Feeds**: N/A (Dynamic chat web application)
-- **Contact / Webmaster**: `support@chattr.app`
+- **Contact / Webmaster**: `support@chattr.world`
 
 ---
 
@@ -38,8 +38,8 @@ Deploy your application to your chosen hosting provider (e.g., Render, Railway, 
 Navigate to [search.google.com/search-console](https://search.google.com/search-console) and sign in with your primary Google account.
 
 ### Step 3: Add Domain or URL Prefix Property
-- **Recommended**: Choose **Domain property** (`chattr.app`) to cover all subdomains and protocol variants.
-- **Alternative**: Choose **URL prefix** (`https://chattr.app/`).
+- **Recommended**: Choose **Domain property** (`chattr.world`) to cover all subdomains and protocol variants.
+- **Alternative**: Choose **URL prefix** (`https://chattr.world/`).
 
 ### Step 4: Verify Domain Ownership
 Select one of the verification methods:
@@ -54,7 +54,7 @@ Select one of the verification methods:
 4. Confirm the status turns green (**"Success"**), with 11 discovered pages.
 
 ### Step 6: Inspect Homepage URL
-1. In the top search bar ("Inspect any URL in..."), paste `https://chattr.app/` and hit Enter.
+1. In the top search bar ("Inspect any URL in..."), paste `https://chattr.world/` and hit Enter.
 2. Click **Test Live URL**.
 3. Verify that Google can fetch the page, view rendered screenshots, and detect the `SoftwareApplication`, `Organization`, `WebSite`, and `FAQPage` schemas.
 
@@ -63,10 +63,10 @@ Click **Request Indexing** on the inspection results page to prioritize initial 
 
 ### Step 8: Inspect Key Content & Safety Pages
 Perform URL inspection and indexing requests for the top priority pages:
-- `https://chattr.app/random-chat`
-- `https://chattr.app/chat-with-strangers`
-- `https://chattr.app/how-random-chat-works`
-- `https://chattr.app/safety`
+- `https://chattr.world/random-chat`
+- `https://chattr.world/chat-with-strangers`
+- `https://chattr.world/how-random-chat-works`
+- `https://chattr.world/safety`
 
 ### Step 9: Monitor Indexing Reports
 Over the subsequent 48 to 72 hours, review the **Pages** report in Search Console to verify:

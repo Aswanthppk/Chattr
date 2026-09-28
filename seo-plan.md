@@ -37,7 +37,7 @@ The goal of this SEO strategy is to make **Chattr.** organic search discoverable
 ## 3. Information Architecture & Page Structure
 
 ```
-https://chattr.app/
+https://chattr.world/
 ├── / (Homepage: Hero App + Editorial Guides + FAQ + Social Proof)
 ├── /random-chat (Dedicated Intent: Random Chat & Matchmaking)
 ├── /random-chat-with-strangers (Dedicated Intent: Spontaneous Encounters)

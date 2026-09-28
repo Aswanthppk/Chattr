@@ -98,7 +98,7 @@ export const SafetyPage: React.FC<PageProps> = ({ onNavigate, onStartChat }) => 
             <strong>Abuse Reporting:</strong> If someone violates community guidelines, you can file a quick report. Repeatedly reported sockets are removed from the live matchmaking queue.
           </li>
           <li>
-            <strong>Ephemeral Memory:</strong> Chattr. does not write chat transcripts to a database. Once a session ends, the dialogue is deleted permanently.
+            <strong>Ephemeral Memory & Stream Privacy:</strong> Chattr. does not write chat transcripts to a database, nor are live video/audio calls ever recorded or stored. Once a session ends, all communication states are deleted permanently.
           </li>
         </ul>
       </section>

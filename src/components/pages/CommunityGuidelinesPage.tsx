@@ -57,7 +57,7 @@ export const CommunityGuidelinesPage: React.FC<PageProps> = ({ onNavigate, onSta
             No Inappropriate or Exploitative Content
           </h3>
           <p className="font-body-sm text-body-sm text-text-secondary">
-            Sharing sexually explicit material, promoting non-consensual imagery, or distributing predatory communications will be met with immediate network exclusion.
+            Sharing sexually explicit material, promoting non-consensual imagery, or distributing predatory communications in text or video chat will be met with immediate network exclusion and permanent bans.
           </p>
         </div>
 

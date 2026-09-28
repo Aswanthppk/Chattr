@@ -10,7 +10,7 @@ export const ChatWithStrangersPage: React.FC<PageProps> = ({ onNavigate, onStart
   return (
     <PageLayout
       title="Chat With Strangers Online | Chattr."
-      description="Chat with new people online without creating a complicated social profile. Enjoy instant, low-friction, and privacy-preserving text conversations."
+      description="Chat with new people online without creating a complicated social profile. Enjoy instant, low-friction, and privacy-preserving text and video conversations."
       canonicalPath="/chat-with-strangers"
       breadcrumbs={[
         { name: 'Home', path: '/' },
@@ -29,7 +29,7 @@ export const ChatWithStrangersPage: React.FC<PageProps> = ({ onNavigate, onStart
           On most platforms today, starting a simple conversation requires filling out elaborate profile bios, uploading curated photographs, connecting external accounts, and managing follower counts. This introduces social anxiety, performance pressure, and friction before two people have even exchanged a single greeting.
         </p>
         <p>
-          Chattr. takes the opposite approach. We believe that when you remove permanent profiles, people talk more authentically. There are no vanity metrics, no likes, and no historical timeline to scrutinize. You connect simply as two human beings with curious minds.
+          Chattr. takes the opposite approach. Whether you choose anonymous text chat or spontaneous real-time video calls, we believe that when you remove permanent profiles, people talk more authentically. There are no vanity metrics, no likes, and no historical timeline to scrutinize. You connect simply as two human beings with curious minds.
         </p>
       </section>
 

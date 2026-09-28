@@ -27,7 +27,7 @@ export const PrivacyPage: React.FC<PageProps> = ({ onNavigate, onStartChat }) =>
           1. The Ephemeral Principle
         </h2>
         <p>
-          Chattr. is architected from the ground up around data minimization and ephemerality. Unlike traditional messaging platforms and social networks that maintain permanent archives of your text history and media uploads, Chattr. does not retain chat transcripts on any permanent storage medium.
+          Chattr. is architected from the ground up around data minimization and ephemerality. Unlike traditional messaging platforms and social networks that maintain permanent archives of your text history and media uploads, Chattr. does not retain chat transcripts or record video/audio streams on any permanent storage medium.
         </p>
       </section>
 
@@ -43,7 +43,7 @@ export const PrivacyPage: React.FC<PageProps> = ({ onNavigate, onStartChat }) =>
           <li>Email addresses, phone numbers, or passwords.</li>
           <li>Contacts, social media graphs, or address books.</li>
           <li>Precise GPS location coordinates.</li>
-          <li>Saved chat transcripts, text archives, or shared file attachments.</li>
+          <li>Saved chat transcripts, text archives, audio recordings, or video stream storage.</li>
         </ul>
       </section>
 

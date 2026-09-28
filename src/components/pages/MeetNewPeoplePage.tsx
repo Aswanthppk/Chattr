@@ -38,7 +38,7 @@ export const MeetNewPeoplePage: React.FC<PageProps> = ({ onNavigate, onStartChat
           Conversations Centered on Curiosity, Not Dating Pressure
         </h2>
         <p>
-          Chattr. is explicitly designed as a conversational platform, not a dating service. By eliminating photos, physical appearance ratings, and romantic matchmaking algorithms, interactions remain grounded in mutual intellect, creative ideas, and shared interests.
+          Chattr. is explicitly designed as a conversational platform, not a dating service. Whether you engage via text chat or live video call, interactions remain grounded in mutual intellect, creative ideas, and shared interests without algorithmic dating pressure or permanent profile evaluation.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
           <div className="p-5 rounded-xl bg-surface border border-border-subtle/80 space-y-2">

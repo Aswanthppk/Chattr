@@ -8,11 +8,11 @@ interface HomeContentSectionsProps {
 export const FAQS = [
   {
     q: 'What is random chat?',
-    a: 'Random chat is a digital service that instantly pairs two people online for a private, live conversation. Unlike traditional social media platforms that revolve around permanent follower networks and public feeds, random chat emphasizes spontaneous, one-on-one text discussions where participants meet without prior introduction.'
+    a: 'Random chat is a digital service that instantly pairs two people online for a private, live conversation. Unlike traditional social media platforms that revolve around permanent follower networks and public feeds, random chat emphasizes spontaneous, one-on-one text and video discussions where participants meet without prior introduction.'
   },
   {
     q: 'How does random chat work?',
-    a: 'When you join the queue, our matchmaking engine pairs you with another active person waiting online. You can opt to specify a few shared interests or enter the queue openly. Once a compatible peer is found, a temporary room is generated and you can immediately exchange text messages.'
+    a: 'When you join the queue, our matchmaking engine pairs you with another active person waiting online. You can choose your preferred chat mode—text chat or real-time video call—and opt to specify shared interests. Once a compatible peer is found, a private room is created so you can immediately begin chatting or video calling.'
   },
   {
     q: 'Can I chat with strangers online?',
@@ -70,7 +70,7 @@ export const HomeContentSections: React.FC<HomeContentSectionsProps> = ({
         </h2>
         <div className="font-body-md text-body-md text-text-secondary leading-relaxed space-y-3">
           <p>
-            Random chat is a streamlined way to connect and converse with real people across the world in real time. Rather than relying on static friend requests, endless public profile feeds, or algorithmic recommendation loops, random chat matches two individuals for a direct, one-on-one text conversation. It provides a spontaneous environment where every encounter begins with a clean slate.
+            Random chat is a streamlined way to connect and converse with real people across the world in real time. Rather than relying on static friend requests, endless public profile feeds, or algorithmic recommendation loops, random chat matches two individuals for direct, one-on-one text and video conversations. It provides a spontaneous environment where every encounter begins with a clean slate.
           </p>
           <p>
             The service functions by placing active users into a live matchmaking queue. To make your interactions more engaging, you can choose specific conversational interests—such as cinema, software development, electronic music, or creative writing. When someone online shares common curiosities, our system seamlessly introduces you into a private chat room.
@@ -123,10 +123,10 @@ export const HomeContentSections: React.FC<HomeContentSectionsProps> = ({
                 2
               </span>
               <h3 className="font-headline-sm text-headline-sm text-text-primary font-semibold">
-                Choose a few interests
+                Pick interests & mode
               </h3>
               <p className="font-body-sm text-body-sm text-text-secondary leading-relaxed">
-                Select from popular conversation topics or type custom hobbies to guide your matchmaking radar.
+                Select conversation topics, and choose between lightweight text chat or live WebRTC video call.
               </p>
             </div>
             <div className="pt-2 flex items-center gap-1.5 text-caption text-text-muted">
@@ -145,7 +145,7 @@ export const HomeContentSections: React.FC<HomeContentSectionsProps> = ({
                 Start chatting with someone new
               </h3>
               <p className="font-body-sm text-body-sm text-text-secondary leading-relaxed">
-                Step immediately into a private, ephemeral chat room. Skip to the next person whenever you want.
+                Step immediately into a private, ephemeral text or video session. Skip to the next person whenever you want.
               </p>
             </div>
             <div className="pt-2 flex items-center gap-1.5 text-caption text-text-muted">
@@ -281,7 +281,7 @@ export const HomeContentSections: React.FC<HomeContentSectionsProps> = ({
 
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
           <span className="font-caption text-caption text-text-muted">
-            All text messages are strictly ephemeral and discarded upon disconnect.
+            All text messages and video calls are strictly ephemeral and discarded upon disconnect.
           </span>
           <a
             href="/safety"

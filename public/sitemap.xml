@@ -6,7 +6,7 @@
 
   <!-- Homepage / Primary App Entry -->
   <url>
-    <loc>https://chattr.app/</loc>
+    <loc>https://chattr.world/</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
 
   <!-- Core Intent: Random Chat -->
   <url>
-    <loc>https://chattr.app/random-chat</loc>
+    <loc>https://chattr.world/random-chat</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -22,7 +22,7 @@
 
   <!-- Core Intent: Random Chat With Strangers -->
   <url>
-    <loc>https://chattr.app/random-chat-with-strangers</loc>
+    <loc>https://chattr.world/random-chat-with-strangers</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -30,7 +30,7 @@
 
   <!-- Core Intent: Chat With Strangers -->
   <url>
-    <loc>https://chattr.app/chat-with-strangers</loc>
+    <loc>https://chattr.world/chat-with-strangers</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -38,7 +38,7 @@
 
   <!-- Core Intent: Meet New People -->
   <url>
-    <loc>https://chattr.app/meet-new-people</loc>
+    <loc>https://chattr.world/meet-new-people</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -46,7 +46,7 @@
 
   <!-- Onboarding & Mechanics Guide -->
   <url>
-    <loc>https://chattr.app/how-random-chat-works</loc>
+    <loc>https://chattr.world/how-random-chat-works</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -54,7 +54,7 @@
 
   <!-- Safety & Trust -->
   <url>
-    <loc>https://chattr.app/safety</loc>
+    <loc>https://chattr.world/safety</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -62,7 +62,7 @@
 
   <!-- Community Standards -->
   <url>
-    <loc>https://chattr.app/community-guidelines</loc>
+    <loc>https://chattr.world/community-guidelines</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -70,7 +70,7 @@
 
   <!-- Privacy Policy -->
   <url>
-    <loc>https://chattr.app/privacy</loc>
+    <loc>https://chattr.world/privacy</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -78,7 +78,7 @@
 
   <!-- Terms of Service -->
   <url>
-    <loc>https://chattr.app/terms</loc>
+    <loc>https://chattr.world/terms</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -86,7 +86,7 @@
 
   <!-- Contact & Escalation -->
   <url>
-    <loc>https://chattr.app/contact</loc>
+    <loc>https://chattr.world/contact</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

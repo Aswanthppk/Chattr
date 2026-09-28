@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { UserMatch } from '../types';
 import { socketService } from '../services/SocketService';
 import { OrbVisual } from './OrbVisual';
+import { UserAvatar } from './UserAvatar';
 
 interface VideoChatOverlayProps {
   match: UserMatch;
@@ -227,14 +228,7 @@ export const VideoChatOverlay: React.FC<VideoChatOverlayProps> = ({
       {/* Top Bar Header */}
       <div className="w-full max-w-5xl bg-surface/90 backdrop-blur-md border border-border-subtle rounded-2xl p-3 sm:px-5 flex items-center justify-between z-20 shadow-sm">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="relative shrink-0">
-            <img
-              src={match.avatarUrl || '/icons/chattr-icon-96x96.png'}
-              alt={match.name}
-              className="w-10 h-10 rounded-full border border-border-subtle object-cover shadow-sm"
-            />
-            <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-state-success ring-2 ring-surface" />
-          </div>
+          <UserAvatar name={match.name} size="md" showOnlineDot isOnline />
 
           <div className="flex flex-col min-w-0">
             <div className="flex items-center gap-2">
@@ -339,8 +333,8 @@ export const VideoChatOverlay: React.FC<VideoChatOverlayProps> = ({
             {(!remoteMediaState.videoEnabled || connectionState !== 'connected') && (
               <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-surface-dark select-none">
                 <OrbVisual size="md" />
-                <div className="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center text-text-primary text-[28px] font-semibold shadow-md -mt-10 border border-border-subtle">
-                  {match.name.substring(0, 1).toUpperCase()}
+                <div className="-mt-10">
+                  <UserAvatar name={match.name} size="lg" className="shadow-lg border-2 border-surface" />
                 </div>
                 <p className="text-text-primary font-medium text-body-md mt-4">
                   {connectionState === 'connecting'

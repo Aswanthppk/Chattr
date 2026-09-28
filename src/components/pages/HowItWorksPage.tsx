@@ -45,10 +45,10 @@ export const HowItWorksPage: React.FC<PageProps> = ({ onNavigate, onStartChat })
         <div className="border-l-2 border-secondary pl-6 space-y-2 relative">
           <span className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-secondary ring-4 ring-background" />
           <h3 className="font-headline-sm text-headline-sm text-text-primary font-semibold">
-            Stage 2: Interest Selection or Open Matching
+            Stage 2: Interest & Mode Selection
           </h3>
           <p>
-            On the interest screen, you can select up to five conversation tags (such as <em>Technology</em>, <em>Music</em>, or <em>Gaming</em>), or type any custom hobby (e.g. <em>Astrophotography</em>, <em>Archery</em>). Alternatively, you can leave all interests unselected to connect freely with anyone available in the global queue.
+            On the interest screen, you can select up to five conversation tags (such as <em>Technology</em>, <em>Music</em>, or <em>Gaming</em>), or type any custom hobby. You also choose your preferred chat mode: <strong>Text Chat</strong> or <strong>Video Chat</strong>. Video chatters are strictly paired only with other video callers.
           </p>
         </div>
 
@@ -58,17 +58,17 @@ export const HowItWorksPage: React.FC<PageProps> = ({ onNavigate, onStartChat })
             Stage 3: Live Radar Matchmaking
           </h3>
           <p>
-            Your client emits a secure match request to our Node.js matchmaking engine via Socket.IO. The engine evaluates waiting peers, respects mutual block lists, checks interest intersections, and forms a mutual connection. Both peers are instantly routed into an active chat room without requiring manual confirmation.
+            Your client emits a secure match request to our Node.js matchmaking engine via Socket.IO. The engine evaluates waiting peers in the same mode, respects mutual block lists, checks interest intersections, and forms a mutual connection. Both peers are instantly routed into an active session without requiring manual confirmation.
           </p>
         </div>
 
         <div className="border-l-2 border-secondary pl-6 space-y-2 relative">
           <span className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-secondary ring-4 ring-background" />
           <h3 className="font-headline-sm text-headline-sm text-text-primary font-semibold">
-            Stage 4: Active Chat & Ephemeral Messaging
+            Stage 4: Active Text Chat or Live Video Call
           </h3>
           <p>
-            Messages travel via encrypted bidirectional WebSocket connections directly into your view. You see ambient typing signals, read receipts, and curated icebreaker questions. You can chat as long as you desire.
+            In text chat mode, messages stream via encrypted bidirectional WebSocket connections with live typing indicators and icebreakers. In video chat mode, participants connect directly peer-to-peer via WebRTC with live microphone and camera controls, with zero video streams stored on any server.
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export const HowItWorksPage: React.FC<PageProps> = ({ onNavigate, onStartChat })
             Stage 5: Session Termination & Discard
           </h3>
           <p>
-            When either person clicks <strong>Skip</strong>, <strong>End Chat</strong>, or closes their browser tab, the room is dismantled immediately. The server purges the room state from memory, ensuring zero data retention.
+            When either person clicks <strong>Next / Skip</strong>, <strong>End Chat</strong>, or closes their browser tab, the room and WebRTC connection dismantle immediately. Camera and microphone tracks stop instantly, and the server purges the session from memory for zero data retention.
           </p>
         </div>
       </section>

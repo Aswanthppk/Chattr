@@ -37,7 +37,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
       '@type': 'ListItem',
       'position': idx + 1,
       'name': crumb.name,
-      'item': `https://chattr.app${crumb.path === '/' ? '' : crumb.path}`
+      'item': `https://chattr.world${crumb.path === '/' ? '' : crumb.path}`
     }))
   };
 
