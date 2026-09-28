@@ -7,6 +7,8 @@ interface InterestScreenProps {
   userName?: string;
   selectedInterests: string[];
   onlineCount?: number;
+  chatMode?: 'text' | 'video';
+  onSelectChatMode?: (mode: 'text' | 'video') => void;
   onToggleInterest: (topic: string) => void;
   onResetInterests: () => void;
   onStartChat: () => void;
@@ -32,6 +34,8 @@ export const InterestScreen: React.FC<InterestScreenProps> = ({
   userName = '',
   selectedInterests,
   onlineCount = 1,
+  chatMode = 'text',
+  onSelectChatMode,
   onToggleInterest,
   onResetInterests,
   onStartChat,
@@ -227,26 +231,69 @@ export const InterestScreen: React.FC<InterestScreenProps> = ({
             </div>
           </div>
 
+          {/* Mode Selection Pill: Text Chat vs Video Call */}
+          <div className="w-full bg-surface-container-low/90 backdrop-blur-md p-1 rounded-2xl border border-border-subtle shadow-sm flex items-center gap-1 mt-space-md mb-1">
+            <button
+              type="button"
+              onClick={() => onSelectChatMode?.('text')}
+              className={`flex-1 h-11 rounded-xl flex items-center justify-center gap-2 font-label-md text-label-md transition-all duration-300 cursor-pointer ${
+                chatMode === 'text'
+                  ? 'bg-primary text-on-primary shadow-md font-semibold'
+                  : 'text-text-secondary hover:text-text-primary hover:bg-surface/50'
+              }`}
+            >
+              <span className="material-symbols-outlined text-[18px]">chat</span>
+              <span>Text Chat</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onSelectChatMode?.('video')}
+              className={`flex-1 h-11 rounded-xl flex items-center justify-center gap-2 font-label-md text-label-md transition-all duration-300 cursor-pointer ${
+                chatMode === 'video'
+                  ? 'bg-gradient-to-r from-[#756cf6] to-[#5146d0] text-white shadow-[0_4px_16px_rgba(117,108,246,0.4)] font-semibold'
+                  : 'text-text-secondary hover:text-text-primary hover:bg-surface/50'
+              }`}
+            >
+              <span className="material-symbols-outlined text-[18px]">videocam</span>
+              <span>Video Call</span>
+              <span className="px-1.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold">
+                HD
+              </span>
+            </button>
+          </div>
+
           {/* Persistent Bottom Action & Guidance Area */}
-          <div className="mt-auto pt-space-lg pb-space-md flex flex-col items-center gap-space-sm">
-            {/* Primary Solid Black Pill CTA - Always enabled */}
+          <div className="mt-auto pt-space-sm pb-space-md flex flex-col items-center gap-space-sm">
             <button
               id="start-chat-cta"
               type="button"
               onClick={onStartChat}
-              className="w-full h-[52px] bg-primary text-on-primary rounded-full font-label-md text-label-md font-medium shadow-[0_4px_14px_rgba(17,17,17,0.12)] flex items-center justify-center gap-2 transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer"
+              className={`w-full h-[52px] rounded-full font-label-md text-label-md font-medium shadow-lg flex items-center justify-center gap-2 transition-all duration-200 hover:opacity-95 active:scale-[0.98] cursor-pointer ${
+                chatMode === 'video'
+                  ? 'bg-gradient-to-r from-[#756cf6] to-[#5146d0] text-white shadow-[0_4px_20px_rgba(117,108,246,0.35)]'
+                  : 'bg-primary text-on-primary shadow-[0_4px_14px_rgba(17,17,17,0.12)]'
+              }`}
             >
-              <span>{count === 0 ? 'Start Random Chat' : 'Start Chat'}</span>
+              <span>
+                {chatMode === 'video'
+                  ? 'Start Video Call Matching'
+                  : count === 0
+                  ? 'Start Random Chat'
+                  : 'Start Text Chat'}
+              </span>
               <span className="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:translate-x-1">
-                arrow_forward
+                {chatMode === 'video' ? 'videocam' : 'arrow_forward'}
               </span>
             </button>
 
             {/* Warm micro-copy disclaimer */}
             <div className="flex items-center gap-1.5 text-center">
-              <span className="w-2 h-2 rounded-full bg-state-success" />
+              <span className="w-2 h-2 rounded-full bg-state-success animate-pulse" />
               <p className="font-caption text-caption text-text-secondary">
-                {count === 0
+                {chatMode === 'video'
+                  ? "We'll pair you strictly with other active video call strangers."
+                  : count === 0
                   ? "We'll pair you immediately with any active stranger."
                   : "We'll pair you immediately with an active stranger."}
               </p>

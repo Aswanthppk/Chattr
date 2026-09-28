@@ -8,6 +8,7 @@ interface MatchingScreenProps {
   userName: string;
   userInterests: string[];
   blockedUsers: string[];
+  chatMode?: 'text' | 'video';
   onMatchFound: (match: UserMatch) => void;
   onStartChat?: () => void;
   onCancel: () => void;
@@ -18,6 +19,7 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
   userName,
   userInterests,
   blockedUsers,
+  chatMode = 'text',
   onMatchFound,
   onStartChat,
   onCancel,
@@ -60,13 +62,15 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
         setSearchTime(`${elapsed}s`);
         onMatchFound({ ...payload.partner, roomId: payload.roomId });
         setIsSearching(false);
-      }
+      },
+      undefined,
+      chatMode
     );
 
     return () => {
       cleanup();
     };
-  }, [userName, userInterests, blockedUsers, currentMatch]);
+  }, [userName, userInterests, blockedUsers, currentMatch, chatMode]);
 
   const handleSkip = () => {
     setIsSkipping(true);
@@ -85,7 +89,9 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
           setSearchTime(`${elapsed}s`);
           onMatchFound({ ...payload.partner, roomId: payload.roomId });
           setIsSearching(false);
-        }
+        },
+        undefined,
+        chatMode
       );
     }, 400);
   };
@@ -111,7 +117,7 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
               <span className="w-2 h-2 rounded-full bg-state-success animate-ping" />
               <span className="w-2 h-2 rounded-full bg-state-success -ml-3.5" />
               <span className="font-caption text-caption text-text-secondary tracking-wide uppercase font-medium">
-                Live Radar
+                {chatMode === 'video' ? '📹 Video Radar' : '💬 Text Radar'}
               </span>
             </div>
 
@@ -149,7 +155,7 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
               {/* Sparkle Orbit Ping */}
               <div className="absolute top-2 right-4 w-6 h-6 rounded-full bg-surface flex items-center justify-center shadow-md">
                 <span className="material-symbols-outlined text-[14px] text-secondary">
-                  auto_awesome
+                  {chatMode === 'video' ? 'videocam' : 'auto_awesome'}
                 </span>
               </div>
             </div>
@@ -158,20 +164,26 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
             <div className="text-center mt-space-md z-10">
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant mb-1.5 shadow-sm">
                 <span className="material-symbols-outlined text-[14px]">
-                  {isSearching ? 'radar' : 'bolt'}
+                  {isSearching ? (chatMode === 'video' ? 'videocam' : 'radar') : 'bolt'}
                 </span>
                 <span className="font-label-sm text-label-sm">
                   {isSearching
-                    ? `Searching live queue (${waitingElapsed}s)...`
+                    ? `Searching ${chatMode === 'video' ? 'video' : 'text'} queue (${waitingElapsed}s)...`
                     : `Found in ${searchTime}`}
                 </span>
               </div>
               <h2 className="font-display-hero-mobile text-display-hero-mobile text-text-primary tracking-tight font-semibold">
-                {isSearching ? 'Finding someone...' : "Someone's here!"}
+                {isSearching
+                  ? chatMode === 'video'
+                    ? 'Finding Video Partner...'
+                    : 'Finding someone...'
+                  : "Someone's here!"}
               </h2>
               <p className="font-body-sm text-body-sm text-text-secondary mt-0.5">
                 {isSearching
-                  ? 'Waiting for a real person with similar interests in Orbit.'
+                  ? chatMode === 'video'
+                    ? 'Connecting with another user who opted for Video Call.'
+                    : 'Waiting for a real person with similar interests in Orbit.'
                   : 'Matched around shared curiosity & perspectives'}
               </p>
             </div>

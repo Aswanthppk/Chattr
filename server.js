@@ -220,7 +220,8 @@ io.on('connection', (socket) => {
 
   // User requests to find a match
   socket.on('findMatch', (userData) => {
-    const { userId, name, interests = [], blockedUsers = [] } = userData;
+    const { userId, name, interests = [], blockedUsers = [], chatMode = 'text' } = userData;
+    const reqChatMode = chatMode === 'video' ? 'video' : 'text';
 
     // Update connection metadata
     const conn = connectedUsers.get(socket.id);
@@ -229,6 +230,7 @@ io.on('connection', (socket) => {
       conn.name = name || conn.name;
       conn.interests = interests;
       conn.status = 'Matching';
+      conn.chatMode = reqChatMode;
     }
 
     // Remove any existing entry for this socket from the queue
@@ -238,13 +240,14 @@ io.on('connection', (socket) => {
     const userInterestsLower = interests.map((t) => t.toLowerCase().trim());
     const hasUserInterests = userInterestsLower.length > 0;
 
-    // 1. Look for compatible REAL HUMAN match in queue FIRST (Human priority)
+    // 1. Look for compatible REAL HUMAN match in queue FIRST (Human priority + Chat Mode Isolation)
     let matchIndex = -1;
 
     if (hasUserInterests) {
       for (let i = 0; i < waitingQueue.length; i++) {
         const candidate = waitingQueue[i];
         if (candidate.socketId === socket.id) continue;
+        if (candidate.chatMode !== reqChatMode) continue; // STRICT ISOLATION: Video matches Video, Text matches Text
         if (blockedUsers.includes(candidate.userId)) continue;
         if (candidate.blockedUsers && candidate.blockedUsers.includes(userId)) continue;
 
@@ -260,6 +263,7 @@ io.on('connection', (socket) => {
       for (let i = 0; i < waitingQueue.length; i++) {
         const candidate = waitingQueue[i];
         if (candidate.socketId === socket.id) continue;
+        if (candidate.chatMode !== reqChatMode) continue; // STRICT ISOLATION
         if (blockedUsers.includes(candidate.userId)) continue;
         if (candidate.blockedUsers && candidate.blockedUsers.includes(userId)) continue;
 
@@ -273,6 +277,7 @@ io.on('connection', (socket) => {
         for (let i = 0; i < waitingQueue.length; i++) {
           const candidate = waitingQueue[i];
           if (candidate.socketId === socket.id) continue;
+          if (candidate.chatMode !== reqChatMode) continue; // STRICT ISOLATION
           if (blockedUsers.includes(candidate.userId)) continue;
           if (candidate.blockedUsers && candidate.blockedUsers.includes(userId)) continue;
 
@@ -288,7 +293,7 @@ io.on('connection', (socket) => {
       const partnerSocket = io.sockets.sockets.get(partner.socketId);
 
       if (!partnerSocket) {
-        waitingQueue.push({ socketId: socket.id, userId, name, interests, blockedUsers, joinedAt: Date.now() });
+        waitingQueue.push({ socketId: socket.id, userId, name, interests, blockedUsers, chatMode: reqChatMode, joinedAt: Date.now() });
         socket.emit('queueStatus', { waiting: true });
         broadcastAdminStats();
         return;
@@ -303,6 +308,7 @@ io.on('connection', (socket) => {
       activeRooms.set(roomId, {
         roomId,
         isAi: false,
+        chatMode: reqChatMode,
         startedAt: Date.now(),
         user1: { socketId: socket.id, userId, name, interests },
         user2: { socketId: partner.socketId, userId: partner.userId, name: partner.name, interests: partner.interests }
@@ -326,7 +332,7 @@ io.on('connection', (socket) => {
 
       const icebreaker = ICEBREAKERS[Math.floor(Math.random() * ICEBREAKERS.length)];
 
-      console.log(`[Match Made - Human] Room: ${roomId} between ${name} & ${partner.name}`);
+      console.log(`[Match Made - Human] Room: ${roomId} Mode: ${reqChatMode} between ${name} & ${partner.name}`);
 
       socket.emit('matchFound', {
         roomId,
@@ -339,7 +345,8 @@ io.on('connection', (socket) => {
           status: 'Ready to talk now',
           interests: effectiveShared,
           icebreaker,
-          isAi: false
+          isAi: false,
+          chatMode: reqChatMode
         }
       });
 
@@ -354,19 +361,20 @@ io.on('connection', (socket) => {
           status: 'Ready to talk now',
           interests: effectiveShared,
           icebreaker,
-          isAi: false
+          isAi: false,
+          chatMode: reqChatMode
         }
       });
 
       broadcastAdminStats();
     } else {
-      // No immediate human match. Put user in waiting queue
-      waitingQueue.push({ socketId: socket.id, userId, name, interests, blockedUsers, joinedAt: Date.now() });
+      // No immediate human match. Put user in waiting queue with chatMode
+      waitingQueue.push({ socketId: socket.id, userId, name, interests, blockedUsers, chatMode: reqChatMode, joinedAt: Date.now() });
       socket.emit('queueStatus', { waiting: true });
       broadcastAdminStats();
 
       // Check if AI Companion match should be scheduled
-      scheduleAiMatchIfNeeded(socket, userId, name, interests);
+      scheduleAiMatchIfNeeded(socket, userId, name, interests, reqChatMode);
     }
   });
 

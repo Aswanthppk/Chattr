@@ -59,7 +59,8 @@ class SocketService {
     interests: string[],
     blockedUsers: string[],
     onMatchFound: (payload: RealtimeMatchPayload) => void,
-    onQueueStatus?: (status: { waiting: boolean }) => void
+    onQueueStatus?: (status: { waiting: boolean }) => void,
+    chatMode: 'text' | 'video' = 'text'
   ): () => void {
     const s = this.connect();
 
@@ -79,7 +80,8 @@ class SocketService {
       userId: this.userId,
       name,
       interests,
-      blockedUsers
+      blockedUsers,
+      chatMode
     });
 
     return () => {

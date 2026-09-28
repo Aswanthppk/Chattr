@@ -35,6 +35,7 @@ export const App: React.FC = () => {
     'Movies',
     'Gaming'
   ]);
+  const [chatMode, setChatMode] = useState<'text' | 'video'>('text');
   const [currentMatch, setCurrentMatch] = useState<UserMatch | null>(null);
   const [blockedUsers, setBlockedUsers] = useState<string[]>([]);
   const [onlineCount, setOnlineCount] = useState<number>(1);
@@ -234,6 +235,8 @@ export const App: React.FC = () => {
           userName={userName}
           selectedInterests={selectedInterests}
           onlineCount={onlineCount}
+          chatMode={chatMode}
+          onSelectChatMode={setChatMode}
           onToggleInterest={handleToggleInterest}
           onResetInterests={handleResetInterests}
           onStartChat={handleStartMatching}
@@ -246,6 +249,7 @@ export const App: React.FC = () => {
           userName={userName}
           userInterests={selectedInterests}
           blockedUsers={blockedUsers}
+          chatMode={chatMode}
           onMatchFound={handleMatchFound}
           onCancel={() => setScreen('interests')}
           currentMatch={currentMatch}

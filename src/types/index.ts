@@ -11,6 +11,7 @@ export interface UserMatch {
   icebreaker: string;
   roomId?: string;
   isAi?: boolean;
+  chatMode?: 'text' | 'video';
 }
 
 export interface ChatMessage {
