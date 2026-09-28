@@ -689,8 +689,8 @@ app.post('/api/contact', async (req, res) => {
     const { Resend } = await import('resend');
     const resend = new Resend(apiKey);
 
-    const fromAddress = process.env.RESEND_FROM_EMAIL || 'support@chatter.world';
-    const toAddress = process.env.RESEND_TO_EMAIL || 'chatter.world@eidrenienu.resend.app';
+    const fromAddress = process.env.RESEND_FROM_EMAIL || 'support@chattr.world';
+    const toAddress = process.env.RESEND_TO_EMAIL || 'chattr.world@eidrenienu.resend.app';
 
     const { data, error } = await resend.emails.send({
       from: fromAddress,
