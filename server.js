@@ -400,6 +400,17 @@ io.on('connection', (socket) => {
     socket.to(roomId).emit('partnerTyping', { isTyping });
   });
 
+  // WebRTC Video Chat Signaling Events
+  socket.on('webrtcSignal', ({ roomId, signal }) => {
+    if (!roomId || !signal) return;
+    socket.to(roomId).emit('webrtcSignal', { signal, senderSocketId: socket.id });
+  });
+
+  socket.on('webrtcToggleState', ({ roomId, videoEnabled, audioEnabled }) => {
+    if (!roomId) return;
+    socket.to(roomId).emit('webrtcToggleState', { videoEnabled, audioEnabled });
+  });
+
   // User leaves chat
   socket.on('leaveChat', ({ roomId }) => {
     if (!roomId) return;

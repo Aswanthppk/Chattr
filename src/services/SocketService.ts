@@ -178,6 +178,32 @@ class SocketService {
       this.currentRoomId = null;
     }
   }
+
+  // WebRTC Signaling Methods
+  public sendWebRtcSignal(signal: any) {
+    if (this.socket && this.currentRoomId) {
+      this.socket.emit('webrtcSignal', { roomId: this.currentRoomId, signal });
+    }
+  }
+
+  public onWebRtcSignal(callback: (signal: any) => void): () => void {
+    const s = this.connect();
+    const handler = (data: { signal: any }) => callback(data.signal);
+    s.on('webrtcSignal', handler);
+    return () => s.off('webrtcSignal', handler);
+  }
+
+  public sendWebRtcState(videoEnabled: boolean, audioEnabled: boolean) {
+    if (this.socket && this.currentRoomId) {
+      this.socket.emit('webrtcToggleState', { roomId: this.currentRoomId, videoEnabled, audioEnabled });
+    }
+  }
+
+  public onWebRtcState(callback: (state: { videoEnabled: boolean; audioEnabled: boolean }) => void): () => void {
+    const s = this.connect();
+    s.on('webrtcToggleState', callback);
+    return () => s.off('webrtcToggleState', callback);
+  }
 }
 
 export const socketService = new SocketService();

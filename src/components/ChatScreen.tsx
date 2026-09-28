@@ -4,6 +4,7 @@ import { EndChatModal } from './EndChatModal';
 import { UserAvatar } from './UserAvatar';
 import { ChatMessage, UserMatch } from '../types';
 import { socketService } from '../services/SocketService';
+import { VideoChatOverlay } from './VideoChatOverlay';
 
 interface ChatScreenProps {
   match: UserMatch;
@@ -36,6 +37,7 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
   const [isTyping, setIsTyping] = useState(false);
   const [showSafetySheet, setShowSafetySheet] = useState(false);
   const [isEndModalOpen, setIsEndModalOpen] = useState(false);
+  const [isVideoChatOpen, setIsVideoChatOpen] = useState(false);
   const [partnerLeft, setPartnerLeft] = useState(false);
 
   const streamEndRef = useRef<HTMLDivElement>(null);
@@ -146,6 +148,19 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
               </div>
 
               <div className="flex items-center gap-1.5">
+                {/* Video Call Button */}
+                <button
+                  type="button"
+                  aria-label="Start Video Call"
+                  onClick={() => setIsVideoChatOpen(true)}
+                  className="h-8 px-3 rounded-full bg-secondary/15 hover:bg-secondary/25 text-secondary border border-secondary/30 flex items-center gap-1 font-caption text-caption font-semibold active:scale-95 transition-all cursor-pointer"
+                  title="Start Video Call"
+                  id="video-call-btn"
+                >
+                  <span className="material-symbols-outlined text-[16px]">videocam</span>
+                  <span className="hidden sm:inline">Video</span>
+                </button>
+
                 {/* Instant Skip Button to find another person */}
                 <button
                   type="button"
@@ -437,6 +452,19 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
           onReturnHome();
         }}
       />
+
+      {/* WebRTC Video Chat Overlay Modal */}
+      {isVideoChatOpen && (
+        <VideoChatOverlay
+          match={match}
+          onClose={() => setIsVideoChatOpen(false)}
+          onSkip={() => {
+            setIsVideoChatOpen(false);
+            socketService.leaveChat();
+            onStartAnotherChat();
+          }}
+        />
+      )}
     </div>
   );
 };
