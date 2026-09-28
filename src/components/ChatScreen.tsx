@@ -43,6 +43,23 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
   const streamEndRef = useRef<HTMLDivElement>(null);
   const typingTimeoutRef = useRef<number | undefined>(undefined);
 
+  // If user opted for Video Call mode, render ONLY VideoChatOverlay without any text chat section underneath
+  if (match.chatMode === 'video') {
+    return (
+      <VideoChatOverlay
+        match={match}
+        onClose={() => {
+          socketService.leaveChat();
+          onEndChat();
+        }}
+        onSkip={() => {
+          socketService.leaveChat();
+          onStartAnotherChat();
+        }}
+      />
+    );
+  }
+
   const scrollToBottom = () => {
     streamEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };

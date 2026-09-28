@@ -236,7 +236,7 @@ export const InterestScreen: React.FC<InterestScreenProps> = ({
             <button
               type="button"
               onClick={() => onSelectChatMode?.('text')}
-              className={`flex-1 h-11 rounded-xl flex items-center justify-center gap-2 font-label-md text-label-md transition-all duration-300 cursor-pointer ${
+              className={`flex-1 h-11 rounded-xl flex items-center justify-center gap-2 font-label-md text-label-md transition-all duration-200 cursor-pointer ${
                 chatMode === 'text'
                   ? 'bg-primary text-on-primary shadow-md font-semibold'
                   : 'text-text-secondary hover:text-text-primary hover:bg-surface/50'
@@ -249,17 +249,14 @@ export const InterestScreen: React.FC<InterestScreenProps> = ({
             <button
               type="button"
               onClick={() => onSelectChatMode?.('video')}
-              className={`flex-1 h-11 rounded-xl flex items-center justify-center gap-2 font-label-md text-label-md transition-all duration-300 cursor-pointer ${
+              className={`flex-1 h-11 rounded-xl flex items-center justify-center gap-2 font-label-md text-label-md transition-all duration-200 cursor-pointer ${
                 chatMode === 'video'
-                  ? 'bg-gradient-to-r from-[#756cf6] to-[#5146d0] text-white shadow-[0_4px_16px_rgba(117,108,246,0.4)] font-semibold'
+                  ? 'bg-primary text-on-primary shadow-md font-semibold'
                   : 'text-text-secondary hover:text-text-primary hover:bg-surface/50'
               }`}
             >
               <span className="material-symbols-outlined text-[18px]">videocam</span>
               <span>Video Call</span>
-              <span className="px-1.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold">
-                HD
-              </span>
             </button>
           </div>
 
@@ -269,15 +266,11 @@ export const InterestScreen: React.FC<InterestScreenProps> = ({
               id="start-chat-cta"
               type="button"
               onClick={onStartChat}
-              className={`w-full h-[52px] rounded-full font-label-md text-label-md font-medium shadow-lg flex items-center justify-center gap-2 transition-all duration-200 hover:opacity-95 active:scale-[0.98] cursor-pointer ${
-                chatMode === 'video'
-                  ? 'bg-gradient-to-r from-[#756cf6] to-[#5146d0] text-white shadow-[0_4px_20px_rgba(117,108,246,0.35)]'
-                  : 'bg-primary text-on-primary shadow-[0_4px_14px_rgba(17,17,17,0.12)]'
-              }`}
+              className="w-full h-[52px] bg-primary text-on-primary rounded-full font-label-md text-label-md font-medium shadow-[0_4px_14px_rgba(17,17,17,0.12)] flex items-center justify-center gap-2 transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer"
             >
               <span>
                 {chatMode === 'video'
-                  ? 'Start Video Call Matching'
+                  ? 'Start Video Call'
                   : count === 0
                   ? 'Start Random Chat'
                   : 'Start Text Chat'}
@@ -287,9 +280,9 @@ export const InterestScreen: React.FC<InterestScreenProps> = ({
               </span>
             </button>
 
-            {/* Warm micro-copy disclaimer */}
+            {/* Micro-copy disclaimer */}
             <div className="flex items-center gap-1.5 text-center">
-              <span className="w-2 h-2 rounded-full bg-state-success animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-state-success" />
               <p className="font-caption text-caption text-text-secondary">
                 {chatMode === 'video'
                   ? "We'll pair you strictly with other active video call strangers."

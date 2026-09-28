@@ -116,8 +116,11 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
             <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low shadow-sm">
               <span className="w-2 h-2 rounded-full bg-state-success animate-ping" />
               <span className="w-2 h-2 rounded-full bg-state-success -ml-3.5" />
-              <span className="font-caption text-caption text-text-secondary tracking-wide uppercase font-medium">
-                {chatMode === 'video' ? '📹 Video Radar' : '💬 Text Radar'}
+              <span className="font-caption text-caption text-text-secondary tracking-wide uppercase font-medium flex items-center gap-1">
+                <span className="material-symbols-outlined text-[15px]">
+                  {chatMode === 'video' ? 'videocam' : 'radar'}
+                </span>
+                <span>{chatMode === 'video' ? 'Video Radar' : 'Live Radar'}</span>
               </span>
             </div>
 

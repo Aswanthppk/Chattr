@@ -487,7 +487,8 @@ const AI_BOT_PERSONAS = [
 ];
 
 // AI Companion Match Scheduler
-function scheduleAiMatchIfNeeded(socket, userId, name, interests) {
+function scheduleAiMatchIfNeeded(socket, userId, name, interests, reqChatMode = 'text') {
+  if (reqChatMode === 'video') return; // Do NOT match video users with AI chat companions
   if (!adminSettings.aiEnabled || adminSettings.aiMode === 'off') return;
 
   // Check max AI chats limit

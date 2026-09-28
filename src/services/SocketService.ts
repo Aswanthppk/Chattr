@@ -206,6 +206,12 @@ class SocketService {
     s.on('webrtcToggleState', callback);
     return () => s.off('webrtcToggleState', callback);
   }
+
+  public onPartnerLeft(callback: () => void): () => void {
+    const s = this.connect();
+    s.on('partnerLeft', callback);
+    return () => s.off('partnerLeft', callback);
+  }
 }
 
 export const socketService = new SocketService();
