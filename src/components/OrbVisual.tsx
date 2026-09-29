@@ -60,7 +60,7 @@ export const OrbVisual: React.FC<OrbVisualProps> = ({ size = 'lg', showRadar = f
         */}
         <div
           aria-hidden="true"
-          className="absolute w-44 h-44 rounded-full pointer-events-none animate-orb-ripple border border-orb-gradient-start/40 bg-orb-gradient-mid/10 blur-[3px]"
+          className="absolute w-44 h-44 rounded-full pointer-events-none animate-orb-ripple border border-orb-gradient-start/35 bg-orb-gradient-mid/10 blur-[4px]"
         />
 
         {/*

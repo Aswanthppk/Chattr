@@ -61,29 +61,15 @@
    =================================================== */
 
 @keyframes orb-breathe {
-  0% {
+  0%, 100% {
+    /* 0.0s / 4.5s: Orb normal */
     transform: scale(1);
     filter: brightness(1) drop-shadow(0 14px 32px rgba(109, 114, 232, 0.20));
-  }
-  24.4% {
-    /* ~1.1s: slowly expands */
-    transform: scale(1.015);
-    filter: brightness(1.015) drop-shadow(0 16px 36px rgba(117, 108, 246, 0.23));
   }
   50% {
     /* 2.25s: Maximum breathing scale 1.035, light becomes very slightly brighter & softer */
     transform: scale(1.035);
     filter: brightness(1.032) drop-shadow(0 20px 42px rgba(137, 130, 255, 0.28));
-  }
-  75.6% {
-    /* ~3.4s: slowly contracts */
-    transform: scale(1.015);
-    filter: brightness(1.015) drop-shadow(0 16px 36px rgba(117, 108, 246, 0.23));
-  }
-  100% {
-    /* 4.5s: returns smoothly to 1.00 */
-    transform: scale(1);
-    filter: brightness(1) drop-shadow(0 14px 32px rgba(109, 114, 232, 0.20));
   }
 }
 
