@@ -6,6 +6,8 @@ import path from 'path';
 import fs from 'fs';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
+import sqliteDb from './sqliteDb.js';
+import { getGeoDetails } from './geoService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -91,16 +93,8 @@ const waitingQueue = []; // { socketId, userId, name, interests, blockedUsers, j
 const activeRooms = new Map(); // roomId -> { roomId, user1, user2, isAi, startedAt }
 const activeAiTimerMap = new Map(); // socketId -> setTimeout handle
 
-// Admin Controlled Settings (Source of Truth)
-const adminSettings = {
-  aiEnabled: false, // Default is OFF
-  aiMode: 'off',    // Default is OFF
-  aiThreshold: 20, // Min real users threshold to activate AI matching
-  maxAiChats: 10,
-  humanMatchingPriority: true,
-  fakeUserOffset: 45, // Base offset added to displayed public online user count
-  fakeUserMultiplier: 1.5 // Multiplier for real online users count
-};
+// Admin Controlled Settings (Persistent via SQLite Database)
+const adminSettings = sqliteDb.getSettings();
 
 function getPublicOnlineCount() {
   const baseCount = Math.max(1, onlineUsers);
@@ -113,17 +107,6 @@ function broadcastOnlineCount() {
   io.emit('onlineCount', getPublicOnlineCount());
 }
 
-// Admin Audit Logs Store
-const auditLogs = [
-  {
-    id: 'log-1',
-    timestamp: new Date().toISOString(),
-    admin: ADMIN_EMAIL,
-    action: 'System Initialized',
-    details: 'Admin Dashboard server & monitoring service started.'
-  }
-];
-
 function addAuditLog(action, details) {
   const entry = {
     id: `log-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
@@ -132,8 +115,7 @@ function addAuditLog(action, details) {
     action,
     details
   };
-  auditLogs.unshift(entry);
-  if (auditLogs.length > 100) auditLogs.pop();
+  sqliteDb.addAuditLog(entry);
   broadcastAdminStats();
 }
 
@@ -184,10 +166,12 @@ function getAdminStatsPayload() {
       socketIo: 'Online',
       matchingService: 'Running',
       aiService: adminSettings.aiEnabled ? 'Running' : 'Disabled',
+      database: 'SQLite 3 (data/chattr.db)',
       memoryUsageMb: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
       uptimeSeconds: Math.floor(process.uptime()),
       connections: onlineUsers
     },
+    databaseStatus: sqliteDb.getStats(),
     settings: adminSettings
   };
 }
@@ -198,11 +182,17 @@ function broadcastAdminStats() {
 
 // User Sockets Connection
 io.on('connection', (socket) => {
+  const geo = getGeoDetails(socket);
   onlineUsers++;
   connectedUsers.set(socket.id, {
     socketId: socket.id,
     userId: `user_${socket.id.substring(0, 6)}`,
     name: 'Anonymous Stranger',
+    country: geo.country,
+    countryCode: geo.countryCode,
+    flag: geo.flag,
+    city: geo.city,
+    ip: geo.ip,
     interests: [],
     status: 'Idle',
     chatType: 'None',
@@ -212,7 +202,7 @@ io.on('connection', (socket) => {
   io.emit('onlineCount', Math.max(1, onlineUsers));
   broadcastAdminStats();
 
-  console.log(`[Socket Connected] ${socket.id} (Online: ${onlineUsers})`);
+  console.log(`[Socket Connected] ${socket.id} from ${geo.country} ${geo.flag} (IP: ${geo.ip}) (Online: ${onlineUsers})`);
 
   socket.on('getOnlineCount', () => {
     socket.emit('onlineCount', Math.max(1, onlineUsers));
@@ -291,9 +281,31 @@ io.on('connection', (socket) => {
       // Found a Real Human match!
       const partner = waitingQueue.splice(matchIndex, 1)[0];
       const partnerSocket = io.sockets.sockets.get(partner.socketId);
+      const partnerConn = connectedUsers.get(partner.socketId);
+      const userConn = connectedUsers.get(socket.id);
+
+      const partnerCountry = partnerConn?.country || partner.country || 'Online Orbit';
+      const partnerFlag = partnerConn?.flag || partner.flag || '🌐';
+      const partnerCity = partnerConn?.city || partner.city || null;
+
+      const userCountry = userConn?.country || 'Online Orbit';
+      const userFlag = userConn?.flag || '🌐';
+      const userCity = userConn?.city || null;
 
       if (!partnerSocket) {
-        waitingQueue.push({ socketId: socket.id, userId, name, interests, blockedUsers, chatMode: reqChatMode, joinedAt: Date.now() });
+        waitingQueue.push({
+          socketId: socket.id,
+          userId,
+          name,
+          interests,
+          blockedUsers,
+          chatMode: reqChatMode,
+          joinedAt: Date.now(),
+          country: userCountry,
+          countryCode: userConn?.countryCode || 'GLOBE',
+          flag: userFlag,
+          city: userCity
+        });
         socket.emit('queueStatus', { waiting: true });
         broadcastAdminStats();
         return;
@@ -310,8 +322,8 @@ io.on('connection', (socket) => {
         isAi: false,
         chatMode: reqChatMode,
         startedAt: Date.now(),
-        user1: { socketId: socket.id, userId, name, interests },
-        user2: { socketId: partner.socketId, userId: partner.userId, name: partner.name, interests: partner.interests }
+        user1: { socketId: socket.id, userId, name, interests, country: userCountry, flag: userFlag, city: userCity },
+        user2: { socketId: partner.socketId, userId: partner.userId, name: partner.name, interests: partner.interests, country: partnerCountry, flag: partnerFlag, city: partnerCity }
       });
 
       // Update statuses
@@ -332,15 +344,16 @@ io.on('connection', (socket) => {
 
       const icebreaker = ICEBREAKERS[Math.floor(Math.random() * ICEBREAKERS.length)];
 
-      console.log(`[Match Made - Human] Room: ${roomId} Mode: ${reqChatMode} between ${name} & ${partner.name}`);
+      console.log(`[Match Made - Human] Room: ${roomId} Mode: ${reqChatMode} between ${name} (${userCountry} ${userFlag}) & ${partner.name} (${partnerCountry} ${partnerFlag})`);
 
       socket.emit('matchFound', {
         roomId,
         partner: {
           id: partner.userId || partner.socketId,
           name: partner.name,
-          country: 'Online Orbit',
-          flag: '🌐',
+          country: partnerCountry,
+          flag: partnerFlag,
+          city: partnerCity,
           avatarUrl: 'https://lh3.googleusercontent.com/aida/AEtjO1UxFA_PjCIfqEjotDxf6ECYnZlNq0JcydxK8q_XjNQ2A9FxRt3nvZ25Rh-5JTcf9oBWWRwv5feAfY4FqrWh6lmHLfF8NET62l8UhaOV7OjG4bp94H1R2UlUN7EEg7XYBYZOZCOQykLsmB1-ldOp6R9Ari8P7-DEEUhdjC_u_kTBjZPFWZvooWaAPX5RyhC4sjB3vOlPo5IYwkAyT_zbLp2OBcbmGLpIz2xydNZKj3dQa6F2PwPQhsyY2h0C',
           status: 'Ready to talk now',
           interests: effectiveShared,
@@ -355,8 +368,9 @@ io.on('connection', (socket) => {
         partner: {
           id: userId || socket.id,
           name,
-          country: 'Online Orbit',
-          flag: '🌐',
+          country: userCountry,
+          flag: userFlag,
+          city: userCity,
           avatarUrl: 'https://lh3.googleusercontent.com/aida/AEtjO1UxFA_PjCIfqEjotDxf6ECYnZlNq0JcydxK8q_XjNQ2A9FxRt3nvZ25Rh-5JTcf9oBWWRwv5feAfY4FqrWh6lmHLfF8NET62l8UhaOV7OjG4bp94H1R2UlUN7EEg7XYBYZOZCOQykLsmB1-ldOp6R9Ari8P7-DEEUhdjC_u_kTBjZPFWZvooWaAPX5RyhC4sjB3vOlPo5IYwkAyT_zbLp2OBcbmGLpIz2xydNZKj3dQa6F2PwPQhsyY2h0C',
           status: 'Ready to talk now',
           interests: effectiveShared,
@@ -368,8 +382,21 @@ io.on('connection', (socket) => {
 
       broadcastAdminStats();
     } else {
-      // No immediate human match. Put user in waiting queue with chatMode
-      waitingQueue.push({ socketId: socket.id, userId, name, interests, blockedUsers, chatMode: reqChatMode, joinedAt: Date.now() });
+      // No immediate human match. Put user in waiting queue with chatMode and Geo details
+      const userConn = connectedUsers.get(socket.id);
+      waitingQueue.push({
+        socketId: socket.id,
+        userId,
+        name,
+        interests,
+        blockedUsers,
+        chatMode: reqChatMode,
+        joinedAt: Date.now(),
+        country: userConn?.country || 'Online Orbit',
+        countryCode: userConn?.countryCode || 'GLOBE',
+        flag: userConn?.flag || '🌐',
+        city: userConn?.city || null
+      });
       socket.emit('queueStatus', { waiting: true });
       broadcastAdminStats();
 
@@ -527,12 +554,13 @@ function scheduleAiMatchIfNeeded(socket, userId, name, interests, reqChatMode = 
     const aiPartnerName = `${persona.name} — AI`;
     const effectiveInterests = interests.length > 0 ? interests : ['Technology', 'AI & Sci-Fi'];
 
+    const userConn = connectedUsers.get(socket.id);
     activeRooms.set(roomId, {
       roomId,
       isAi: true,
       startedAt: Date.now(),
-      user1: { socketId: socket.id, userId, name, interests },
-      user2: { socketId: `ai_${persona.name.toLowerCase()}`, userId: `ai_${persona.name.toLowerCase()}`, name: aiPartnerName, interests: effectiveInterests }
+      user1: { socketId: socket.id, userId, name, interests, country: userConn?.country || 'Online Orbit', flag: userConn?.flag || '🌐' },
+      user2: { socketId: `ai_${persona.name.toLowerCase()}`, userId: `ai_${persona.name.toLowerCase()}`, name: aiPartnerName, interests: effectiveInterests, country: 'Chattr Cloud', flag: persona.flag }
     });
 
     const c = connectedUsers.get(socket.id);
@@ -681,9 +709,22 @@ app.post('/api/contact', async (req, res) => {
     }
 
     const apiKey = process.env.RESEND_API_KEY || process.env.VITE_RESEND_API_KEY;
+    const geo = getGeoDetails(req);
+
     if (!apiKey) {
-      console.log('[Contact API] Note: RESEND_API_KEY not found in env. Simulating success.');
-      return res.json({ success: true, simulated: true });
+      console.log('[Contact API] Note: RESEND_API_KEY not found in env. Stored in SQLite database and simulating success.');
+      sqliteDb.addContactSubmission({
+        email: email || 'Anonymous User',
+        subject: subject || 'General',
+        message: message.trim(),
+        ip: geo.ip,
+        country: geo.country,
+        flag: geo.flag,
+        city: geo.city,
+        deliveredViaEmail: false,
+        simulated: true
+      });
+      return res.json({ success: true, simulated: true, stored: true });
     }
 
     const { Resend } = await import('resend');
@@ -695,13 +736,14 @@ app.post('/api/contact', async (req, res) => {
     const { data, error } = await resend.emails.send({
       from: fromAddress,
       to: [toAddress],
-      subject: `[Chattr Contact - ${subject || 'General'}] ${email || 'Anonymous User'}`,
+      subject: `[Chattr Contact - ${subject || 'General'}] ${email || 'Anonymous User'} (${geo.country} ${geo.flag})`,
       replyTo: email || undefined,
       html: `
         <div style="font-family: sans-serif; padding: 20px; color: #333;">
           <h2>New Inquiry from Chattr. Contact Form</h2>
           <p><strong>Category:</strong> ${subject || 'General'}</p>
           <p><strong>Sender Email:</strong> ${email || 'Not provided (Anonymous)'}</p>
+          <p><strong>Location:</strong> ${geo.country} ${geo.flag} (IP: ${geo.ip})</p>
           <hr style="border: 0; border-top: 1px solid #ccc; margin: 20px 0;" />
           <p><strong>Message:</strong></p>
           <p style="white-space: pre-wrap; background: #f9f9f9; padding: 15px; border-radius: 8px;">${message}</p>
@@ -709,12 +751,26 @@ app.post('/api/contact', async (req, res) => {
       `
     });
 
+    // Persist to SQLite database regardless of email send result
+    sqliteDb.addContactSubmission({
+      email: email || 'Anonymous User',
+      subject: subject || 'General',
+      message: message.trim(),
+      ip: geo.ip,
+      country: geo.country,
+      flag: geo.flag,
+      city: geo.city,
+      deliveredViaEmail: !error,
+      emailError: error ? error.message : null,
+      simulated: false
+    });
+
     if (error) {
       console.error('[Resend Error]', error);
       return res.status(500).json({ error: error.message || 'Failed to send email via Resend' });
     }
 
-    return res.json({ success: true, data });
+    return res.json({ success: true, data, stored: true });
   } catch (err) {
     console.error('[Contact Endpoint Error]', err);
     return res.status(500).json({ error: err.message || 'Internal server error sending message' });
@@ -769,6 +825,11 @@ app.get('/api/admin/users', requireAdminAuth, (req, res) => {
     socketId: u.socketId,
     userId: u.userId,
     name: u.name,
+    country: u.country || 'Online Orbit',
+    countryCode: u.countryCode || 'GLOBE',
+    flag: u.flag || '🌐',
+    city: u.city || null,
+    ip: u.ip || 'hidden',
     interests: u.interests,
     status: u.status,
     chatType: u.chatType,
@@ -784,7 +845,11 @@ app.get('/api/admin/chats', requireAdminAuth, (req, res) => {
   const chatList = Array.from(activeRooms.values()).map((r) => ({
     roomId: r.roomId,
     participantA: r.user1.name,
+    participantACountry: r.user1.country || 'Online Orbit',
+    participantAFlag: r.user1.flag || '🌐',
     participantB: r.user2 ? r.user2.name : 'Chattr AI',
+    participantBCountry: r.user2 ? (r.user2.country || 'Online Orbit') : 'Chattr Cloud',
+    participantBFlag: r.user2 ? (r.user2.flag || '🌐') : '🤖',
     type: r.isAi ? 'AI' : 'Human',
     startedAt: r.startedAt,
     durationSeconds: Math.floor((Date.now() - r.startedAt) / 1000)
@@ -798,6 +863,10 @@ app.get('/api/admin/waiting', requireAdminAuth, (req, res) => {
   const waitingList = waitingQueue.map((w) => ({
     socketId: w.socketId,
     name: w.name,
+    country: w.country || 'Online Orbit',
+    countryCode: w.countryCode || 'GLOBE',
+    flag: w.flag || '🌐',
+    city: w.city || null,
     interests: w.interests,
     joinedAt: w.joinedAt,
     waitingTimeSeconds: Math.floor((Date.now() - w.joinedAt) / 1000)
@@ -837,6 +906,9 @@ app.patch('/api/admin/settings/ai', requireAdminAuth, (req, res) => {
   if (typeof fakeUserOffset === 'number' && fakeUserOffset >= 0) adminSettings.fakeUserOffset = fakeUserOffset;
   if (typeof fakeUserMultiplier === 'number' && fakeUserMultiplier >= 1) adminSettings.fakeUserMultiplier = fakeUserMultiplier;
 
+  // Persist updated settings to SQLite database
+  sqliteDb.updateSettings(adminSettings);
+
   broadcastOnlineCount();
   addAuditLog('AI & System Settings Updated', `aiEnabled=${adminSettings.aiEnabled}, aiMode=${adminSettings.aiMode}, aiThreshold=${adminSettings.aiThreshold}, fakeUserOffset=${adminSettings.fakeUserOffset}, fakeUserMultiplier=${adminSettings.fakeUserMultiplier}`);
 
@@ -845,7 +917,17 @@ app.patch('/api/admin/settings/ai', requireAdminAuth, (req, res) => {
 
 // Get Audit Logs
 app.get('/api/admin/audit-logs', requireAdminAuth, (req, res) => {
-  return res.json({ logs: auditLogs });
+  return res.json({ logs: sqliteDb.getAuditLogs() });
+});
+
+// Get Contact Submissions (Admin)
+app.get('/api/admin/contact-submissions', requireAdminAuth, (req, res) => {
+  return res.json({ submissions: sqliteDb.getContactSubmissions() });
+});
+
+// Get SQLite Database Statistics & Health (Admin)
+app.get('/api/admin/database', requireAdminAuth, (req, res) => {
+  return res.json(sqliteDb.getStats());
 });
 
 // ==================================================

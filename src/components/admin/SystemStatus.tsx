@@ -104,7 +104,67 @@ export const SystemStatus: React.FC<SystemStatusProps> = ({ token }) => {
             {serverStatus?.connections || 0}
           </div>
         </div>
+
+        <div className="bg-surface rounded-2xl p-5 border border-border-subtle shadow-xs space-y-1">
+          <div className="flex items-center justify-between text-text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+            <span>Database Engine</span>
+            <span className="w-2 h-2 rounded-full bg-state-success" />
+          </div>
+          <div className="font-headline-sm text-headline-sm font-bold text-text-primary">
+            SQLite 3 (WAL)
+          </div>
+        </div>
+
+        <div className="bg-surface rounded-2xl p-5 border border-border-subtle shadow-xs space-y-1">
+          <div className="text-text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+            Database File Size
+          </div>
+          <div className="font-headline-sm text-headline-sm font-bold text-text-primary">
+            {stats.databaseStatus?.sizeKb || 4} KB
+          </div>
+        </div>
       </div>
+
+      {stats.databaseStatus && (
+        <div className="bg-surface rounded-2xl p-6 border border-border-subtle shadow-xs space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-[20px] text-secondary">database</span>
+              <h3 className="font-headline-sm text-headline-sm font-bold text-text-primary">
+                SQLite Persistence & Storage
+              </h3>
+            </div>
+            <span className="px-2.5 py-0.5 rounded-full bg-state-success/15 text-state-success font-mono text-caption font-semibold">
+              ACID Compliant · WAL Active
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+            <div className="p-3 rounded-xl bg-surface-container-low border border-border-subtle/60">
+              <span className="font-caption text-caption text-text-muted block">System Settings</span>
+              <span className="font-headline-sm text-headline-sm font-bold text-text-primary">1 row</span>
+            </div>
+            <div className="p-3 rounded-xl bg-surface-container-low border border-border-subtle/60">
+              <span className="font-caption text-caption text-text-muted block">Audit Logs</span>
+              <span className="font-headline-sm text-headline-sm font-bold text-text-primary">
+                {stats.databaseStatus.tables?.auditLogs || 0}
+              </span>
+            </div>
+            <div className="p-3 rounded-xl bg-surface-container-low border border-border-subtle/60">
+              <span className="font-caption text-caption text-text-muted block">Contact Inquiries</span>
+              <span className="font-headline-sm text-headline-sm font-bold text-text-primary">
+                {stats.databaseStatus.tables?.contactSubmissions || 0}
+              </span>
+            </div>
+            <div className="p-3 rounded-xl bg-surface-container-low border border-border-subtle/60">
+              <span className="font-caption text-caption text-text-muted block">Banned Records</span>
+              <span className="font-headline-sm text-headline-sm font-bold text-text-primary">
+                {stats.databaseStatus.tables?.bannedUsers || 0}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

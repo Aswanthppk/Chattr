@@ -231,13 +231,19 @@ export const VideoChatOverlay: React.FC<VideoChatOverlayProps> = ({
           <UserAvatar name={match.name} size="md" showOnlineDot isOnline />
 
           <div className="flex flex-col min-w-0">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span className="font-headline-sm text-headline-sm text-text-primary font-semibold tracking-tight truncate">
                 {match.name}
               </span>
-              <span className="text-body-md" title={match.country}>
-                {match.flag}
-              </span>
+              {match.country && (
+                <span
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container border border-border-subtle/50 text-caption font-medium text-text-secondary"
+                  title={match.city && match.city !== 'Local' ? `${match.city}, ${match.country}` : match.country}
+                >
+                  <span className="text-body-sm">{match.flag || '🌐'}</span>
+                  <span>{match.country}</span>
+                </span>
+              )}
               {(match.isAi || match.name.includes('AI')) && (
                 <span className="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant text-[11px] font-medium border border-border-subtle shrink-0">
                   AI Companion

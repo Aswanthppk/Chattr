@@ -3,7 +3,11 @@ import React, { useEffect, useState } from 'react';
 interface ChatItem {
   roomId: string;
   participantA: string;
+  participantACountry?: string;
+  participantAFlag?: string;
   participantB: string;
+  participantBCountry?: string;
+  participantBFlag?: string;
   type: string; // 'Human' | 'AI'
   startedAt: number;
   durationSeconds: number;
@@ -87,15 +91,21 @@ export const ActiveChats: React.FC<ActiveChatsProps> = ({ token }) => {
                       #{c.roomId.substring(0, 12)}
                     </td>
                     <td className="py-3.5 px-4 font-semibold text-text-primary">
-                      {c.participantA}
+                      <div className="flex items-center gap-1.5" title={c.participantACountry || 'Online Orbit'}>
+                        <span className="text-base">{c.participantAFlag || '🌐'}</span>
+                        <span>{c.participantA}</span>
+                      </div>
                     </td>
-                    <td className="py-3.5 px-4 font-semibold text-text-primary flex items-center gap-1.5">
-                      <span>{c.participantB}</span>
-                      {c.type === 'AI' && (
-                        <span className="px-1.5 py-0.5 rounded bg-secondary/15 text-secondary text-[10px] font-bold">
-                          AI
-                        </span>
-                      )}
+                    <td className="py-3.5 px-4 font-semibold text-text-primary">
+                      <div className="flex items-center gap-1.5" title={c.participantBCountry || 'Online Orbit'}>
+                        <span className="text-base">{c.participantBFlag || (c.type === 'AI' ? '🤖' : '🌐')}</span>
+                        <span>{c.participantB}</span>
+                        {c.type === 'AI' && (
+                          <span className="px-1.5 py-0.5 rounded bg-secondary/15 text-secondary text-[10px] font-bold">
+                            AI
+                          </span>
+                        )}
+                      </div>
                     </td>
                     <td className="py-3.5 px-4">
                       <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${

@@ -123,5 +123,11 @@ dist
 .DS_Store
 Thumbs.db
 
-# Test scratch scripts
-test_peer.js
+# Database Storage (SQLite & Runtime)
+data/*.json
+data/*.tmp
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/*.sqlite
+!data/.gitkeep

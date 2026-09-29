@@ -5,6 +5,7 @@ export interface UserMatch {
   name: string;
   flag: string;
   country: string;
+  city?: string;
   avatarUrl: string;
   status: string;
   interests: string[];

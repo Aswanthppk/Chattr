@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react';
 interface WaitingItem {
   socketId: string;
   name: string;
+  country?: string;
+  countryCode?: string;
+  flag?: string;
+  city?: string;
   interests: string[];
   joinedAt: number;
   waitingTimeSeconds: number;
@@ -73,6 +77,7 @@ export const WaitingUsers: React.FC<WaitingUsersProps> = ({ token }) => {
               <thead className="bg-surface-container-low border-b border-border-subtle text-text-muted font-label-sm uppercase tracking-wider">
                 <tr>
                   <th className="py-3 px-4">Display Name</th>
+                  <th className="py-3 px-4">Country</th>
                   <th className="py-3 px-4">Selected Interests</th>
                   <th className="py-3 px-4">Waiting Time</th>
                 </tr>
@@ -82,6 +87,12 @@ export const WaitingUsers: React.FC<WaitingUsersProps> = ({ token }) => {
                   <tr key={w.socketId} className="hover:bg-surface-container-low/50 transition-colors">
                     <td className="py-3.5 px-4 font-semibold text-text-primary">
                       {w.name}
+                    </td>
+                    <td className="py-3.5 px-4">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container text-xs text-text-secondary font-medium">
+                        <span>{w.flag || '🌐'}</span>
+                        <span>{w.country || 'Online Orbit'}</span>
+                      </span>
                     </td>
                     <td className="py-3.5 px-4">
                       {w.interests.length > 0 ? (

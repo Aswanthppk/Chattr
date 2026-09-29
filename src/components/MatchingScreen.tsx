@@ -215,15 +215,21 @@ export const MatchingScreen: React.FC<MatchingScreenProps> = ({
                 {/* Identity & Mutual Anchor */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-1">
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <h3 className="font-headline-sm text-headline-sm text-text-primary truncate font-semibold">
                         {currentMatch.name}
                       </h3>
-                      <span className="text-body-md" title={currentMatch.country}>
-                        {currentMatch.flag}
-                      </span>
+                      {currentMatch.country && (
+                        <span
+                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container border border-border-subtle/50 text-caption font-medium text-text-secondary"
+                          title={currentMatch.city && currentMatch.city !== 'Local' ? `${currentMatch.city}, ${currentMatch.country}` : currentMatch.country}
+                        >
+                          <span className="text-body-sm">{currentMatch.flag || '🌐'}</span>
+                          <span>{currentMatch.country}</span>
+                        </span>
+                      )}
                     </div>
-                    <span className="font-caption text-caption text-text-muted">Just now</span>
+                    <span className="font-caption text-caption text-text-muted shrink-0">Just now</span>
                   </div>
 
                   <p className="font-body-sm text-body-sm text-state-success flex items-center gap-1 mt-0.5 font-medium">

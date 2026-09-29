@@ -143,10 +143,19 @@ export const ChatScreen: React.FC<ChatScreenProps> = ({
                 />
 
                 <div className="flex flex-col min-w-0">
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-1.5 flex-wrap">
                     <span className="font-headline-sm text-headline-sm text-text-primary leading-none truncate font-semibold">
                       {match.name}
                     </span>
+                    {match.country && (
+                      <span
+                        className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-surface-container border border-border-subtle/40 text-[11px] font-medium text-text-secondary"
+                        title={match.city && match.city !== 'Local' ? `${match.city}, ${match.country}` : match.country}
+                      >
+                        <span className="text-xs">{match.flag || '🌐'}</span>
+                        <span className="truncate max-w-[120px]">{match.country}</span>
+                      </span>
+                    )}
                     {(match.isAi || match.name.includes('AI')) && (
                       <span className="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary text-[11px] font-semibold border border-secondary/20 shrink-0">
                         AI companion

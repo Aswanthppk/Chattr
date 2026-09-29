@@ -4,6 +4,11 @@ interface UserItem {
   socketId: string;
   userId: string;
   name: string;
+  country?: string;
+  countryCode?: string;
+  flag?: string;
+  city?: string;
+  ip?: string;
   interests: string[];
   status: string;
   chatType: string;
@@ -49,7 +54,7 @@ export const LiveUsers: React.FC<LiveUsersProps> = ({ token }) => {
             Active Connected Sockets ({users.length})
           </h2>
           <p className="font-body-sm text-body-sm text-text-secondary">
-            Operational snapshot of connected clients. Privacy enforced: message content is never stored or monitored.
+            Operational snapshot of connected clients with GeoIP geolocation details.
           </p>
         </div>
         <button
@@ -77,6 +82,7 @@ export const LiveUsers: React.FC<LiveUsersProps> = ({ token }) => {
                 <tr>
                   <th className="py-3 px-4">Connection ID</th>
                   <th className="py-3 px-4">Display Name</th>
+                  <th className="py-3 px-4">Country & IP</th>
                   <th className="py-3 px-4">Interests</th>
                   <th className="py-3 px-4">Status</th>
                   <th className="py-3 px-4">Chat Type</th>
@@ -91,6 +97,21 @@ export const LiveUsers: React.FC<LiveUsersProps> = ({ token }) => {
                     </td>
                     <td className="py-3.5 px-4 font-semibold text-text-primary">
                       {u.name}
+                    </td>
+                    <td className="py-3.5 px-4">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-base shrink-0">{u.flag || '🌐'}</span>
+                        <div className="flex flex-col min-w-0">
+                          <span className="font-medium text-xs text-text-primary truncate">
+                            {u.city && u.city !== 'Local' ? `${u.city}, ` : ''}{u.country || 'Online Orbit'}
+                          </span>
+                          {u.ip && u.ip !== 'hidden' && (
+                            <span className="font-mono text-[10px] text-text-muted">
+                              {u.ip}
+                            </span>
+                          )}
+                        </div>
+                      </div>
                     </td>
                     <td className="py-3.5 px-4">
                       {u.interests.length > 0 ? (
