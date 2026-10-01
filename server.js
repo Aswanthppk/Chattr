@@ -931,9 +931,42 @@ app.get('/api/admin/database', requireAdminAuth, (req, res) => {
 });
 
 // ==================================================
-// SERVE FRONTEND IN PRODUCTION
+// SERVE FRONTEND & SEO STATIC ASSETS IN PRODUCTION
 // ==================================================
 const distPath = path.join(__dirname, 'dist');
+const publicPath = path.join(__dirname, 'public');
+
+// Explicit XML Sitemap route with application/xml header
+app.get('/sitemap.xml', (req, res) => {
+  const fileInDist = path.join(distPath, 'sitemap.xml');
+  const fileInPublic = path.join(publicPath, 'sitemap.xml');
+  const fileToServe = fs.existsSync(fileInDist) ? fileInDist : (fs.existsSync(fileInPublic) ? fileInPublic : null);
+
+  if (fileToServe) {
+    res.header('Content-Type', 'application/xml; charset=utf-8');
+    return res.sendFile(fileToServe);
+  }
+  return res.status(404).type('text/plain').send('Sitemap not found');
+});
+
+// Redirect legacy or typo sitemap requests to /sitemap.xml
+app.get(['/sitemap', '/sitemap/'], (req, res) => {
+  return res.redirect(301, '/sitemap.xml');
+});
+
+// Explicit robots.txt route
+app.get('/robots.txt', (req, res) => {
+  const fileInDist = path.join(distPath, 'robots.txt');
+  const fileInPublic = path.join(publicPath, 'robots.txt');
+  const fileToServe = fs.existsSync(fileInDist) ? fileInDist : (fs.existsSync(fileInPublic) ? fileInPublic : null);
+
+  if (fileToServe) {
+    res.header('Content-Type', 'text/plain; charset=utf-8');
+    return res.sendFile(fileToServe);
+  }
+  return res.status(404).type('text/plain').send('Robots.txt not found');
+});
+
 const VALID_ROUTES = new Set([
   '/',
   '/random-chat',
