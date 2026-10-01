@@ -95,7 +95,8 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
         jsonLd={homeJsonLd}
       />
 
-      {/* Exact Stitch Hero Stage */}
+      <main className="flex-1 w-full">
+        {/* Exact Stitch Hero Stage */}
       <div className="flex flex-col w-full px-margin pb-safe justify-between min-h-[calc(100vh-theme(spacing.space-2xl))] max-w-sm mx-auto">
         {/* Minimal Top Header */}
         <header className="flex items-center justify-between pt-space-md w-full">
@@ -238,6 +239,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           if (input) input.focus();
         }}
       />
+      </main>
 
       {/* Structured Semantic Footer */}
       <Footer onNavigate={onNavigate} />

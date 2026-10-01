@@ -182,7 +182,7 @@ export const HomeContentSections: React.FC<HomeContentSectionsProps> = ({
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-text-primary font-semibold font-body-md text-body-md">
               <span className="material-symbols-outlined text-secondary text-[20px]">bolt</span>
-              <h4>Quick conversations</h4>
+              <h3>Quick conversations</h3>
             </div>
             <p className="font-body-sm text-body-sm text-text-secondary leading-relaxed">
               No waiting in lobbies or swiping through profiles. You are matched directly with someone online ready to talk.
@@ -192,7 +192,7 @@ export const HomeContentSections: React.FC<HomeContentSectionsProps> = ({
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-text-primary font-semibold font-body-md text-body-md">
               <span className="material-symbols-outlined text-secondary text-[20px]">hub</span>
-              <h4>Interest-based matching</h4>
+              <h3>Interest-based matching</h3>
             </div>
             <p className="font-body-sm text-body-sm text-text-secondary leading-relaxed">
               Tag your favorite hobbies or explore random chats openly. You decide what shapes the conversation.
@@ -202,7 +202,7 @@ export const HomeContentSections: React.FC<HomeContentSectionsProps> = ({
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-text-primary font-semibold font-body-md text-body-md">
               <span className="material-symbols-outlined text-secondary text-[20px]">verified_user</span>
-              <h4>No complicated profile setup</h4>
+              <h3>No complicated profile setup</h3>
             </div>
             <p className="font-body-sm text-body-sm text-text-secondary leading-relaxed">
               Zero email verification, bio requirements, or photo uploads. Your anonymity and focus remain protected.
@@ -212,7 +212,7 @@ export const HomeContentSections: React.FC<HomeContentSectionsProps> = ({
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-text-primary font-semibold font-body-md text-body-md">
               <span className="material-symbols-outlined text-secondary text-[20px]">public</span>
-              <h4>Meet people from different places</h4>
+              <h3>Meet people from different places</h3>
             </div>
             <p className="font-body-sm text-body-sm text-text-secondary leading-relaxed">
               Discover unique global perspectives, regional ideas, and fresh viewpoints from outside your everyday circle.
@@ -348,9 +348,9 @@ export const HomeContentSections: React.FC<HomeContentSectionsProps> = ({
       {/* Final Call to Action Banner */}
       <div className="bg-surface-dark text-on-primary rounded-2xl p-8 sm:p-12 text-center space-y-6 shadow-xl">
         <div className="space-y-2 max-w-md mx-auto">
-          <h3 className="font-display-hero-mobile text-display-hero-mobile font-bold tracking-tight">
+          <h2 className="font-display-hero-mobile text-display-hero-mobile font-bold tracking-tight">
             Ready to meet someone new?
-          </h3>
+          </h2>
           <p className="font-body-md text-body-md text-on-primary-variant">
             Join active people online right now. Pick an interest or jump in freely.
           </p>
