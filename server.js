@@ -29,46 +29,6 @@ if (fs.existsSync(envPath)) {
 }
 
 const app = express();
-app.set('trust proxy', 1);
-
-// HTTPS Enforcement, Canonical Domain Redirect, & HSTS Security Headers Middleware
-app.use((req, res, next) => {
-  const host = req.headers.host || '';
-  const xfp = req.headers['x-forwarded-proto'];
-
-  // Check Cloudflare visitor header if present
-  let isHttps = req.secure || xfp === 'https';
-  if (!isHttps && req.headers['cf-visitor']) {
-    try {
-      const visitor = JSON.parse(req.headers['cf-visitor']);
-      if (visitor && visitor.scheme === 'https') {
-        isHttps = true;
-      }
-    } catch (e) {
-      // Ignore parse errors
-    }
-  }
-
-  // 1. Only redirect HTTP to HTTPS when proxy explicitly indicates incoming protocol is 'http'
-  if (xfp === 'http' && !isHttps) {
-    return res.redirect(301, `https://${host}${req.url}`);
-  }
-
-  // 2. Canonical www to non-www redirect (https://www.chattr.world -> https://chattr.world)
-  if (host.startsWith('www.')) {
-    const canonicalHost = host.replace(/^www\./, '');
-    return res.redirect(301, `https://${canonicalHost}${req.url}`);
-  }
-
-  // 3. Security Headers for Page Experience & HTTPS Validation
-  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
-  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-
-  next();
-});
-
 app.use(cors());
 app.use(express.json());
 
