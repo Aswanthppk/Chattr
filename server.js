@@ -35,18 +35,29 @@ app.set('trust proxy', 1);
 app.use((req, res, next) => {
   const host = req.headers.host || '';
   const xfp = req.headers['x-forwarded-proto'];
-  const isHttps = req.secure || xfp === 'https';
 
-  // 1. Redirect HTTP to HTTPS when behind proxy or in production
-  if (!isHttps && (process.env.NODE_ENV === 'production' || xfp === 'http')) {
+  // Check Cloudflare visitor header if present
+  let isHttps = req.secure || xfp === 'https';
+  if (!isHttps && req.headers['cf-visitor']) {
+    try {
+      const visitor = JSON.parse(req.headers['cf-visitor']);
+      if (visitor && visitor.scheme === 'https') {
+        isHttps = true;
+      }
+    } catch (e) {
+      // Ignore parse errors
+    }
+  }
+
+  // 1. Only redirect HTTP to HTTPS when proxy explicitly indicates incoming protocol is 'http'
+  if (xfp === 'http' && !isHttps) {
     return res.redirect(301, `https://${host}${req.url}`);
   }
 
   // 2. Canonical www to non-www redirect (https://www.chattr.world -> https://chattr.world)
   if (host.startsWith('www.')) {
     const canonicalHost = host.replace(/^www\./, '');
-    const protocol = isHttps ? 'https' : 'http';
-    return res.redirect(301, `${protocol}://${canonicalHost}${req.url}`);
+    return res.redirect(301, `https://${canonicalHost}${req.url}`);
   }
 
   // 3. Security Headers for Page Experience & HTTPS Validation
