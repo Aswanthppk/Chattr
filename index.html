@@ -57,11 +57,27 @@
     }
     </script>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <!-- Fonts: Asynchronous non-render-blocking font loader -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script>
+      (function() {
+        var fonts = [
+          'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap',
+          'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap'
+        ];
+        fonts.forEach(function(src) {
+          var l = document.createElement('link');
+          l.rel = 'stylesheet';
+          l.href = src;
+          document.head.appendChild(l);
+        });
+      })();
+    </script>
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    </noscript>
   </head>
   <body class="bg-[#f9f9f7] font-sans antialiased text-[#111111] selection:bg-[#e3dfff] selection:text-[#5146d0]">
     <div id="root"></div>
