@@ -57,16 +57,16 @@
     }
     </script>
 
-    <!-- Fonts: High-performance preconnect & lightweight targeted font loading -->
+    <!-- Fonts: Deferred non-critical font loader & glyph subsetting -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <script>
-      (function() {
+      function loadDeferredFonts() {
         var fonts = [
           'https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap',
-          'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap'
+          'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&text=casinoarrow_forwardshieldbolthubverified_userpublicchatvideocamlockspeedhelp_outlinecheck_circlekeyboard_arrow_downhourglass_empty&display=swap'
         ];
         fonts.forEach(function(src) {
           var l = document.createElement('link');
@@ -74,11 +74,16 @@
           l.href = src;
           document.head.appendChild(l);
         });
-      })();
+      }
+      if (document.readyState === 'complete') {
+        setTimeout(loadDeferredFonts, 0);
+      } else {
+        window.addEventListener('load', loadDeferredFonts);
+      }
     </script>
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" />
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&text=casinoarrow_forwardshieldbolthubverified_userpublicchatvideocamlockspeedhelp_outlinecheck_circlekeyboard_arrow_downhourglass_empty&display=swap" />
     </noscript>
   </head>
   <body class="bg-[#f9f9f7] font-sans antialiased text-[#111111] selection:bg-[#e3dfff] selection:text-[#5146d0]">
