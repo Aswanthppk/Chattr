@@ -985,7 +985,34 @@ const VALID_ROUTES = new Set([
 ]);
 
 if (fs.existsSync(distPath)) {
-  app.use(express.static(distPath));
+  // 1. Canonical Trailing Slash Redirect Middleware:
+  // Redirect /random-chat/ to /random-chat (301 Moved Permanently)
+  app.use((req, res, next) => {
+    if (req.method === 'GET' && req.path.length > 1 && req.path.endsWith('/')) {
+      const canonicalPath = req.path.replace(/\/+$/, '');
+      if (VALID_ROUTES.has(canonicalPath)) {
+        return res.redirect(301, canonicalPath);
+      }
+    }
+    next();
+  });
+
+  // 2. Direct Canonical Route HTML Handler:
+  // Serve prerendered dist/<route>/index.html directly with 200 OK status
+  app.get(Array.from(VALID_ROUTES), (req, res, next) => {
+    const routeName = req.path === '/' ? '' : req.path.substring(1);
+    const htmlFile = routeName ? path.join(distPath, routeName, 'index.html') : path.join(distPath, 'index.html');
+    if (fs.existsSync(htmlFile)) {
+      res.header('Content-Type', 'text/html; charset=utf-8');
+      return res.sendFile(htmlFile);
+    }
+    next();
+  });
+
+  // 3. Static Assets Handler without directory redirects
+  app.use(express.static(distPath, { redirect: false }));
+
+  // 4. Wildcard SPA & 404 Fallback
   app.use((req, res, next) => {
     if (req.method !== 'GET' || req.path.startsWith('/api') || req.path.startsWith('/socket.io')) {
       return next();
